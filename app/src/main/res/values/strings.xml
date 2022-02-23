@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">snamall</string>
+    <string name="home_tab">خانه</string>
+    <string name="category_tab">دسته بندی</string>
+    <string name="cart_tab">سبد خرید</string>
+    <string name="profile_tab">پروفایل</string>
 </resources>
