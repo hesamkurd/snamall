@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="@dimen/_60sdp"
+    android:layout_height="@dimen/_80sdp"
+    android:layout_margin="@dimen/_6sdp"
+    android:orientation="vertical">
+
+    <ir.mamhesam.snamall.view.MyImageView
+        android:id="@+id/img_general_category"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:scaleType="centerCrop"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:padding="@dimen/_2sdp" />
+
+    <TextView
+        android:id="@+id/txt_general_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="@dimen/_8sdp"
+        android:layout_marginTop="@dimen/_3sdp"
+        android:textColor="@color/green_600"/>
+
+
+</LinearLayout>
