@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ir.mamhesam.snamall.view.MyImageView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/_8sdp"
+    android:id="@+id/img_popular_product"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:viewAspectRatio="1.0">
+
+</ir.mamhesam.snamall.view.MyImageView>

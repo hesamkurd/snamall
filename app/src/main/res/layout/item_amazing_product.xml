@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="@dimen/_120sdp"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/_4sdp"
+    app:cardCornerRadius="@dimen/_8sdp"
+    android:layoutDirection="rtl">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/_4sdp">
+
+        <ir.mamhesam.snamall.view.MyImageView
+            android:id="@+id/img_amazing_product"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_120sdp"/>
+
+        <TextView
+            android:layout_marginTop="@dimen/_4sdp"
+            android:id="@+id/txt_title_product"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:lines="2"
+            android:ellipsize="end"
+            android:lineSpacingExtra="@dimen/_3sdp"
+            android:textColor="@color/grey_800"
+            android:textSize="@dimen/_8sdp" />
+
+        <RelativeLayout
+            android:layout_marginTop="@dimen/_4sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/txt_free"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/bg_percent"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_8sdp" />
+
+            <LinearLayout
+                android:layout_alignParentLeft="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_gravity="left"
+                    android:id="@+id/txt_free_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/grey_800"
+                    android:textSize="@dimen/_8sdp" />
+
+                <TextView
+                    android:layout_gravity="left"
+                    android:id="@+id/txt_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/grey_400"
+                    android:textSize="@dimen/_6sdp" />
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+        <ProgressBar
+            android:layout_marginTop="@dimen/_4sdp"
+            android:layout_marginBottom="@dimen/_4sdp"
+            style="@style/CustomAmazingBarProgress"
+            android:id="@+id/progress_amazing"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_4sdp" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textColor="@color/grey_800"
+                android:textSize="@dimen/_8sdp"
+                android:id="@+id/txt_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|center" />
+
+            <TextView
+                android:layoutDirection="ltr"
+                android:textSize="@dimen/_8sdp"
+                android:id="@+id/txt_time"
+                android:textColor="@color/red"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|center" />
+
+        </FrameLayout>
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

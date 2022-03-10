@@ -29,4 +29,11 @@
         <item name="fontFamily">@font/ir_sans_medium</item>
         <item name="android:fontFamily">@font/ir_sans_medium</item>
     </style>
+
+    <style name="CustomAmazingBarProgress" parent="android:Widget.ProgressBar.Horizontal">
+
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:progressDrawable">@drawable/progressf_amazing</item>
+
+    </style>
 </resources>

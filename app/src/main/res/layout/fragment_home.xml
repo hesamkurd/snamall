@@ -91,6 +91,26 @@
                     android:layout_marginTop="@dimen/_6sdp"
                     android:layout_marginBottom="@dimen/_6sdp"/>
 
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/green_600"
+                    android:id="@+id/rc_amazing_product"
+                    android:padding="@dimen/_4sdp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="محبوب ترین ها"
+                    android:textColor="@color/black"
+                    android:padding="@dimen/_4sdp"
+                    android:layout_marginTop="@dimen/_4sdp"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rc_popular_product"
+                    android:padding="@dimen/_10sdp"/>
+
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 

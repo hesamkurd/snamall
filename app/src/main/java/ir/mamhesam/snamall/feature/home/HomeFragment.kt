@@ -6,6 +6,7 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
@@ -14,8 +15,10 @@ import androidx.viewpager2.widget.ViewPager2
 import ir.mamhesam.snamall.base.BaseFragment
 import ir.mamhesam.snamall.data.ResponseBanners
 import ir.mamhesam.snamall.databinding.FragmentHomeBinding
+import ir.mamhesam.snamall.feature.home.adapter.AmazingAdapter
 import ir.mamhesam.snamall.feature.home.adapter.BannersAdapter
 import ir.mamhesam.snamall.feature.home.adapter.GeneralCategoryAdapter
+import ir.mamhesam.snamall.feature.home.adapter.PopularAdapter
 import ir.mamhesam.snamall.feature.home.viewmodel.HomeViewModel
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -84,6 +87,16 @@ class HomeFragment : BaseFragment() {
 
 
         }
+        homeViewModel.amazingProductsLiveData.observe(viewLifecycleOwner){
+            val amazingAdapter: AmazingAdapter by inject { parametersOf(it) }
+            binding.rcAmazingProduct.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+            binding.rcAmazingProduct.adapter = amazingAdapter
+        }
+        homeViewModel.popularProductLiveData.observe(viewLifecycleOwner){
+            val popularAdapter: PopularAdapter by inject { parametersOf(it) }
+            binding.rcPopularProduct.layoutManager = GridLayoutManager(context,3,GridLayoutManager.INVALID_OFFSET,false)
+            binding.rcPopularProduct.adapter = popularAdapter
+        }
     }
 
     private val sliderRunnable = Runnable {
@@ -98,12 +111,16 @@ class HomeFragment : BaseFragment() {
         super.onPause()
         handler.removeCallbacks(sliderRunnable)
 
+
     }
 
     override fun onResume() {
         super.onResume()
         handler.postDelayed(sliderRunnable, 5000)
+
     }
+
+
 
 
 
