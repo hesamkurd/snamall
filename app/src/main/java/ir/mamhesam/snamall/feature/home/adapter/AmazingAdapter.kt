@@ -97,7 +97,7 @@ class AmazingAdapter(
             0 -> {
                 FIRST_AMAZING
             }
-            5 -> {
+            6 -> {
                 LAST_AMAZING
             }
             else->{

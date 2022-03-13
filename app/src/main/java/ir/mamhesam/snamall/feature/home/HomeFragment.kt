@@ -6,30 +6,35 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.ItemDecoration
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
+import ir.mamhesam.snamall.R
 import ir.mamhesam.snamall.base.BaseFragment
 import ir.mamhesam.snamall.data.ResponseBanners
 import ir.mamhesam.snamall.databinding.FragmentHomeBinding
-import ir.mamhesam.snamall.feature.home.adapter.AmazingAdapter
-import ir.mamhesam.snamall.feature.home.adapter.BannersAdapter
-import ir.mamhesam.snamall.feature.home.adapter.GeneralCategoryAdapter
-import ir.mamhesam.snamall.feature.home.adapter.PopularAdapter
+import ir.mamhesam.snamall.feature.home.adapter.*
 import ir.mamhesam.snamall.feature.home.viewmodel.HomeViewModel
+import ir.mamhesam.snamall.utils.DividerItemDecorator
+import ir.mamhesam.snamall.utils.TYPE_ONE
+import ir.mamhesam.snamall.utils.TYPE_TWO
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
-class HomeFragment : BaseFragment() {
+
+class HomeFragment : BaseFragment(),BannersType2Adapter.OnClickBannerType {
 
     val homeViewModel: HomeViewModel by viewModel()
     private lateinit var binding: FragmentHomeBinding
     val handler = Handler(Looper.myLooper()!!)
     var bannersSlider: List<ResponseBanners>? = null
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -94,8 +99,19 @@ class HomeFragment : BaseFragment() {
         }
         homeViewModel.popularProductLiveData.observe(viewLifecycleOwner){
             val popularAdapter: PopularAdapter by inject { parametersOf(it) }
-            binding.rcPopularProduct.layoutManager = GridLayoutManager(context,3,GridLayoutManager.INVALID_OFFSET,false)
+            binding.rcPopularProduct.layoutManager = GridLayoutManager(context,3,GridLayoutManager.VERTICAL,false)
+            val dividerItemDecoration: ItemDecoration = DividerItemDecorator(
+                ContextCompat.getDrawable(requireContext(), R.drawable.line_divider)!!)
+
+            binding.rcPopularProduct.addItemDecoration(dividerItemDecoration)
             binding.rcPopularProduct.adapter = popularAdapter
+        }
+
+        homeViewModel.bannerType2LiveData.observe(viewLifecycleOwner){
+            val bannerType2Adapter: BannersType2Adapter by inject { parametersOf(it) }
+            binding.rcBannerType2.layoutManager = GridLayoutManager(requireContext(),2)
+            binding.rcBannerType2.adapter = bannerType2Adapter
+            bannerType2Adapter.setOnClickBannersType(this)
         }
     }
 
@@ -120,9 +136,17 @@ class HomeFragment : BaseFragment() {
 
     }
 
+    override fun onClickBannerType(type: String, link: String) {
+        when(type){
+            TYPE_ONE->{
 
+            }
+            TYPE_TWO->{
+                
+            }
 
-
+        }
+    }
 
 
 }

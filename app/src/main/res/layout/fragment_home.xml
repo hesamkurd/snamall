@@ -98,6 +98,13 @@
                     android:id="@+id/rc_amazing_product"
                     android:padding="@dimen/_4sdp"/>
 
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rc_banner_type_2"
+                    android:padding="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_8sdp"/>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -108,8 +115,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/rc_popular_product"
-                    android:padding="@dimen/_10sdp"/>
+                    android:id="@+id/rc_popular_product" />
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>

@@ -1,16 +1,15 @@
 package ir.mamhesam.snamall.api
 
 import io.reactivex.Single
-import ir.mamhesam.snamall.data.ResponseAmazingProducts
-import ir.mamhesam.snamall.data.ResponseBanners
-import ir.mamhesam.snamall.data.ResponseGeneralCategory
-import ir.mamhesam.snamall.data.ResponsePopularProduct
+import ir.mamhesam.snamall.data.*
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 
 interface ApiService {
+
+    /////// HOME //////////
 
     @GET("home/banners.php")
     fun getBanners(): Single<List<ResponseBanners>>
@@ -23,6 +22,10 @@ interface ApiService {
 
     @GET("home/popular_products.php")
     fun getPopularProduct(): Single<List<ResponsePopularProduct>>
+
+    @GET("home/banner_2.php")
+    fun getBannerType2(): Single<List<ResponseBannerType2>>
+
 }
 
 fun retrofitApi():ApiService{

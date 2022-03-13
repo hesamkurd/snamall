@@ -7,26 +7,22 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import ir.mamhesam.snamall.base.BaseViewModel
 import ir.mamhesam.snamall.base.customObserver
-import ir.mamhesam.snamall.data.ResponseAmazingProducts
-import ir.mamhesam.snamall.data.ResponseBanners
-import ir.mamhesam.snamall.data.ResponseGeneralCategory
-import ir.mamhesam.snamall.data.ResponsePopularProduct
-import ir.mamhesam.snamall.feature.home.repo.AmazingProductsRepository
-import ir.mamhesam.snamall.feature.home.repo.BannersRepository
-import ir.mamhesam.snamall.feature.home.repo.GeneralCategoryRepository
-import ir.mamhesam.snamall.feature.home.repo.PopularProductRepository
+import ir.mamhesam.snamall.data.*
+import ir.mamhesam.snamall.feature.home.repo.*
 import ir.mamhesam.snamall.utils.ShopSingleObserver
 import timber.log.Timber
 
 class HomeViewModel(val bannersRepository: BannersRepository,
                     val generalCategoryRepository: GeneralCategoryRepository,
                     val amazingProductsRepository: AmazingProductsRepository,
-                    val popularProductRepository: PopularProductRepository): BaseViewModel() {
+                    val popularProductRepository: PopularProductRepository,
+                    val bannerType2Repository: BannerType2Repository): BaseViewModel() {
 
     val bannersLiveData = MutableLiveData<List<ResponseBanners>>()
     val generalCategoryLiveData = MutableLiveData<List<ResponseGeneralCategory>>()
     val amazingProductsLiveData = MutableLiveData<List<ResponseAmazingProducts>>()
     val popularProductLiveData = MutableLiveData<List<ResponsePopularProduct>>()
+    val bannerType2LiveData = MutableLiveData<List<ResponseBannerType2>>()
 
     init {
 
@@ -79,6 +75,14 @@ class HomeViewModel(val bannersRepository: BannersRepository,
             .subscribe(object : ShopSingleObserver<List<ResponsePopularProduct>>(compositeDisposable){
                 override fun onSuccess(t: List<ResponsePopularProduct>) {
                     popularProductLiveData.value = t
+                }
+
+            })
+
+        bannerType2Repository.getBannerType2().customObserver()
+            .subscribe(object : ShopSingleObserver<List<ResponseBannerType2>>(compositeDisposable){
+                override fun onSuccess(t: List<ResponseBannerType2>) {
+                    bannerType2LiveData.value = t
                 }
 
             })
