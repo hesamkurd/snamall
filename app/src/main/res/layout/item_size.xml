@@ -8,7 +8,7 @@
     android:paddingBottom="@dimen/_6sdp"
     android:paddingRight="@dimen/_12sdp"
     android:paddingLeft="@dimen/_12sdp"
-    android:textColor="@color/gray_900"
+    android:textColor="@color/grey_900"
     android:background="@drawable/shape_text_size"
     android:layout_height="wrap_content">
 

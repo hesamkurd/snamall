@@ -83,6 +83,9 @@ dependencies {
     implementation 'com.facebook.fresco:fresco:2.6.0'
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
     implementation 'com.tbuonomo:dotsindicator:4.2'
+    implementation 'com.google.code.findbugs:jsr305:3.0.2'
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
 
 
 }

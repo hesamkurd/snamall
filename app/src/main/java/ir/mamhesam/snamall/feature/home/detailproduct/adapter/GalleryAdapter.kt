@@ -1,31 +1,32 @@
-package ir.mamhesam.snamall.feature.home.adapter
+package ir.mamhesam.snamall.feature.home.detailproduct.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import ir.mamhesam.snamall.R
-import ir.mamhesam.snamall.data.ResponseBanners
+import ir.mamhesam.snamall.data.ImagesItem
 import ir.mamhesam.snamall.services.ImageLoadService
 import ir.mamhesam.snamall.view.MyImageView
 
-class BannersAdapter(val banners: List<ResponseBanners>, val imageLoadService: ImageLoadService):RecyclerView.Adapter<BannersAdapter.BannersViewHolder>() {
+class GalleryAdapter(val imagesProduct: List<ImagesItem>, val imageLoadService: ImageLoadService):RecyclerView.Adapter<GalleryAdapter.GalleryViewHolder>() {
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BannersViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_banners,parent,false)
-        return BannersViewHolder(view)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GalleryViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_gallery_images,parent,false)
+        return GalleryViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: BannersViewHolder, position: Int) {
-        val itemBanners = banners[position]
-        imageLoadService.loadImage(holder.imgBanners, itemBanners.image)
+    override fun onBindViewHolder(holder: GalleryViewHolder, position: Int) {
+        val itemGallery = imagesProduct[position]
+        Picasso.get().load(itemGallery.image).into(holder.imgGallery)
     }
 
-    override fun getItemCount(): Int = banners.size
+    override fun getItemCount(): Int = imagesProduct.size
 
-    class BannersViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        val imgBanners = itemView.findViewById<MyImageView>(R.id.image_banners)
+    class GalleryViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+        val imgGallery = itemView.findViewById<MyImageView>(R.id.img_gallery)
     }
 
 }

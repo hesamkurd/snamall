@@ -1,6 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
+<com.google.android.material.appbar.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layoutDirection="rtl"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white">
+<com.google.android.material.appbar.MaterialToolbar
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_scrollFlags="scroll|enterAlways|snap"
+    >
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <RelativeLayout
+        android:padding="@dimen/_4sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/img_dismis"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            app:srcCompat="@drawable/ic_baseline_clear_24" />
+
+        <ImageView
+            android:id="@+id/img_more"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            app:srcCompat="@drawable/ic_baseline_more_vert_24" />
+
+        <ImageView
+            android:id="@+id/img_favorite"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/_4sdp"
+            android:layout_toRightOf="@id/img_more"
+            app:srcCompat="@drawable/ic_baseline_favorite_border_24" />
+
+        <ImageView
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/_8sdp"
+            android:layout_toRightOf="@id/img_favorite"
+            app:srcCompat="@drawable/ic_cart_unselected" />
+    </RelativeLayout>
+</com.google.android.material.appbar.MaterialToolbar>
+
+</com.google.android.material.appbar.AppBarLayout>

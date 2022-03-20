@@ -9,5 +9,13 @@
     <string name="search_in">جستوجو در ...</string>
     <string name="txt_all_amazing">مشاهده همه</string>
     <string name="time"> %d : %d : %d </string>
+    <string name="txt_favorite_home">محبوب ترین ها</string>
+    <string name="txt_colors_product">رنگ</string>
+    <string name="txt_sizes_product">سایز</string>
+    <string name="txt_seller">فروشنده</string>
+    <string name="similar_product">محصولات مشابه</string>
+    <string name="product_property">ویژگی های محصول</string>
+    <string name="summary_of_the_collection">معرفی اجمالی مجصول</string>
+    <string name="technical_specifications">مشخصات فنی</string>
 
 </resources>

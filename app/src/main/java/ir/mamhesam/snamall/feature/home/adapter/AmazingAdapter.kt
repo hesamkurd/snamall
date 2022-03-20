@@ -6,9 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.card.MaterialCardView
 import ir.mamhesam.snamall.R
 import ir.mamhesam.snamall.data.ResponseAmazingProducts
 import ir.mamhesam.snamall.services.ImageLoadService
@@ -25,6 +27,10 @@ class AmazingAdapter(
     val imageLoadService: ImageLoadService
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
+    lateinit var onClickProduct: OnClickProduct
+    fun setOnClickProductItem(onClickProduct: OnClickProduct){
+        this.onClickProduct = onClickProduct
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
@@ -82,11 +88,19 @@ class AmazingAdapter(
 
                     }
                 countDownTimer.start()
+
+                holder.itemView.setOnClickListener {
+                    onClickProduct.onClickProduct(itemAmazing.id)
+                }
             }
             getItemViewType(position) == LAST_AMAZING -> {
                 (holder as LastAmazingViewHolder).imaLastAmazing.setImageResource(R.drawable.ic_arrow)
                 holder.txtLastAmazing.text = "مشاهده همه"
+                holder.mterialCart.setOnClickListener {
+
+                }
             }
+
         }
     }
 
@@ -128,7 +142,12 @@ class AmazingAdapter(
     class LastAmazingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imaLastAmazing = itemView.findViewById<ImageView>(R.id.img_last_amazing)
         val txtLastAmazing = itemView.findViewById<TextView>(R.id.txt_last_amazing)
+        val mterialCart = itemView.findViewById<LinearLayout>(R.id.lnr_last_item)
 
+    }
+
+    interface OnClickProduct{
+        fun onClickProduct(productId: Int)
     }
 
 }

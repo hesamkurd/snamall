@@ -1,8 +1,8 @@
-package ir.mamhesam.snamall.feature.home.detailproduct.repo
+package ir.mamhesam.snamall.feature.home.detailproduct.source
 
 import io.reactivex.Single
-import ir.mamhesam.snamall.data.ResponseDetailProduct
+import ir.mamhesam.snamall.data.ResponseDetailsProduct
 
-interface DetailProductRepository {
-    fun getDetailProduct(productId:Int): Single<ResponseDetailProduct>
+interface DetailProductDataSource {
+    fun getDetailProduct(productId:Int): Single<ResponseDetailsProduct>
 }

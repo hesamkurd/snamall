@@ -23,7 +23,7 @@ data class ResponseDetailsProduct(
 	val similarProduct: List<SimilarProductItem>,
 
 	@field:SerializedName("score")
-	val score: Double,
+	val score: Float,
 
 	@field:SerializedName("number")
 	val number: String,
@@ -89,7 +89,7 @@ data class ResponseDetailsProduct(
 	val subcat1Id: String,
 
 	@field:SerializedName("properties")
-	val properties: List<PropertiesItem>,
+	val sproperties: List<PropertiesItem>,
 
 	@field:SerializedName("status")
 	val status: String
@@ -146,7 +146,7 @@ data class SimilarProductItem(
 	val id: String,
 
 	@field:SerializedName("url")
-	val url: Any
+	val url: String
 )
 
 data class ProductColorsItem(
