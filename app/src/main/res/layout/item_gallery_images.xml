@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ir.mamhesam.food2021.view.MyImageView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/_16sdp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/img_gallery"
+    app:viewAspectRatio="1">
+
+</ir.mamhesam.food2021.view.MyImageView>

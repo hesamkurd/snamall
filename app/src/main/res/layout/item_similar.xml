@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="@dimen/_80sdp"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="@dimen/_8sdp">
+
+    <ir.mamhesam.food2021.view.MyImageView
+        android:id="@+id/img_similar"
+        android:layout_width="@dimen/_70sdp"
+        android:layout_height="wrap_content"
+        app:viewAspectRatio="1.0" />
+
+    <TextView
+        android:id="@+id/txt_similar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_6sdp"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:lines="2"
+        android:textColor="@color/gray_900"
+        android:textSize="@dimen/_8sdp" />
+</LinearLayout>
