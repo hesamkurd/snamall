@@ -14,6 +14,29 @@
         android:theme="@style/Theme.Snamall"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".feature.profile.auoth.VerifyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.profile.auoth.RegisterActivity"
+            android:exported="false"
+            android:theme="@style/Theme.auth" />
+        <activity
+            android:name=".feature.profile.auoth.LoginActivity"
+            android:exported="false"
+            android:theme="@style/Theme.auth" />
+        <activity
+            android:name=".feature.home.detailproduct.property.DescriptionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.home.detailproduct.property.TechnicalPropertyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.home.detailproduct.moredialog.CompareProductActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.home.detailproduct.moredialog.ChartPriceActivity"
+            android:exported="false" />
+        <activity
             android:name=".feature.home.detailproduct.DetailActivity"
             android:exported="false" />
         <activity

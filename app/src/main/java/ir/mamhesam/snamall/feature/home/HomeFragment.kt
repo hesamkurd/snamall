@@ -30,7 +30,8 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
 
-class HomeFragment : BaseFragment(),BannersType2Adapter.OnClickBannerType, AmazingAdapter.OnClickProduct {
+class HomeFragment : BaseFragment(),BannersType2Adapter.OnClickBannerType,
+    AmazingAdapter.OnClickProduct, PopularAdapter.OnClickPopularItem {
 
     val homeViewModel: HomeViewModel by viewModel()
     var binding: FragmentHomeBinding?=null
@@ -106,6 +107,7 @@ class HomeFragment : BaseFragment(),BannersType2Adapter.OnClickBannerType, Amazi
 
                binding!!.rcPopularProduct.addItemDecoration(dividerItemDecoration)
                binding!!.rcPopularProduct.adapter = popularAdapter
+               popularAdapter.setOnPopularClick(this)
            }
 
            homeViewModel.bannerType2LiveData.observe(viewLifecycleOwner){
@@ -152,6 +154,12 @@ class HomeFragment : BaseFragment(),BannersType2Adapter.OnClickBannerType, Amazi
     }
 
     override fun onClickProduct(productId: Int) {
+        startActivity(Intent(context,DetailActivity::class.java).apply {
+            putExtra("id", productId)
+        })
+    }
+
+    override fun onClickPopular(productId: Int) {
         startActivity(Intent(context,DetailActivity::class.java).apply {
             putExtra("id", productId)
         })

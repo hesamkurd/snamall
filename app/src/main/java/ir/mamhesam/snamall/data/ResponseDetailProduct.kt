@@ -109,7 +109,7 @@ data class CommentsItem(
 	@field:SerializedName("content")
 	val content: String,
 
-	@field:SerializedName("comment_data")
+	@field:SerializedName("comment_date")
 	val commentData: String
 )
 

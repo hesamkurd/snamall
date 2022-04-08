@@ -17,5 +17,16 @@
     <string name="product_property">ویژگی های محصول</string>
     <string name="summary_of_the_collection">معرفی اجمالی مجصول</string>
     <string name="technical_specifications">مشخصات فنی</string>
+    <string name="user_comments">دیدگاه کاربران</string>
+    <string name="comment_for_this_product">دیدگاه خود را درباره این کالا بنویسید</string>
+    <string name="chart_price">نمودار قیمت</string>
+    <string name="product_compare">مقایسه محصول</string>
+    <string name="text">با ثبت نظر خود، ما را در ارائه خدمات بهتر یاری نمایید</string>
+    <string name="auth">برای ورود یا ثبت نام در نوین شاپ شماره خود را وارد کنید</string>
+    <string name="login">ورود به حساب کاربری</string>
+    <string name="privacy">با ورود یا ثبت نام در نوین شاپ شما شرایط و قوانین استفاده از سرویس های اپلیکیشن نوین شاپ و قوانین حریم خصوصی آن را می پذیرید</string>
+    <string name="register">ثبت نام در اپلیکیشن</string>
+    <string name="emptyCart">محصولی در سبد شما موجود نمی باشد</string>
+    <string name="isLoginCart">لطفا وارد حساب کاربری خود شوید</string>
 
 </resources>

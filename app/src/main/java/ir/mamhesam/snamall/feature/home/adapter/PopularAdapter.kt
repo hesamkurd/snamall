@@ -11,7 +11,10 @@ import ir.mamhesam.snamall.view.MyImageView
 
 class PopularAdapter(val populars:List<ResponsePopularProduct>, val imageLoadService: ImageLoadService):RecyclerView.Adapter<PopularAdapter.PopularViewHolder>() {
 
-
+    lateinit var onClickPopularItem: OnClickPopularItem
+    fun setOnPopularClick(onClickPopularItem: OnClickPopularItem){
+        this.onClickPopularItem = onClickPopularItem
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PopularViewHolder {
         val view= LayoutInflater.from(parent.context).inflate(R.layout.item_popular_product,parent,false)
@@ -21,6 +24,9 @@ class PopularAdapter(val populars:List<ResponsePopularProduct>, val imageLoadSer
     override fun onBindViewHolder(holder: PopularViewHolder, position: Int) {
         val itemPopulars = populars[position]
         imageLoadService.loadImage(holder.imgPopularProduct,itemPopulars.image )
+        holder.itemView.setOnClickListener {
+            onClickPopularItem.onClickPopular(itemPopulars.id)
+        }
     }
 
     override fun getItemCount(): Int = populars.size
@@ -28,5 +34,9 @@ class PopularAdapter(val populars:List<ResponsePopularProduct>, val imageLoadSer
     class PopularViewHolder(itemView:View): RecyclerView.ViewHolder(itemView){
         val imgPopularProduct = itemView.findViewById<MyImageView>(R.id.img_popular_product)
 
+    }
+
+    interface OnClickPopularItem{
+        fun onClickPopular(productId:Int)
     }
 }
