@@ -53,7 +53,22 @@ interface ApiService {
     @POST("auoth/login.php")
     fun login(@Field("mobile_phone")phone: String):Single<ResponseLogin>
 
-    ////
+    //// Comment ////
+
+    @GET("product/scores.php")
+    fun showRatingComment(@Query("product_id")product_id: Int):Single<List<ResponseRatingComment>>
+
+    @GET("product/show_comments.php")
+    fun showComment(@Query("product_id")product_id: Int): Single<List<ResponseShowComment>>
+
+    @FormUrlEncoded
+    @POST("product/add_comment.php")
+    fun insertComment(@Field("product_id")product_id: Int,
+                      @Field("content")content:String,
+                      @Field("title")title:String,
+                      @Field("positive")positive:String,
+                      @Field("negative")negative:String,
+                      @Field("Advice")Advice:String):Single<ResponseInsertComment>
 
 }
 

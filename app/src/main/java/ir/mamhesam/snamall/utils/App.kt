@@ -4,12 +4,21 @@ import android.app.Application
 import android.content.SharedPreferences
 import android.util.Log
 import com.facebook.drawee.backends.pipeline.Fresco
-import com.google.android.gms.auth.api.Auth
 import ir.mamhesam.snamall.api.ApiService
 import ir.mamhesam.snamall.api.retrofitApi
 import ir.mamhesam.snamall.data.*
 import ir.mamhesam.snamall.feature.home.adapter.*
 import ir.mamhesam.snamall.feature.home.detailproduct.adapter.*
+import ir.mamhesam.snamall.feature.home.detailproduct.comment.adapter.ShowCommentAdapter
+import ir.mamhesam.snamall.feature.home.detailproduct.comment.adapter.ShowRatingCommentAdapter
+import ir.mamhesam.snamall.feature.home.detailproduct.comment.insertcomment.repo.InsertCommentRepository
+import ir.mamhesam.snamall.feature.home.detailproduct.comment.insertcomment.repo.InsertCommentRepositoryImpl
+import ir.mamhesam.snamall.feature.home.detailproduct.comment.insertcomment.source.RemoteInsertCommentDataSource
+import ir.mamhesam.snamall.feature.home.detailproduct.comment.insertcomment.viewmodel.InsertCommentViewModel
+import ir.mamhesam.snamall.feature.home.detailproduct.comment.repo.CommentRepository
+import ir.mamhesam.snamall.feature.home.detailproduct.comment.repo.CommentRepositoryImpl
+import ir.mamhesam.snamall.feature.home.detailproduct.comment.source.RemoteCommentDataSource
+import ir.mamhesam.snamall.feature.home.detailproduct.comment.viewmodel.CommentViewModel
 import ir.mamhesam.snamall.feature.home.detailproduct.property.PropertyViewModel
 import ir.mamhesam.snamall.feature.home.detailproduct.property.adapter.TechnicalPropertyAdapter
 import ir.mamhesam.snamall.feature.home.detailproduct.property.repo.TechnicalRepository
@@ -82,6 +91,14 @@ class App: Application() {
             single<SharedPreferences> {this@App.getSharedPreferences("user", MODE_PRIVATE)  }
             factory<AuthRepository> {AuthRepositoryImpl(RemoteAuthDataSource(get()), AuthLocalDataSource(get()))  }
             viewModel { AuthViewModel(get()) }
+
+            //// Comment ////
+            factory<CommentRepository> { CommentRepositoryImpl(RemoteCommentDataSource(get())) }
+            viewModel { (productId:Int)-> CommentViewModel(productId,get()) }
+            factory { (ratingComment: List<ResponseRatingComment>)-> ShowRatingCommentAdapter(ratingComment) }
+            factory { (showComment: List<ResponseShowComment>)-> ShowCommentAdapter(showComment) }
+            single<InsertCommentRepository> { InsertCommentRepositoryImpl(RemoteInsertCommentDataSource(get())) }
+            viewModel { (productId:Int)->InsertCommentViewModel(productId,get()) }
 
 
 

@@ -14,6 +14,12 @@
         android:theme="@style/Theme.Snamall"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".feature.home.detailproduct.comment.insertcomment.InsertCommentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.home.detailproduct.comment.ShowCommentActivity"
+            android:exported="false" />
+        <activity
             android:name=".feature.profile.auoth.VerifyActivity"
             android:exported="false" />
         <activity

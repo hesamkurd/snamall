@@ -15,6 +15,7 @@ import ir.mamhesam.snamall.R
 import ir.mamhesam.snamall.base.BaseActivity
 import ir.mamhesam.snamall.databinding.ActivityDetailBinding
 import ir.mamhesam.snamall.feature.home.detailproduct.adapter.*
+import ir.mamhesam.snamall.feature.home.detailproduct.comment.ShowCommentActivity
 import ir.mamhesam.snamall.feature.home.detailproduct.moredialog.ChartPriceActivity
 import ir.mamhesam.snamall.feature.home.detailproduct.moredialog.CompareProductActivity
 import ir.mamhesam.snamall.feature.home.detailproduct.moredialog.MoreDialogBottomSheet
@@ -182,6 +183,11 @@ class DetailActivity : BaseActivity(),MoreDialogBottomSheet.OnClickMoreDialog {
                 binding!!.rcComments.layoutManager =
                     LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
                 binding!!.rcComments.adapter = commentAdapter
+            }
+            binding!!.txtCountComment.setOnClickListener {
+                startActivity(Intent(this,ShowCommentActivity::class.java).apply {
+                    putExtra("id", idProduct)
+                })
             }
 
 
