@@ -2,10 +2,7 @@ package ir.mamhesam.snamall.feature.profile.auoth.source
 
 import io.reactivex.Single
 import ir.mamhesam.snamall.api.ApiService
-import ir.mamhesam.snamall.data.ResponseAddFavorite
-import ir.mamhesam.snamall.data.ResponseCheckUser
-import ir.mamhesam.snamall.data.ResponseLogin
-import ir.mamhesam.snamall.data.ResponseRegister
+import ir.mamhesam.snamall.data.*
 
 class RemoteAuthDataSource(val apiService: ApiService): AuthDataSource {
     override fun checkUser(phone: String): Single<ResponseCheckUser> = apiService.checkUser(phone)
@@ -26,4 +23,9 @@ class RemoteAuthDataSource(val apiService: ApiService): AuthDataSource {
     }
 
     override fun addToFavorite(productId: Int): Single<ResponseAddFavorite> = apiService.addToFavorite(productId)
+    override fun addToCart(
+        product_id: Int,
+        color_id: Int,
+        size_id: Int
+    ): Single<ResponseInsertComment> = apiService.addToCart(product_id, color_id, size_id)
 }

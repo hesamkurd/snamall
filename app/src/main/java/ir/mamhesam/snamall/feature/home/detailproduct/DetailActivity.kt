@@ -30,10 +30,12 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
 
-class DetailActivity : BaseActivity(),MoreDialogBottomSheet.OnClickMoreDialog {
+class DetailActivity : BaseActivity(),
+    MoreDialogBottomSheet.OnClickMoreDialog,
+    ColorAdapter.OnClickColorItem, SizeAdapter.OnClickSizeItem {
 
     var binding: ActivityDetailBinding?=null
-    var idProduct: Int?=null
+
     val detailProductViewModel: DetailProductViewModel by viewModel {
         parametersOf(
             intent.getIntExtra(
@@ -43,45 +45,50 @@ class DetailActivity : BaseActivity(),MoreDialogBottomSheet.OnClickMoreDialog {
         )
     }
     val authViewModel: AuthViewModel by viewModel()
+    var idProduct: Int? = null
+    var idColor: Int = 0
+    var idSize: Int = 0
+    var checkColor: Boolean = true
+    var checkSize: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_detail)
         binding = ActivityDetailBinding.inflate(layoutInflater)
-        setContentView(binding?.root)
+        setContentView(binding!!.root)
 
         binding!!.imgMore.setOnClickListener {
             val moreDialog = MoreDialogBottomSheet()
-            moreDialog.show(supportFragmentManager,null)
+            moreDialog.show(supportFragmentManager, null)
             moreDialog.setOnClicKDialog(this)
         }
         binding!!.technicalProperty.setOnClickListener {
-            startActivity(Intent(this,TechnicalPropertyActivity::class.java).apply {
+            startActivity(Intent(this, TechnicalPropertyActivity::class.java).apply {
                 putExtra("id", idProduct)
             })
         }
         binding!!.lnrDescription.setOnClickListener {
-            startActivity(Intent(this,DescriptionActivity::class.java).apply {
-                putExtra("id",idProduct)
+            startActivity(Intent(this, DescriptionActivity::class.java).apply {
+                putExtra("id", idProduct)
             })
         }
         binding!!.imgFavorite.setOnClickListener {
-            if (authViewModel.checkLoginLiveData.value == true){
+            if (authViewModel.checkLoginLiveData.value == true) {
                 authViewModel.addToFavorite(idProduct!!)
 
-            }else{
-                startActivity(Intent(this,LoginActivity::class.java))
+            } else {
+                startActivity(Intent(this, LoginActivity::class.java))
 
             }
         }
 
-        authViewModel.addToFavoriteLiveData.observe(this){
-            if (it.status == "true"){
+        authViewModel.addToFavoriteLiveData.observe(this) {
+            if (it.status == "true") {
                 binding!!.imgFavorite.setImageResource(R.drawable.ic_baseline_favorite_24)
-                Snackbar.make(binding!!.coordinator,it.message,Snackbar.LENGTH_LONG).show()
-            }else{
+                Snackbar.make(binding!!.coordinator, it.message, Snackbar.LENGTH_LONG).show()
+            } else {
                 binding!!.imgFavorite.setImageResource(R.drawable.ic_baseline_favorite_border_24)
-                Snackbar.make(binding!!.coordinator,it.message,Snackbar.LENGTH_LONG).show()
+                Snackbar.make(binding!!.coordinator, it.message, Snackbar.LENGTH_LONG).show()
 
             }
         }
@@ -89,6 +96,7 @@ class DetailActivity : BaseActivity(),MoreDialogBottomSheet.OnClickMoreDialog {
         detailProductViewModel.detailProductLiveData.observe(this) {
             idProduct = it.id
             val galleryAdapter: GalleryAdapter by inject { parametersOf(it.images) }
+
             binding?.apply {
                 galleryViewpager.adapter = galleryAdapter
                 dotsIndicator.setViewPager2(galleryViewpager)
@@ -113,49 +121,56 @@ class DetailActivity : BaseActivity(),MoreDialogBottomSheet.OnClickMoreDialog {
                 txtCountComment.text = it.commentCount
 
             }
-            if (it.offPrice == "0"){
+            if (it.offPrice == "0") {
                 binding!!.txtPrice.text = PriceConverter.priceConvert(it.price)
                 binding!!.txtPrice.textSize = 12f
-                binding!!.txtPrice.setTextColor(ContextCompat.getColor(this,R.color.grey_900))
+                binding!!.txtPrice.setTextColor(ContextCompat.getColor(this, R.color.grey_900))
                 binding!!.txtFreePrice.visibility = View.GONE
                 binding!!.txtFree.visibility = View.GONE
-            }else{
+            } else {
                 binding!!.txtPrice.text = PriceConverter.priceConvert(it.price)
                 binding!!.txtPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
                 binding!!.txtFreePrice.text = PriceConverter.priceConvert(it.offPrice)
                 binding!!.txtFree.text = FreePercent.offPercent(it.offPercent)
             }
-            if (it.status == "true"){
+            if (it.status == "true") {
                 binding!!.imgFavorite.setImageResource(R.drawable.ic_baseline_favorite_24)
-            }else{
+            } else {
                 binding!!.imgFavorite.setImageResource(R.drawable.ic_baseline_favorite_border_24)
             }
             ///
-            val colorAdapter: ColorAdapter by inject { parametersOf(it.productColors) }
-            if (it.productColors.isNullOrEmpty()){
-                binding?.rcColors?.visibility = View.GONE
+            if (it.productColors.isNullOrEmpty()) {
+                binding!!.rcColors.visibility = View.GONE
                 binding!!.colorTitle.visibility = View.GONE
+                checkColor = false
             }else{
-                binding?.rcColors?.layoutManager =  LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-                binding?.rcColors?.adapter = colorAdapter
-            }
+                val colorAdapter: ColorAdapter by inject { parametersOf(it.productColors) }
+                binding!!.rcColors.layoutManager =
+                    LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
+                binding!!.rcColors.adapter = colorAdapter
+                colorAdapter.setOnClickColor(this)
 
-            ///
-            val sizeAdapter: SizeAdapter by inject { parametersOf(it.productSizes) }
-            if (it.productSizes.isNullOrEmpty()){
-                binding!!.rcSimilar.visibility = View.GONE
+
+            }
+            if (it.productSizes.isNullOrEmpty()) {
+                binding!!.rcSize.visibility = View.GONE
                 binding!!.sizeTitel.visibility = View.GONE
+                checkSize = false
             }else{
+
+                val sizeAdapter: SizeAdapter by inject { parametersOf(it.productSizes) }
+
                 binding!!.rcSize.layoutManager =
-                    LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+                    LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
                 binding!!.rcSize.adapter = sizeAdapter
+                sizeAdapter.setOnClickSize(this)
+
             }
 
-            ///
             val similarAdapter: SimilarAdapter by inject { parametersOf(it.similarProduct) }
-            if (it.similarProduct.isNullOrEmpty()){
+            if (it.similarProduct.isNullOrEmpty()) {
                 binding!!.rcSimilar.visibility = View.GONE
-            }else{
+            } else {
                 binding!!.rcSimilar.layoutManager =
                     LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
                 binding!!.rcSimilar.adapter = similarAdapter
@@ -167,9 +182,9 @@ class DetailActivity : BaseActivity(),MoreDialogBottomSheet.OnClickMoreDialog {
 
             ///
             val propreAdapter: PropertiesAdapter by inject { parametersOf(it.sproperties) }
-            if (it.sproperties.isNullOrEmpty()){
+            if (it.sproperties.isNullOrEmpty()) {
                 binding!!.rcProperties.visibility = View.GONE
-            }else{
+            } else {
                 binding!!.rcProperties.layoutManager =
                     LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
                 binding!!.rcProperties.adapter = propreAdapter
@@ -177,15 +192,15 @@ class DetailActivity : BaseActivity(),MoreDialogBottomSheet.OnClickMoreDialog {
 
             ///
             val commentAdapter: CommentAdapter by inject { parametersOf(it.comments) }
-            if (it.comments.isNullOrEmpty()){
+            if (it.comments.isNullOrEmpty()) {
                 binding!!.rcComments.visibility = View.GONE
-            }else{
+            } else {
                 binding!!.rcComments.layoutManager =
                     LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
                 binding!!.rcComments.adapter = commentAdapter
             }
             binding!!.txtCountComment.setOnClickListener {
-                startActivity(Intent(this,ShowCommentActivity::class.java).apply {
+                startActivity(Intent(this, ShowCommentActivity::class.java).apply {
                     putExtra("id", idProduct)
                 })
             }
@@ -196,16 +211,57 @@ class DetailActivity : BaseActivity(),MoreDialogBottomSheet.OnClickMoreDialog {
             setProgressBar(it)
         }
 
+        binding!!.btnAddToCart.setOnClickListener {
+            if (checkColor && !checkSize) {
+                if (idColor != 0)
+                    authViewModel.addToCart(idProduct!!, idColor, 0)
+                else
+                    Snackbar.make(
+                        binding!!.coordinator,
+                        "لطفا رنگ را انتخاب کنید",
+                        Snackbar.LENGTH_SHORT
+                    ).show()
+            } else if (checkSize && !checkColor) {
+                if (idSize != 0)
+                    authViewModel.addToCart(idProduct!!, 0, idSize)
+                else
+                    Snackbar.make(
+                        binding!!.coordinator,
+                        "لطفا سایز را انتخاب کنید",
+                        Snackbar.LENGTH_SHORT
+                    ).show()
+
+            }else if(!checkColor && !checkSize) {
+
+                authViewModel.addToCart(idProduct!!, idColor, idSize)
+            } else {
+                if (idColor == 0 || idSize == 0){
+                    Snackbar.make(
+                        binding!!.coordinator,
+                        "لطفا سایز و رنگ را انتخاب کنید",
+                        Snackbar.LENGTH_SHORT
+                    ).show()
+                } else {
+                    authViewModel.addToCart(idProduct!!, idColor, idSize)
+                }
+
+            }
+        }
+        authViewModel.addToCartLiveData.observe(this) {
+            Snackbar.make(binding!!.coordinator, it.message, Snackbar.LENGTH_SHORT).show()
+
+        }
+
 
     }
 
     override fun onClickMore(type: String) {
-        when(type) {
+        when (type) {
             CHART -> {
-                startActivity(Intent(this,ChartPriceActivity::class.java))
+                startActivity(Intent(this, ChartPriceActivity::class.java))
             }
-            COMPARE ->{
-                startActivity(Intent(this,CompareProductActivity::class.java))
+            COMPARE -> {
+                startActivity(Intent(this, CompareProductActivity::class.java))
             }
         }
     }
@@ -213,5 +269,13 @@ class DetailActivity : BaseActivity(),MoreDialogBottomSheet.OnClickMoreDialog {
     override fun onResume() {
         super.onResume()
         authViewModel.checkLogin()
+    }
+
+    override fun onClickColorId(colorId: Int) {
+        idColor = colorId
+    }
+
+    override fun onClickSizeId(sizeId: Int) {
+        idSize = sizeId
     }
 }

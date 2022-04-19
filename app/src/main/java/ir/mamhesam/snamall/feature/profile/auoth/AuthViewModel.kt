@@ -3,10 +3,7 @@ package ir.mamhesam.snamall.feature.profile.auoth
 import androidx.lifecycle.MutableLiveData
 import ir.mamhesam.snamall.base.BaseViewModel
 import ir.mamhesam.snamall.base.customObserver
-import ir.mamhesam.snamall.data.ResponseAddFavorite
-import ir.mamhesam.snamall.data.ResponseCheckUser
-import ir.mamhesam.snamall.data.ResponseLogin
-import ir.mamhesam.snamall.data.ResponseRegister
+import ir.mamhesam.snamall.data.*
 import ir.mamhesam.snamall.feature.profile.auoth.repo.AuthRepository
 import ir.mamhesam.snamall.utils.ShopSingleObserver
 
@@ -18,6 +15,7 @@ class AuthViewModel(val authRepository: AuthRepository): BaseViewModel() {
     val checkLoginLiveData = MutableLiveData<Boolean>()
 
     val addToFavoriteLiveData = MutableLiveData<ResponseAddFavorite>()
+    val addToCartLiveData = MutableLiveData<ResponseInsertComment>()
 
     fun checkUser(phone: String){
         authRepository.checkUser(phone).customObserver()
@@ -58,6 +56,16 @@ class AuthViewModel(val authRepository: AuthRepository): BaseViewModel() {
             .subscribe(object : ShopSingleObserver<ResponseAddFavorite>(compositeDisposable){
                 override fun onSuccess(t: ResponseAddFavorite) {
                     addToFavoriteLiveData.value = t
+                }
+
+            })
+    }
+
+    fun addToCart(product_id: Int,color_id: Int,size_id: Int){
+        authRepository.addToCart(product_id, color_id, size_id).customObserver()
+            .subscribe(object : ShopSingleObserver<ResponseInsertComment>(compositeDisposable){
+                override fun onSuccess(t: ResponseInsertComment) {
+                    addToCartLiveData.value = t
                 }
 
             })

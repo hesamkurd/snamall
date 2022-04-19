@@ -12,6 +12,7 @@ import ir.mamhesam.snamall.data.ProductColorsItem
 
 class ColorAdapter(val colors: List<ProductColorsItem>): RecyclerView.Adapter<ColorAdapter.ColorViewHolder>() {
 
+    lateinit var onClickColorItem: OnClickColorItem
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ColorViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_colors,parent,false)
         return ColorViewHolder(view)
@@ -21,13 +22,23 @@ class ColorAdapter(val colors: List<ProductColorsItem>): RecyclerView.Adapter<Co
         val colorsItem = colors[position]
         holder.txt_color.text = colorsItem.colorsName
         holder.cardView.setBackgroundColor(Color.parseColor(colorsItem.colorsCode))
+        holder.itemView.setOnClickListener {
+            onClickColorItem.onClickColorId(colorsItem.colorsId.toInt())
+        }
     }
 
+    fun setOnClickColor(onClickColorItem: OnClickColorItem){
+        this.onClickColorItem = onClickColorItem
+    }
     override fun getItemCount(): Int = colors.size
 
     class ColorViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val txt_color = itemView.findViewById<TextView>(R.id.txt_color)
         val cardView = itemView.findViewById<MaterialCardView>(R.id.mc)
 
+    }
+
+    interface OnClickColorItem{
+        fun onClickColorId(colorId: Int)
     }
 }

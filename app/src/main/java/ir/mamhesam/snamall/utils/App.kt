@@ -7,6 +7,22 @@ import com.facebook.drawee.backends.pipeline.Fresco
 import ir.mamhesam.snamall.api.ApiService
 import ir.mamhesam.snamall.api.retrofitApi
 import ir.mamhesam.snamall.data.*
+import ir.mamhesam.snamall.feature.category.adapter.CategoryAdapter
+import ir.mamhesam.snamall.feature.category.brandproduct.repo.BrandBannerRepository
+import ir.mamhesam.snamall.feature.category.brandproduct.repo.BrandBannerRepositoryImpl
+import ir.mamhesam.snamall.feature.category.brandproduct.source.RemoteBrandBannerDataSource
+import ir.mamhesam.snamall.feature.category.brandproduct.viewmodel.BrandBannerViewmodel
+import ir.mamhesam.snamall.feature.category.repo.CategoriesRepository
+import ir.mamhesam.snamall.feature.category.repo.CategoriesRepositoryImpl
+import ir.mamhesam.snamall.feature.category.source.RemoteCategoriesDataSource
+import ir.mamhesam.snamall.feature.category.subcat.adapter.PopularBrandAdapter
+import ir.mamhesam.snamall.feature.category.subcat.adapter.SubCatProductAdapter
+import ir.mamhesam.snamall.feature.category.subcat.adapter.SubCategoryAdapter
+import ir.mamhesam.snamall.feature.category.subcat.repo.SubCatRepository
+import ir.mamhesam.snamall.feature.category.subcat.repo.SubCatRepositoryImpl
+import ir.mamhesam.snamall.feature.category.subcat.source.RemoteSubCatDataSource
+import ir.mamhesam.snamall.feature.category.subcat.viewmodel.SubCatViewModel
+import ir.mamhesam.snamall.feature.category.viewmodel.CategoriesViewModel
 import ir.mamhesam.snamall.feature.home.adapter.*
 import ir.mamhesam.snamall.feature.home.detailproduct.adapter.*
 import ir.mamhesam.snamall.feature.home.detailproduct.comment.adapter.ShowCommentAdapter
@@ -30,6 +46,11 @@ import ir.mamhesam.snamall.feature.home.detailproduct.source.RemoteDetailProduct
 import ir.mamhesam.snamall.feature.home.detailproduct.viewmodel.DetailProductViewModel
 import ir.mamhesam.snamall.feature.home.repo.*
 import ir.mamhesam.snamall.feature.home.source.*
+import ir.mamhesam.snamall.feature.home.subcatlevel1.adapter.SubCatLevel1Adapter
+import ir.mamhesam.snamall.feature.home.subcatlevel1.repo.SubCatLevel1Repository
+import ir.mamhesam.snamall.feature.home.subcatlevel1.repo.SubCatLevel1RepositoryImpl
+import ir.mamhesam.snamall.feature.home.subcatlevel1.source.RemoteSubCatLevel1DataSource
+import ir.mamhesam.snamall.feature.home.subcatlevel1.viewmodel.SubCatLevel1ViewModel
 import ir.mamhesam.snamall.feature.home.viewmodel.HomeViewModel
 import ir.mamhesam.snamall.feature.profile.auoth.AuthViewModel
 import ir.mamhesam.snamall.feature.profile.auoth.repo.AuthRepository
@@ -67,12 +88,17 @@ class App: Application() {
             factory<AmazingProductsRepository> { AmazingProductsRepositoryImpl(RemoteAmazingProductsDataSource(get())) }
             factory<PopularProductRepository> { PopularProductRepositoryImpl(RemotePopularProductDataSource(get())) }
             factory<BannerType2Repository> { BannerType2RepositoryImpl(RemoteBannerType2DataSource(get())) }
+
             viewModel { HomeViewModel(get(),get(),get(),get(),get()) }
             factory { (banners: List<ResponseBanners>)-> BannersAdapter(banners,get())}
             factory { (categories: List<ResponseGeneralCategory>)-> GeneralCategoryAdapter(categories,get())}
             factory { (amazingProduct:List<ResponseAmazingProducts>)-> AmazingAdapter(amazingProduct,get())}
             factory { (populars:List<ResponsePopularProduct>)-> PopularAdapter(populars,get())}
             factory { (banners: List<ResponseBannerType2>)-> BannersType2Adapter(banners,get())}
+            ////// Sub Category Level 1 /////////
+            factory<SubCatLevel1Repository> { SubCatLevel1RepositoryImpl(RemoteSubCatLevel1DataSource(get())) }
+            viewModel { (generalCatId:Int)->SubCatLevel1ViewModel(generalCatId,get()) }
+            factory { (subCatList:List<ResponseSubCatLevel1>)->SubCatLevel1Adapter(subCatList,get()) }
             ////// Detail Product /////////
             factory<DetailProductRepository> { DetailProductRepositoryImpl(RemoteDetailProductDataSource(get())) }
             viewModel {(productId: Int)-> DetailProductViewModel(productId,get()) }
@@ -99,6 +125,20 @@ class App: Application() {
             factory { (showComment: List<ResponseShowComment>)-> ShowCommentAdapter(showComment) }
             single<InsertCommentRepository> { InsertCommentRepositoryImpl(RemoteInsertCommentDataSource(get())) }
             viewModel { (productId:Int)->InsertCommentViewModel(productId,get()) }
+
+            //// Categories ///
+            factory<CategoriesRepository> { CategoriesRepositoryImpl(RemoteCategoriesDataSource(get())) }
+            viewModel { CategoriesViewModel(get()) }
+            factory { (categories: List<SubcatItem>)->CategoryAdapter(categories,get()) }
+
+            factory<SubCatRepository> { SubCatRepositoryImpl(RemoteSubCatDataSource(get())) }
+            viewModel { (catId:Int)-> SubCatViewModel(catId,get())}
+            factory { (subCat:List<ResponseSubCat1>)-> SubCategoryAdapter(subCat,get())}
+            factory { (brand:List<ResponsePopularBrand>)->PopularBrandAdapter(brand,get()) }
+            factory { (product:List<ResponseSubCatProduct>)->SubCatProductAdapter(product,get()) }
+
+            factory<BrandBannerRepository> { BrandBannerRepositoryImpl(RemoteBrandBannerDataSource(get())) }
+            viewModel { (brand:String)->BrandBannerViewmodel(brand,get()) }
 
 
 

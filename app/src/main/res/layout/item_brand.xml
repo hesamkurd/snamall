@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/_100sdp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="@dimen/_8sdp"
+    android:layout_margin="@dimen/_4sdp"
+    android:layout_height="@dimen/_120sdp">
+<LinearLayout
+    android:gravity="center"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ir.mamhesam.snamall.view.MyImageView
+        android:layout_width="@dimen/_80sdp"
+        android:id="@+id/img_brand"
+        android:layout_height="@dimen/_80sdp"/>
+    <TextView
+        android:textSize="@dimen/_8sdp"
+        android:textColor="@color/grey_900"
+        android:id="@+id/txt_title_brand"
+        android:layout_marginTop="@dimen/_4sdp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</LinearLayout>
+</com.google.android.material.card.MaterialCardView>

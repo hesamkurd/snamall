@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,11 +19,13 @@ import androidx.viewpager2.widget.ViewPager2
 import ir.mamhesam.snamall.R
 import ir.mamhesam.snamall.base.BaseFragment
 import ir.mamhesam.snamall.data.ResponseBanners
+import ir.mamhesam.snamall.data.ResponseGeneralCategory
 import ir.mamhesam.snamall.databinding.FragmentHomeBinding
 import ir.mamhesam.snamall.feature.home.adapter.*
 import ir.mamhesam.snamall.feature.home.detailproduct.DetailActivity
 import ir.mamhesam.snamall.feature.home.viewmodel.HomeViewModel
 import ir.mamhesam.snamall.utils.DividerItemDecorator
+import ir.mamhesam.snamall.utils.PRODUCT_ID
 import ir.mamhesam.snamall.utils.TYPE_ONE
 import ir.mamhesam.snamall.utils.TYPE_TWO
 import org.koin.android.ext.android.inject
@@ -31,12 +34,13 @@ import org.koin.core.parameter.parametersOf
 
 
 class HomeFragment : BaseFragment(),BannersType2Adapter.OnClickBannerType,
-    AmazingAdapter.OnClickProduct, PopularAdapter.OnClickPopularItem {
+    AmazingAdapter.OnClickProduct, PopularAdapter.OnClickPopularItem,GeneralCategoryAdapter.OnClickGeneralCategory {
 
     val homeViewModel: HomeViewModel by viewModel()
     var binding: FragmentHomeBinding?=null
     val handler = Handler(Looper.myLooper()!!)
     var bannersSlider: List<ResponseBanners>? = null
+    val general: ResponseGeneralCategory?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -91,6 +95,7 @@ class HomeFragment : BaseFragment(),BannersType2Adapter.OnClickBannerType,
                binding!!.rcGeneralCategory.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
                binding!!.rcGeneralCategory.adapter = generalCategoryAdapter
 
+               generalCategoryAdapter.setOnClickGeneral(this)
 
            }
            homeViewModel.amazingProductsLiveData.observe(viewLifecycleOwner){
@@ -163,6 +168,13 @@ class HomeFragment : BaseFragment(),BannersType2Adapter.OnClickBannerType,
         startActivity(Intent(context,DetailActivity::class.java).apply {
             putExtra("id", productId)
         })
+    }
+
+    override fun onClickGeneralItem(generalCatId: Int, generalTitle: String) {
+        val bundle=Bundle()
+        bundle.putInt(PRODUCT_ID,generalCatId)
+        bundle.putString("title",generalTitle)
+        findNavController().navigate(R.id.action_homeFragment_to_subCatLevel1Fragment,bundle)
     }
 
 

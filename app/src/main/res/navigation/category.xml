@@ -9,5 +9,14 @@
         android:id="@+id/categoryFragment"
         android:name="ir.mamhesam.snamall.feature.category.CategoryFragment"
         android:label="fragment_category"
-        tools:layout="@layout/fragment_category" />
+        tools:layout="@layout/fragment_category" >
+        <action
+            android:id="@+id/action_categoryFragment_to_subCat1Fragment"
+            app:destination="@id/subCat1Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/subCat1Fragment"
+        android:name="ir.mamhesam.snamall.feature.category.subcat.SubCat1Fragment"
+        android:label="fragment_sub_cat1"
+        tools:layout="@layout/fragment_sub_cat1" />
 </navigation>

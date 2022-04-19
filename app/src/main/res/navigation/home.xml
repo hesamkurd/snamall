@@ -9,5 +9,14 @@
         android:id="@+id/homeFragment"
         android:name="ir.mamhesam.snamall.feature.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_subCatLevel1Fragment"
+            app:destination="@id/subCatLevel1Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/subCatLevel1Fragment"
+        android:name="ir.mamhesam.snamall.feature.home.subcatlevel1.SubCatLevel1Fragment"
+        android:label="fragment_sub_cat_level1"
+        tools:layout="@layout/fragment_sub_cat_level1" />
 </navigation>

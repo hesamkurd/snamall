@@ -2,10 +2,7 @@ package ir.mamhesam.snamall.feature.profile.auoth.source
 
 import android.content.SharedPreferences
 import io.reactivex.Single
-import ir.mamhesam.snamall.data.ResponseAddFavorite
-import ir.mamhesam.snamall.data.ResponseCheckUser
-import ir.mamhesam.snamall.data.ResponseLogin
-import ir.mamhesam.snamall.data.ResponseRegister
+import ir.mamhesam.snamall.data.*
 import ir.mamhesam.snamall.feature.profile.auoth.TokenContainer
 
 class AuthLocalDataSource(val sharedPreferences: SharedPreferences): AuthDataSource {
@@ -40,6 +37,14 @@ class AuthLocalDataSource(val sharedPreferences: SharedPreferences): AuthDataSou
     }
 
     override fun addToFavorite(productId: Int): Single<ResponseAddFavorite> {
+        TODO("Not yet implemented")
+    }
+
+    override fun addToCart(
+        product_id: Int,
+        color_id: Int,
+        size_id: Int
+    ): Single<ResponseInsertComment> {
         TODO("Not yet implemented")
     }
 }
