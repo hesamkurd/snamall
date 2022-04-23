@@ -1,9 +1,11 @@
 package ir.mamhesam.snamall.api
 
+import com.google.gson.JsonObject
 import io.reactivex.Single
 import ir.mamhesam.snamall.data.*
 import ir.mamhesam.snamall.feature.profile.auoth.TokenContainer
 import okhttp3.OkHttpClient
+import org.json.JSONObject
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -95,6 +97,15 @@ interface ApiService {
     @POST("cart/change_count_item.php")
     fun changeCountItem(@Field("cart_item_id")cart_item_id:Int,
                         @Field("count")count:Int): Single<ResponseChangeCountItem>
+
+    @GET("cart/checkout_list.php")
+    fun checkOutList():Single<ResponseCheckOutList>
+
+    @GET("cart/show_address.php")
+    fun getAddress(): Single<List<ResponseShowAddress>>
+
+    @POST("cart/add_new_address.php")
+    fun addAddress(@Body address:JsonObject): Single<ResponseAddAddress>
 
     ////////// Category //////////
     @GET("category/categories.php")

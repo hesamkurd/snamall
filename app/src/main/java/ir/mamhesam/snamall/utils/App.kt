@@ -9,6 +9,11 @@ import ir.mamhesam.snamall.api.ApiService
 import ir.mamhesam.snamall.api.retrofitApi
 import ir.mamhesam.snamall.data.*
 import ir.mamhesam.snamall.feature.cart.adapter.CartListAdapter
+import ir.mamhesam.snamall.feature.cart.nextlevel.adapter.CheckOutAdapter
+import ir.mamhesam.snamall.feature.cart.nextlevel.repo.CheckOutListRepository
+import ir.mamhesam.snamall.feature.cart.nextlevel.repo.CheckOutListRepositoryImpl
+import ir.mamhesam.snamall.feature.cart.nextlevel.source.RemoteCheckOutListDataSource
+import ir.mamhesam.snamall.feature.cart.nextlevel.viewmodel.CheckOutListViewModel
 import ir.mamhesam.snamall.feature.cart.repo.CartListRepository
 import ir.mamhesam.snamall.feature.cart.repo.CartListRepositoryImpl
 import ir.mamhesam.snamall.feature.cart.source.RemoteCartListDataSource
@@ -59,6 +64,11 @@ import ir.mamhesam.snamall.feature.home.subcatlevel1.repo.SubCatLevel1Repository
 import ir.mamhesam.snamall.feature.home.subcatlevel1.source.RemoteSubCatLevel1DataSource
 import ir.mamhesam.snamall.feature.home.subcatlevel1.viewmodel.SubCatLevel1ViewModel
 import ir.mamhesam.snamall.feature.home.viewmodel.HomeViewModel
+import ir.mamhesam.snamall.feature.profile.address.adapter.ShowAddressAdapter
+import ir.mamhesam.snamall.feature.profile.address.repo.AddressRepository
+import ir.mamhesam.snamall.feature.profile.address.repo.AddressRepositoryImpl
+import ir.mamhesam.snamall.feature.profile.address.source.RemoteAddressDataSource
+import ir.mamhesam.snamall.feature.profile.address.viewmodel.AddressViewModel
 import ir.mamhesam.snamall.feature.profile.auoth.AuthViewModel
 import ir.mamhesam.snamall.feature.profile.auoth.repo.AuthRepository
 import ir.mamhesam.snamall.feature.profile.auoth.repo.AuthRepositoryImpl
@@ -153,6 +163,12 @@ class App: Application() {
             viewModel { CartListViewModel(get()) }
             factory { (cartList: ResponseCartList)->CartListAdapter(cartList,get()) }
             viewModel { MainViewModel(get()) }
+            factory<CheckOutListRepository> { CheckOutListRepositoryImpl(RemoteCheckOutListDataSource(get())) }
+            viewModel { CheckOutListViewModel(get()) }
+            factory { (checkOut:List<ProductItemDeliveriesItem> )->CheckOutAdapter(checkOut,get()) }
+            factory<AddressRepository> { AddressRepositoryImpl(RemoteAddressDataSource(get())) }
+            viewModel { AddressViewModel(get()) }
+            factory { (address:List<ResponseShowAddress>)-> ShowAddressAdapter(address)}
 
 
         }

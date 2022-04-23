@@ -21,20 +21,26 @@ import ir.mamhesam.snamall.base.BaseFragment
 import ir.mamhesam.snamall.data.ProductItemItem
 import ir.mamhesam.snamall.databinding.FragmentCartBinding
 import ir.mamhesam.snamall.feature.cart.adapter.CartListAdapter
+import ir.mamhesam.snamall.feature.cart.nextlevel.NextLevelActivity
 import ir.mamhesam.snamall.feature.cart.viewmodel.CartListViewModel
 import ir.mamhesam.snamall.feature.profile.auoth.AuthViewModel
 import ir.mamhesam.snamall.feature.profile.auoth.LoginActivity
+import ir.mamhesam.snamall.utils.NO
+import ir.mamhesam.snamall.utils.YES
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
-class CartFragment : BaseFragment(), CartListAdapter.OnClickRemoveItem {
+class CartFragment : BaseFragment(), CartListAdapter.OnClickRemoveItem,
+    RemoveItemDialog.OnDialogRemove {
 
     val cartListViewModel: CartListViewModel by viewModel()
     val authViewModel: AuthViewModel by viewModel()
     lateinit var binding: FragmentCartBinding
-    var cartListAdapterPublic : CartListAdapter?=null
-    val compositeDisposable =CompositeDisposable()
+    var cartListAdapterPublic: CartListAdapter? = null
+    val compositeDisposable = CompositeDisposable()
+    lateinit var removeItemDialog: RemoveItemDialog
+    lateinit var cartItemRemove: ProductItemItem
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,68 +49,70 @@ class CartFragment : BaseFragment(), CartListAdapter.OnClickRemoveItem {
         // Inflate the layout for this fragment
         //return inflater.inflate(R.layout.fragment_cart, container, false)
 
-            binding = FragmentCartBinding.inflate(inflater,container,false)
+        binding = FragmentCartBinding.inflate(inflater, container, false)
 
-        cartListViewModel.cartListLiveData.observe(viewLifecycleOwner){
+        binding.btnNextCart.setOnClickListener {
+            startActivity(Intent(context, NextLevelActivity::class.java))
+        }
+
+
+        cartListViewModel.cartListLiveData.observe(viewLifecycleOwner) {
             val cartListAdapter: CartListAdapter by inject { parametersOf(it) }
             cartListAdapterPublic = cartListAdapter
-            binding.rcCart.layoutManager = LinearLayoutManager(context,RecyclerView.VERTICAL,false)
+            binding.rcCart.layoutManager =
+                LinearLayoutManager(context, RecyclerView.VERTICAL, false)
             binding.rcCart.adapter = cartListAdapter
             cartListAdapter.setOnClickItemRemove(this)
         }
 
-            cartListViewModel.progressBarLiveData.observe(viewLifecycleOwner){
-                setProgressBar(it)
+        cartListViewModel.progressBarLiveData.observe(viewLifecycleOwner) {
+            setProgressBar(it)
+        }
+        cartListViewModel.payablePriceLiveData.observe(viewLifecycleOwner) {
+            cartListAdapterPublic?.let { cartListAdapter ->
+                cartListAdapter.publicAllPayablePrice = it
             }
-            cartListViewModel.payablePriceLiveData.observe(viewLifecycleOwner){
-                cartListAdapterPublic?.let {
-                    cartListAdapter ->
-                    cartListAdapter.publicAllPayablePrice = it
-                }
 
+        }
+        cartListViewModel.totalPriceLiveData.observe(viewLifecycleOwner) {
+            cartListAdapterPublic?.let { cartListAdapter ->
+                cartListAdapter.publicTotalAllPrice = it
+                cartListAdapter.notifyDataSetChanged()
             }
-            cartListViewModel.totalPriceLiveData.observe(viewLifecycleOwner){
-                cartListAdapterPublic?.let {
-                    cartListAdapter ->
-                    cartListAdapter.publicTotalAllPrice = it
-                    cartListAdapter.notifyDataSetChanged()
-                }
 
+        }
+        cartListViewModel.totalOfPriceLiveData.observe(viewLifecycleOwner) {
+            cartListAdapterPublic?.let { cartListAdapter ->
+                cartListAdapter.publicAllOffPrIce = it
             }
-            cartListViewModel.totalOfPriceLiveData.observe(viewLifecycleOwner){
-                cartListAdapterPublic?.let {
-                    cartListAdapter ->
-                    cartListAdapter.publicAllOffPrIce = it
-                }
 
-            }
-            cartListViewModel.emptyStateLiveData.observe(viewLifecycleOwner){
-                val parent = view?.findViewById<LinearLayout>(R.id.lnr_empty)
-                if (it.show){
-                    val emptyState = showEmptyState(R.layout.layout_empty_state)
-                    emptyState?.let {view ->
+        }
+        cartListViewModel.emptyStateLiveData.observe(viewLifecycleOwner) {
+            val parent = view?.findViewById<LinearLayout>(R.id.lnr_empty)
+            if (it.show) {
+                val emptyState = showEmptyState(R.layout.layout_empty_state)
+                emptyState?.let { view ->
 
-                        val txtMessage = view.findViewById<TextView>(R.id.txt_state)
-                        val btnLogin = view.findViewById<Button>(R.id.btn_empty_state)
-                        txtMessage!!.text = getString(it.message)
-                        if (it.showButton){
-                            btnLogin!!.visibility = View.VISIBLE
-                        }else{
-                            btnLogin!!.visibility = View.GONE
+                    val txtMessage = view.findViewById<TextView>(R.id.txt_state)
+                    val btnLogin = view.findViewById<Button>(R.id.btn_empty_state)
+                    txtMessage!!.text = getString(it.message)
+                    if (it.showButton) {
+                        btnLogin!!.visibility = View.VISIBLE
+                    } else {
+                        btnLogin!!.visibility = View.GONE
 
-                        }
-                        btnLogin.setOnClickListener {
-                            startActivity(Intent(context,LoginActivity::class.java))
-                        }
+                    }
+                    btnLogin.setOnClickListener {
+                        startActivity(Intent(context, LoginActivity::class.java))
                     }
                 }
-                else{
-                    parent?.let {it1->
-                        it1.visibility = View.GONE
-                    }
+            } else {
+                parent?.let { it1 ->
+                    it1.visibility = View.GONE
                 }
-
             }
+
+        }
 
 
         return binding.root
@@ -117,28 +125,18 @@ class CartFragment : BaseFragment(), CartListAdapter.OnClickRemoveItem {
     }
 
     override fun onClickItem(cartItem: ProductItemItem) {
-        cartListViewModel.removeFromCart(cartItem).subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(object : CompletableObserver{
-                override fun onSubscribe(d: Disposable) {
-                    compositeDisposable.add(d)
-                }
-
-                override fun onComplete() {
-                }
-
-                override fun onError(e: Throwable) {
-                }
-
-            })
+        cartItemRemove = cartItem
+        removeItemDialog = RemoveItemDialog()
+        removeItemDialog.show(parentFragmentManager, null)
+        removeItemDialog.setOnClickRemove(this)
     }
 
     override fun onClickSumItem(cartItem: ProductItemItem, newCount: Int) {
-        cartListAdapterPublic!!.sumItemCount(cartItem,newCount)
-        val new = newCount+1
-        cartListViewModel.changeCountIte(cartItem,new,true).subscribeOn(Schedulers.io())
+        cartListAdapterPublic!!.sumItemCount(cartItem, newCount)
+        val new = newCount + 1
+        cartListViewModel.changeCountIte(cartItem, new, true).subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(object : CompletableObserver{
+            .subscribe(object : CompletableObserver {
                 override fun onSubscribe(d: Disposable) {
                 }
 
@@ -152,11 +150,11 @@ class CartFragment : BaseFragment(), CartListAdapter.OnClickRemoveItem {
     }
 
     override fun onClickMinusItem(cartItem: ProductItemItem, newCount: Int) {
-        cartListAdapterPublic!!.minusItemCount(cartItem,newCount)
-        val new = newCount-1
-        cartListViewModel.changeCountIte(cartItem,new,false).subscribeOn(Schedulers.io())
+        cartListAdapterPublic!!.minusItemCount(cartItem, newCount)
+        val new = newCount - 1
+        cartListViewModel.changeCountIte(cartItem, new, false).subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(object : CompletableObserver{
+            .subscribe(object : CompletableObserver {
                 override fun onSubscribe(d: Disposable) {
                 }
 
@@ -167,6 +165,31 @@ class CartFragment : BaseFragment(), CartListAdapter.OnClickRemoveItem {
                 }
 
             })
+    }
+
+    override fun onClickItem(type: String) {
+        when (type) {
+            YES -> {
+                cartListViewModel.removeFromCart(cartItemRemove).subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(object : CompletableObserver {
+                        override fun onSubscribe(d: Disposable) {
+                            compositeDisposable.add(d)
+                        }
+
+                        override fun onComplete() {
+                            removeItemDialog.dismiss()
+                        }
+
+                        override fun onError(e: Throwable) {
+                        }
+
+                    })
+            }
+            NO -> {
+                removeItemDialog.dismiss()
+            }
+        }
     }
 
 

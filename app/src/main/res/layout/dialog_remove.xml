@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layoutDirection="rtl"
+    android:gravity="center"
+    android:padding="@dimen/_8sdp"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <View
+        android:background="@color/grey_300"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_2sdp"/>
+    <TextView
+        android:layout_marginTop="@dimen/_8sdp"
+        android:textColor="@color/grey_900"
+        android:textSize="@dimen/_10sdp"
+        android:text="آیا حذف شود؟"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:layout_marginTop="@dimen/_12sdp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textSize="@dimen/_10sdp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:background="@drawable/shape_txt_one"
+            android:id="@+id/btn_yes"
+            android:padding="@dimen/_8sdp"
+            android:layout_margin="@dimen/_4sdp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="بله"
+            android:layout_height="wrap_content"/>
+        <TextView
+
+            android:textSize="@dimen/_10sdp"
+            android:gravity="center"
+            android:background="@drawable/shape_txt_two"
+            android:id="@+id/btn_no"
+            android:padding="@dimen/_8sdp"
+            android:layout_margin="@dimen/_4sdp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textColor="@color/green_600"
+            android:text="خیر"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+</LinearLayout>

@@ -33,6 +33,7 @@ class MainActivity : AppCompatActivity() {
         EventBus.getDefault().register(this)
         if (savedInstanceState == null) {
             setupBottomNavigationBar()
+
         } // Else, need to wait for onRestoreInstanceState
     }
 

@@ -23,6 +23,7 @@ import ir.mamhesam.snamall.R
 import ir.mamhesam.snamall.base.BaseActivity
 import ir.mamhesam.snamall.data.ResponseCountCart
 import ir.mamhesam.snamall.databinding.ActivityDetailBinding
+import ir.mamhesam.snamall.feature.cart.CartFragment
 import ir.mamhesam.snamall.feature.home.detailproduct.adapter.*
 import ir.mamhesam.snamall.feature.home.detailproduct.comment.ShowCommentActivity
 import ir.mamhesam.snamall.feature.home.detailproduct.moredialog.ChartPriceActivity
@@ -76,6 +77,9 @@ class DetailActivity : BaseActivity(),
             val moreDialog = MoreDialogBottomSheet()
             moreDialog.show(supportFragmentManager, null)
             moreDialog.setOnClicKDialog(this)
+        }
+        binding!!.imgBasket.setOnClickListener {
+            supportFragmentManager.findFragmentByTag(CartFragment::class.java.simpleName)
         }
         binding!!.technicalProperty.setOnClickListener {
             startActivity(Intent(this, TechnicalPropertyActivity::class.java).apply {

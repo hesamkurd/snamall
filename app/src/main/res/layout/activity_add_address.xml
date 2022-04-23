@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layoutDirection="rtl"
+    android:id="@+id/coordinator"
+    tools:context=".feature.profile.address.AddAddressActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+        <com.google.android.material.appbar.MaterialToolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_scrollFlags="scroll|enterAlways|snap"
+            >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/_6sdp"
+                android:background="@color/white">
+
+                <ImageView
+                    android:id="@+id/img_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_4sdp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    app:srcCompat="@drawable/ic_baseline_arrow_forward_24" />
+
+
+
+                <TextView
+                    android:id="@+id/txt_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/grey_600"
+                    android:layout_toLeftOf="@id/img_back"
+                    android:layout_marginRight="@dimen/_16sdp"
+                    android:layout_centerVertical="true"/>
+
+            </RelativeLayout>
+        </com.google.android.material.appbar.MaterialToolbar>
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <LinearLayout
+            android:id="@+id/root"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layoutDirection="rtl"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" *استان"
+                android:textColor="@color/grey_900"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/edt_ostan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:background="@drawable/shape_edittext_phone"
+                android:ems="10"
+                android:gravity="right"
+                android:padding="@dimen/_4sdp"
+                android:textSize="@dimen/_8sdp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" *شهر"
+                android:textColor="@color/grey_900"
+                android:textSize="@dimen/_8sdp" />
+
+            <EditText
+                android:id="@+id/edt_city"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:background="@drawable/shape_edittext_phone"
+                android:ems="10"
+                android:gravity="right"
+                android:padding="@dimen/_4sdp"
+                android:textSize="@dimen/_8sdp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" *آدرس پستی"
+                android:textColor="@color/grey_900"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/edt_adress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:background="@drawable/shape_edittext_phone"
+                android:ems="10"
+                android:gravity="right"
+                android:padding="@dimen/_4sdp"
+                android:textSize="@dimen/_8sdp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" *پلاک"
+                android:textColor="@color/grey_900"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/edt_pelak"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:background="@drawable/shape_edittext_phone"
+                android:ems="10"
+                android:gravity="right"
+                android:padding="@dimen/_4sdp"
+                android:textSize="@dimen/_8sdp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" *واحد"
+                android:textColor="@color/grey_900"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/edt_unit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:background="@drawable/shape_edittext_phone"
+                android:ems="10"
+                android:gravity="right"
+                android:padding="@dimen/_4sdp"
+                android:textSize="@dimen/_8sdp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" *کدپستی"
+                android:textColor="@color/grey_900"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/edt_code"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:background="@drawable/shape_edittext_phone"
+                android:ems="10"
+                android:gravity="right"
+                android:padding="@dimen/_4sdp"
+                android:textSize="@dimen/_8sdp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" *شماره گیرنده"
+                android:textColor="@color/grey_900"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/edt_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:background="@drawable/shape_edittext_phone"
+                android:ems="10"
+                android:gravity="right"
+                android:padding="@dimen/_4sdp"
+                android:textSize="@dimen/_8sdp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" *نام گیرنده"
+                android:textColor="@color/grey_900"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/edt_family"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:background="@drawable/shape_edittext_phone"
+                android:ems="10"
+                android:gravity="right"
+                android:padding="@dimen/_4sdp"
+                android:textSize="@dimen/_8sdp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_add_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:text="ثبت آدرس" />
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
