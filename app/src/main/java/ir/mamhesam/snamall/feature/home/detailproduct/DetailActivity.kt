@@ -1,18 +1,27 @@
 package ir.mamhesam.snamall.feature.home.detailproduct
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.graphics.Paint
 import android.os.Bundle
 import android.util.AttributeSet
 import android.view.View
+import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.badge.BadgeDrawable
+import com.google.android.material.badge.BadgeUtils
+import com.google.android.material.badge.ExperimentalBadgeUtils
+import com.google.android.material.color.MaterialColors
 import com.google.android.material.snackbar.Snackbar
+import ir.mamhesam.snamall.MainViewModel
 import ir.mamhesam.snamall.R
 import ir.mamhesam.snamall.base.BaseActivity
+import ir.mamhesam.snamall.data.ResponseCountCart
 import ir.mamhesam.snamall.databinding.ActivityDetailBinding
 import ir.mamhesam.snamall.feature.home.detailproduct.adapter.*
 import ir.mamhesam.snamall.feature.home.detailproduct.comment.ShowCommentActivity
@@ -25,6 +34,9 @@ import ir.mamhesam.snamall.feature.home.detailproduct.viewmodel.DetailProductVie
 import ir.mamhesam.snamall.feature.profile.auoth.AuthViewModel
 import ir.mamhesam.snamall.feature.profile.auoth.LoginActivity
 import ir.mamhesam.snamall.utils.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
@@ -34,7 +46,7 @@ class DetailActivity : BaseActivity(),
     MoreDialogBottomSheet.OnClickMoreDialog,
     ColorAdapter.OnClickColorItem, SizeAdapter.OnClickSizeItem {
 
-    var binding: ActivityDetailBinding?=null
+    var binding: ActivityDetailBinding? = null
 
     val detailProductViewModel: DetailProductViewModel by viewModel {
         parametersOf(
@@ -45,6 +57,8 @@ class DetailActivity : BaseActivity(),
         )
     }
     val authViewModel: AuthViewModel by viewModel()
+    val mainViewModel: MainViewModel by viewModel()
+
     var idProduct: Int? = null
     var idColor: Int = 0
     var idSize: Int = 0
@@ -56,6 +70,7 @@ class DetailActivity : BaseActivity(),
         //setContentView(R.layout.activity_detail)
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding!!.root)
+        EventBus.getDefault().register(this)
 
         binding!!.imgMore.setOnClickListener {
             val moreDialog = MoreDialogBottomSheet()
@@ -143,7 +158,7 @@ class DetailActivity : BaseActivity(),
                 binding!!.rcColors.visibility = View.GONE
                 binding!!.colorTitle.visibility = View.GONE
                 checkColor = false
-            }else{
+            } else {
                 val colorAdapter: ColorAdapter by inject { parametersOf(it.productColors) }
                 binding!!.rcColors.layoutManager =
                     LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
@@ -156,7 +171,7 @@ class DetailActivity : BaseActivity(),
                 binding!!.rcSize.visibility = View.GONE
                 binding!!.sizeTitel.visibility = View.GONE
                 checkSize = false
-            }else{
+            } else {
 
                 val sizeAdapter: SizeAdapter by inject { parametersOf(it.productSizes) }
 
@@ -231,11 +246,11 @@ class DetailActivity : BaseActivity(),
                         Snackbar.LENGTH_SHORT
                     ).show()
 
-            }else if(!checkColor && !checkSize) {
+            } else if (!checkColor && !checkSize) {
 
                 authViewModel.addToCart(idProduct!!, idColor, idSize)
             } else {
-                if (idColor == 0 || idSize == 0){
+                if (idColor == 0 || idSize == 0) {
                     Snackbar.make(
                         binding!!.coordinator,
                         "لطفا سایز و رنگ را انتخاب کنید",
@@ -250,8 +265,30 @@ class DetailActivity : BaseActivity(),
         authViewModel.addToCartLiveData.observe(this) {
             Snackbar.make(binding!!.coordinator, it.message, Snackbar.LENGTH_SHORT).show()
 
+            val countItem = EventBus.getDefault().getStickyEvent(ResponseCountCart::class.java)
+            countItem?.let {it1->
+                it1.count ++
+                EventBus.getDefault().postSticky(it1)
+            }
+
         }
 
+
+    }
+
+    @SuppressLint("UnsafeOptInUsageError")
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun countCart(countItem: ResponseCountCart) {
+        val badge = BadgeDrawable.create(this)
+        val image = findViewById<ImageView>(R.id.img_basket)
+        badge.backgroundColor =
+            MaterialColors.getColor(binding!!.rltToolbar, com.mukesh.R.attr.colorPrimary)
+        badge.badgeGravity = BadgeDrawable.TOP_START
+        badge.verticalOffset = 15
+        badge.horizontalOffset = 15
+        badge.number = countItem.count
+        badge.isVisible = countItem.count > 0
+        BadgeUtils.attachBadgeDrawable(badge, image, findViewById(R.id.rlt_toolbar))
 
     }
 
@@ -269,6 +306,18 @@ class DetailActivity : BaseActivity(),
     override fun onResume() {
         super.onResume()
         authViewModel.checkLogin()
+        mainViewModel.getCount()
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+        mainViewModel.getCount()
+
+    }
+    override fun onDestroy() {
+        super.onDestroy()
+        EventBus.getDefault().unregister(this)
     }
 
     override fun onClickColorId(colorId: Int) {

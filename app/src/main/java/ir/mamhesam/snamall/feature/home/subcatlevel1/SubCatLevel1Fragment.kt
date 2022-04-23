@@ -46,6 +46,9 @@ class SubCatLevel1Fragment : BaseFragment() {
                 binding!!.rcSubCatLevel.adapter = subCatLevel1Adapter
 
             }
+            subCatLevel1ViewModel.progressBarLiveData.observe(viewLifecycleOwner){
+                setProgressBar(it)
+            }
 
         }
 

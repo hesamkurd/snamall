@@ -4,10 +4,17 @@ import android.app.Application
 import android.content.SharedPreferences
 import android.util.Log
 import com.facebook.drawee.backends.pipeline.Fresco
+import ir.mamhesam.snamall.MainViewModel
 import ir.mamhesam.snamall.api.ApiService
 import ir.mamhesam.snamall.api.retrofitApi
 import ir.mamhesam.snamall.data.*
+import ir.mamhesam.snamall.feature.cart.adapter.CartListAdapter
+import ir.mamhesam.snamall.feature.cart.repo.CartListRepository
+import ir.mamhesam.snamall.feature.cart.repo.CartListRepositoryImpl
+import ir.mamhesam.snamall.feature.cart.source.RemoteCartListDataSource
+import ir.mamhesam.snamall.feature.cart.viewmodel.CartListViewModel
 import ir.mamhesam.snamall.feature.category.adapter.CategoryAdapter
+import ir.mamhesam.snamall.feature.category.brandproduct.adapter.BrandProductAdapter
 import ir.mamhesam.snamall.feature.category.brandproduct.repo.BrandBannerRepository
 import ir.mamhesam.snamall.feature.category.brandproduct.repo.BrandBannerRepositoryImpl
 import ir.mamhesam.snamall.feature.category.brandproduct.source.RemoteBrandBannerDataSource
@@ -139,7 +146,13 @@ class App: Application() {
 
             factory<BrandBannerRepository> { BrandBannerRepositoryImpl(RemoteBrandBannerDataSource(get())) }
             viewModel { (brand:String)->BrandBannerViewmodel(brand,get()) }
+            factory { (product:List<ResponseBrandProduct>)-> BrandProductAdapter(product,get())}
 
+            ////// Cart ////////
+            factory<CartListRepository> { CartListRepositoryImpl(RemoteCartListDataSource(get())) }
+            viewModel { CartListViewModel(get()) }
+            factory { (cartList: ResponseCartList)->CartListAdapter(cartList,get()) }
+            viewModel { MainViewModel(get()) }
 
 
         }

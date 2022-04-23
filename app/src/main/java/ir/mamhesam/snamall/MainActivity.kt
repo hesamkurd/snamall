@@ -5,14 +5,22 @@ import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.LiveData
 import androidx.navigation.NavController
+import com.google.android.material.badge.BadgeDrawable
+import com.google.android.material.color.MaterialColors
+import ir.mamhesam.snamall.data.ResponseCountCart
 import ir.mamhesam.snamall.databinding.ActivityMainBinding
 import ir.mamhesam.snamall.utils.setupWithNavController
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
  * An activity that inflates a layout that has a [BottomNavigationView].
  */
 class MainActivity : AppCompatActivity() {
 
+    val mainViewModel: MainViewModel by viewModel()
     private var currentNavController: LiveData<NavController>? = null
     private lateinit var binding: ActivityMainBinding
 
@@ -22,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         /*setContentView(R.layout.activity_main)*/
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        EventBus.getDefault().register(this)
         if (savedInstanceState == null) {
             setupBottomNavigationBar()
         } // Else, need to wait for onRestoreInstanceState
@@ -65,11 +74,32 @@ class MainActivity : AppCompatActivity() {
         currentNavController = controller
 
 
+
+    }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun countCart(countItem: ResponseCountCart){
+        val badge = binding.bottomNav.getOrCreateBadge(R.id.cart)
+        badge.backgroundColor = MaterialColors.getColor(binding.bottomNav, com.mukesh.R.attr.colorPrimary)
+        badge.badgeGravity = BadgeDrawable.TOP_START
+        badge.verticalOffset = 5
+        badge.horizontalOffset = 5
+        badge.number = countItem.count
+        badge.isVisible =  countItem.count>0
     }
 
 
     override fun onSupportNavigateUp(): Boolean {
         return currentNavController?.value?.navigateUp() ?: false
+    }
+
+    override fun onResume() {
+        super.onResume()
+        mainViewModel.getCount()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        EventBus.getDefault().unregister(this)
     }
 
 }

@@ -5,29 +5,40 @@
       <map>
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/drawable-v24/bg_percent.xml" value="0.187" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/drawable-v24/ic_baseline_arrow_forward_24.xml" value="0.187" />
+        <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/drawable-v24/ic_cart_selected.xml" value="0.187" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/drawable-v24/ic_search_24.xml" value="0.187" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/drawable-v24/progressf_amazing.xml" value="0.187" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/drawable/bg_search_bar.xml" value="0.187" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/drawable/cart_tab.xml" value="0.187" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/drawable/category_tab.xml" value="0.187" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/drawable/home_tab.xml" value="0.187" />
+        <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/drawable/ic_bag_deselected.xml" value="0.187" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/drawable/ic_bar_chart_outline.xml" value="0.187" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.187" />
+        <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/drawable/ic_baseline_arrow_left_24.xml" value="0.187" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/drawable/ic_baseline_circle_24.xml" value="0.187" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/drawable/ic_baseline_clear_24.xml" value="0.187" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/drawable/ic_baseline_favorite_24.xml" value="0.187" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/drawable/ic_baseline_favorite_border_24.xml" value="0.187" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/drawable/ic_baseline_more_vert_24.xml" value="0.187" />
+        <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/drawable/ic_car_loan.xml" value="0.187" />
+        <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/drawable/ic_cash.xml" value="0.187" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/drawable/ic_compare.xml" value="0.187" />
+        <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/drawable/ic_delivery_man.xml" value="0.187" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/drawable/ic_dislike_comment.xml" value="0.187" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/drawable/ic_like_comment.xml" value="0.187" />
+        <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/drawable/ic_loan.xml" value="0.187" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/drawable/ic_outline_arrow_circle_left_24.xml" value="0.187" />
+        <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/drawable/ic_protection.xml" value="0.187" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/drawable/ic_question_comment.xml" value="0.187" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/drawable/ic_search_solid.xml" value="0.187" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/drawable/ic_storefront_bold.xml" value="0.187" />
+        <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/drawable/ic_wall_clock.xml" value="0.187" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/drawable/line_divider.xml" value="0.187" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/drawable/profile_tab.xml" value="0.187" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/drawable/shape_edittext_phone.xml" value="0.187" />
+        <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/drawable/shape_image_basket.xml" value="0.187" />
+        <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/drawable/shape_image_basket_unselected.xml" value="0.187" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/drawable/shape_oval_score.xml" value="0.187" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/drawable/shape_text_size.xml" value="0.187" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/drawable/shape_text_size_selected.xml" value="0.187" />
@@ -46,7 +57,7 @@
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/activity_technical_property.xml" value="0.22" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/activity_verify.xml" value="0.2" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/dialog_more.xml" value="0.33" />
-        <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/fragment_cart.xml" value="0.17864583333333334" />
+        <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/fragment_cart.xml" value="0.18" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/fragment_category.xml" value="0.17864583333333334" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/fragment_profile.xml" value="0.17864583333333334" />
@@ -56,6 +67,8 @@
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/item_banners.xml" value="0.17864583333333334" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/item_banners_type_2.xml" value="0.17864583333333334" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/item_brand.xml" value="0.17864583333333334" />
+        <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/item_brand_product.xml" value="0.17864583333333334" />
+        <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/item_cart.xml" value="0.33" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/item_categories.xml" value="0.33" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/item_category.xml" value="0.17864583333333334" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/item_color_product.xml" value="0.33" />
@@ -65,6 +78,7 @@
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/item_gallery_images.xml" value="0.17864583333333334" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/item_general_category.xml" value="0.22" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/item_last_amazing.xml" value="0.33" />
+        <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/item_paybale_price.xml" value="0.33" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/item_popular_product.xml" value="0.17864583333333334" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/item_properties.xml" value="0.33" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/item_property_child.xml" value="0.25" />
@@ -76,6 +90,7 @@
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/item_sub_cat_product.xml" value="0.17864583333333334" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/item_sub_category.xml" value="0.17864583333333334" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/item_subcat_level.xml" value="0.25" />
+        <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/layout_empty_state.xml" value="0.18" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/progress_view.xml" value="0.17864583333333334" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/toolbar.xml" value="0.33" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/menu/bottom_nav.xml" value="0.17864583333333334" />

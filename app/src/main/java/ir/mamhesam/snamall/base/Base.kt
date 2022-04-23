@@ -64,6 +64,21 @@ interface BaseView {
 
         }
     }
+    fun showEmptyState(layout: Int): View?{
+        rootView?.let {rootView->
+            myContext?.let {
+                var emptyState = rootView.findViewById<View>(R.id.lnr_empty)
+                if (emptyState == null){
+
+                    emptyState = LayoutInflater.from(myContext).inflate(layout,rootView,false)
+                    rootView.addView(emptyState)
+                }
+                emptyState.visibility = View.VISIBLE
+                return emptyState
+            }
+        }
+        return null
+    }
 }
 
 fun <T> Single<T>.customObserver(): Single<T> {

@@ -81,6 +81,21 @@ interface ApiService {
                   @Field("color_id")color_id: Int,
                   @Field("size_id")size_id: Int):Single<ResponseInsertComment>
 
+    @GET("cart/cart_list.php")
+    fun getCartList(): Single<ResponseCartList>
+
+    @GET("home/basket_count.php")
+    fun getCountCart(): Single<ResponseCountCart>
+
+    @FormUrlEncoded
+    @POST("cart/remove_from_basket.php")
+    fun removeFromCart(@Field("cart_item_id")cart_item_id:Int): Single<ResponseInsertComment>
+
+    @FormUrlEncoded
+    @POST("cart/change_count_item.php")
+    fun changeCountItem(@Field("cart_item_id")cart_item_id:Int,
+                        @Field("count")count:Int): Single<ResponseChangeCountItem>
+
     ////////// Category //////////
     @GET("category/categories.php")
     fun getCategories():Single<List<ResponseCategories>>
@@ -96,6 +111,9 @@ interface ApiService {
 
     @GET("product/banner_brand.php")
     fun getBrandBanner(@Query("brand_name")brand_name:String):Single<ResponseBrandBanner>
+
+    @GET("product/brand_products.php")
+    fun getBrandProduct(@Query("brand_name")brand_name:String):Single<List<ResponseBrandProduct>>
 }
 
 fun retrofitApi():ApiService{

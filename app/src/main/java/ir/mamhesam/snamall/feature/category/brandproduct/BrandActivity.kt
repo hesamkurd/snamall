@@ -2,9 +2,12 @@ package ir.mamhesam.snamall.feature.category.brandproduct
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import ir.mamhesam.snamall.R
 import ir.mamhesam.snamall.base.BaseActivity
 import ir.mamhesam.snamall.databinding.ActivityBrandBinding
+import ir.mamhesam.snamall.feature.category.brandproduct.adapter.BrandProductAdapter
 import ir.mamhesam.snamall.feature.category.brandproduct.viewmodel.BrandBannerViewmodel
 import ir.mamhesam.snamall.services.ImageLoadService
 import ir.mamhesam.snamall.utils.PRODUCT_ID
@@ -26,6 +29,12 @@ class BrandActivity : BaseActivity() {
         brandBannerViewmodel.brandBannerLiveData.observe(this){
             imageLoadService.loadImage(binding!!.brandBanner,it.banner)
             imageLoadService.loadImage(binding!!.iconBrand,it.icon)
+        }
+
+        brandBannerViewmodel.brandProductLiveData.observe(this){
+            val brandProductAdapter: BrandProductAdapter by inject { parametersOf(it) }
+            binding!!.rcBrandProduct.layoutManager = LinearLayoutManager(this,RecyclerView.VERTICAL,false)
+            binding!!.rcBrandProduct.adapter = brandProductAdapter
         }
     }
 }

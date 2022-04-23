@@ -28,5 +28,7 @@
     <string name="register">ثبت نام در اپلیکیشن</string>
     <string name="emptyCart">محصولی در سبد شما موجود نمی باشد</string>
     <string name="isLoginCart">لطفا وارد حساب کاربری خود شوید</string>
+    <string name="empty_cart">سبد خرید شما خالی می باشد</string>
+    <string name="txt_login_empty_state">لطفا وارد حساب کاربری خود شوید</string>
 
 </resources>

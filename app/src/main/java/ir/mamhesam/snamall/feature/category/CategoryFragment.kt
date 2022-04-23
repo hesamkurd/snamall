@@ -52,6 +52,10 @@ class CategoryFragment : BaseFragment(),CategoryAdapter.OnClickCategory {
                 }
             }
 
+            categoriesViewModel.progressBarLiveData.observe(viewLifecycleOwner){
+                setProgressBar(it)
+            }
+
         }
 
         return binding!!.root
