@@ -11,6 +11,7 @@ import ir.mamhesam.snamall.data.ResponseShowAddress
 import ir.mamhesam.snamall.databinding.ActivityAddressBinding
 import ir.mamhesam.snamall.feature.profile.address.adapter.ShowAddressAdapter
 import ir.mamhesam.snamall.feature.profile.address.viewmodel.AddressViewModel
+import ir.mamhesam.snamall.utils.ADDRESS_ID
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
@@ -46,7 +47,9 @@ class AddressActivity : BaseActivity(),ShowAddressAdapter.OnClickItemAddress {
 
         setResult(1001, Intent().
         putExtra("name",address.nameFamily).
-        putExtra("address",address.address))
+        putExtra("address",address.address).
+        putExtra(ADDRESS_ID,address.id))
+
         finish()
     }
 

@@ -23,6 +23,9 @@ class AddAddressActivity : BaseActivity() {
         binding.btnAddAddress.setOnClickListener {
 
             when{
+                binding.edtOstan.length() == 0->{
+                    binding.edtOstan.error = "استان را وارد کنید"
+                }
                 binding.edtFamily.length() == 0->{
                     binding.edtFamily.error = "نام خود را وارد کنید"
                 }

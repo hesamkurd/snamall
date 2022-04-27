@@ -30,5 +30,13 @@
     <string name="isLoginCart">لطفا وارد حساب کاربری خود شوید</string>
     <string name="empty_cart">سبد خرید شما خالی می باشد</string>
     <string name="txt_login_empty_state">لطفا وارد حساب کاربری خود شوید</string>
-
+    <string name="txt_empty_state_favorite">لیست علاقه مندی های شما خالی می باشد</string>
+    <string name="lowPrice">کم به زیاد</string>
+    <string name="highPrice">زیاد به کم</string>
+    <string name="popular">محبوب ترین ها</string>
+    <string-array name="sort">
+        <item>@string/popular</item>
+        <item>@string/lowPrice</item>
+        <item>@string/highPrice</item>
+    </string-array>
 </resources>

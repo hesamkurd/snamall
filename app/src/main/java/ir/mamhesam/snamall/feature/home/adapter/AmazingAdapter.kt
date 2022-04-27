@@ -28,8 +28,12 @@ class AmazingAdapter(
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     lateinit var onClickProduct: OnClickProduct
+    lateinit var onClickLast: OnClickLast
     fun setOnClickProductItem(onClickProduct: OnClickProduct){
         this.onClickProduct = onClickProduct
+    }
+    fun setOnClickItemLast(onClickLast: OnClickLast){
+        this.onClickLast = onClickLast
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -97,7 +101,7 @@ class AmazingAdapter(
                 (holder as LastAmazingViewHolder).imaLastAmazing.setImageResource(R.drawable.ic_arrow)
                 holder.txtLastAmazing.text = "مشاهده همه"
                 holder.mterialCart.setOnClickListener {
-
+                    onClickLast.onClickLastItem()
                 }
             }
 
@@ -148,6 +152,10 @@ class AmazingAdapter(
 
     interface OnClickProduct{
         fun onClickProduct(productId: Int)
+    }
+
+    interface OnClickLast{
+        fun onClickLastItem()
     }
 
 }

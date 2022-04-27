@@ -1,25 +1,40 @@
 package ir.mamhesam.snamall.feature.cart.nextlevel
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import ir.mamhesam.snamall.R
 import ir.mamhesam.snamall.base.BaseActivity
+import ir.mamhesam.snamall.data.ResponseCountCart
 import ir.mamhesam.snamall.databinding.ActivityNextLevelBinding
 import ir.mamhesam.snamall.feature.cart.nextlevel.adapter.CheckOutAdapter
 import ir.mamhesam.snamall.feature.cart.nextlevel.viewmodel.CheckOutListViewModel
 import ir.mamhesam.snamall.feature.profile.address.AddressActivity
+import ir.mamhesam.snamall.feature.profile.auoth.TokenContainer
+import ir.mamhesam.snamall.feature.profile.order.OrderActivity
+import ir.mamhesam.snamall.utils.ADDRESS_ID
+import ir.mamhesam.snamall.utils.DIRECT
 import ir.mamhesam.snamall.utils.PriceConverter
+import ir.mamhesam.snamall.utils.WALLET
+import org.greenrobot.eventbus.EventBus
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
-class NextLevelActivity : BaseActivity() {
+class NextLevelActivity : BaseActivity(),BuyDialog.OnDialogBuy {
     lateinit var binding: ActivityNextLevelBinding
     val checkOutListViewModel: CheckOutListViewModel by viewModel()
+    lateinit var buyDialog: BuyDialog
+    lateinit var wallet:String
+    var payable:Int?=null
+    var shippingPrice:Int?=null
+    var reciveId:Int?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_next_level)
@@ -31,8 +46,17 @@ class NextLevelActivity : BaseActivity() {
         binding.imgBack.setOnClickListener {
             finish()
         }
+        binding.btnBuyProduct.setOnClickListener {
+            buyDialog = BuyDialog.newInstance(wallet)
+            buyDialog.show(supportFragmentManager,null)
+            buyDialog.setOnBuyDialog(this)
+        }
         binding.txtTitle.text = "اطلاعات ارسال"
         checkOutListViewModel.checkOutListLiveData.observe(this){
+            wallet = it.wallet
+            payable = it.payablePrice
+            shippingPrice = it.shippingCost
+            reciveId = it.addressId
             binding.apply {
                 txtDelivry.text = it.deliveryTime
                 txtPrice.text = PriceConverter.priceConvert(it.totalPrice.toString())
@@ -58,8 +82,46 @@ class NextLevelActivity : BaseActivity() {
 
         if (it.resultCode==1001){
             val data: Intent? = it.data
-            binding.txtName.text = data!!.getStringExtra("name")
-            binding.txtAddress.text = data.getStringExtra("address")
+            binding.txtName.text = data?.getStringExtra("name")
+            binding.txtAddress.text = data?.getStringExtra("address")
+            reciveId = data?.getIntExtra(ADDRESS_ID,0)
+
+        }
+    }
+
+    override fun onClickBuy(type: String) {
+        when(type){
+            WALLET->{
+                if (wallet.toInt()> payable!!){
+                    checkOutListViewModel.insertTransaction(reciveId.toString(),shippingPrice.toString(),payable.toString())
+                    checkOutListViewModel.insertTransactionLiveData.observe(this){
+                        Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
+                        buyDialog.dismiss()
+                        startActivity(Intent(this,OrderActivity::class.java))
+                        finish()
+                        val countItem = EventBus.getDefault().getStickyEvent(ResponseCountCart::class.java)
+                        countItem?.let {it1->
+                            it1.count = 0
+                            EventBus.getDefault().postSticky(it1)
+                        }
+                    }
+
+                }else{
+                    Toast.makeText(this, "کیف پول خود را شارژ کنید", Toast.LENGTH_SHORT).show()
+                }
+            }
+            DIRECT->{
+                val url = "http://snamall1.mamhesam.ir/v1/api/cart/checkout.php?reciver_id="+reciveId+"&shipping_price="+shippingPrice.toString()+"&payable_price=1000"+"&HTTP_AUTHORIZATION="+TokenContainer.token
+
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                startActivity(intent)
+                finish()
+                val countItem = EventBus.getDefault().getStickyEvent(ResponseCountCart::class.java)
+                countItem?.let {it1->
+                    it1.count = 0
+                    EventBus.getDefault().postSticky(it1)
+                }
+            }
         }
     }
 }

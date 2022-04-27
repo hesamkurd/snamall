@@ -16,6 +16,7 @@
             android:layout_height="@dimen/_44sdp"
             android:background="@color/white">
             <RelativeLayout
+                android:id="@+id/rltv_search"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="@dimen/_6sdp"

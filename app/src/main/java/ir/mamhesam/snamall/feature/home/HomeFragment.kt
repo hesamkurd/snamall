@@ -22,8 +22,10 @@ import ir.mamhesam.snamall.data.ResponseBanners
 import ir.mamhesam.snamall.data.ResponseGeneralCategory
 import ir.mamhesam.snamall.databinding.FragmentHomeBinding
 import ir.mamhesam.snamall.feature.home.adapter.*
+import ir.mamhesam.snamall.feature.home.allamazing.AllAmazingActivity
 import ir.mamhesam.snamall.feature.home.detailproduct.DetailActivity
 import ir.mamhesam.snamall.feature.home.viewmodel.HomeViewModel
+import ir.mamhesam.snamall.feature.search.SearchActivity
 import ir.mamhesam.snamall.utils.DividerItemDecorator
 import ir.mamhesam.snamall.utils.PRODUCT_ID
 import ir.mamhesam.snamall.utils.TYPE_ONE
@@ -34,13 +36,14 @@ import org.koin.core.parameter.parametersOf
 
 
 class HomeFragment : BaseFragment(),BannersType2Adapter.OnClickBannerType,
-    AmazingAdapter.OnClickProduct, PopularAdapter.OnClickPopularItem,GeneralCategoryAdapter.OnClickGeneralCategory {
+    AmazingAdapter.OnClickProduct, PopularAdapter.OnClickPopularItem,GeneralCategoryAdapter.OnClickGeneralCategory,AmazingAdapter.OnClickLast {
 
     val homeViewModel: HomeViewModel by viewModel()
     var binding: FragmentHomeBinding?=null
     val handler = Handler(Looper.myLooper()!!)
     var bannersSlider: List<ResponseBanners>? = null
     val general: ResponseGeneralCategory?=null
+    var amazingAdapter : AmazingAdapter?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,6 +57,10 @@ class HomeFragment : BaseFragment(),BannersType2Adapter.OnClickBannerType,
         //return inflater.inflate(R.layout.fragment_home, container, false)
        binding ?: run{
            binding = FragmentHomeBinding.inflate(inflater,container,false)
+
+           binding!!.rltvSearch.setOnClickListener {
+               startActivity(Intent(context,SearchActivity::class.java))
+           }
            homeViewModel.bannersLiveData.observe(viewLifecycleOwner){
                bannersSlider = it
                val bannersAdapter: BannersAdapter by inject { parametersOf(it) }
@@ -74,6 +81,7 @@ class HomeFragment : BaseFragment(),BannersType2Adapter.OnClickBannerType,
                    setPageTransformer(transformer)
 
                }
+
                binding!!.viewPagerBanners.adapter = bannersAdapter
                binding!!.dotsIndicator.setViewPager2(binding!!.viewPagerBanners)
 
@@ -90,6 +98,7 @@ class HomeFragment : BaseFragment(),BannersType2Adapter.OnClickBannerType,
            homeViewModel.progressBarLiveData.observe(viewLifecycleOwner){
                setProgressBar(it)
            }
+
            homeViewModel.generalCategoryLiveData.observe(viewLifecycleOwner){
                val generalCategoryAdapter: GeneralCategoryAdapter by inject { parametersOf(it) }
                binding!!.rcGeneralCategory.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
@@ -103,6 +112,7 @@ class HomeFragment : BaseFragment(),BannersType2Adapter.OnClickBannerType,
                binding!!.rcAmazingProduct.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
                binding!!.rcAmazingProduct.adapter = amazingAdapter
                amazingAdapter.setOnClickProductItem(this)
+               amazingAdapter.setOnClickItemLast(this)
            }
            homeViewModel.popularProductLiveData.observe(viewLifecycleOwner){
                val popularAdapter: PopularAdapter by inject { parametersOf(it) }
@@ -175,6 +185,10 @@ class HomeFragment : BaseFragment(),BannersType2Adapter.OnClickBannerType,
         bundle.putInt(PRODUCT_ID,generalCatId)
         bundle.putString("title",generalTitle)
         findNavController().navigate(R.id.action_homeFragment_to_subCatLevel1Fragment,bundle)
+    }
+
+    override fun onClickLastItem() {
+        startActivity(Intent(context,AllAmazingActivity::class.java))
     }
 
 

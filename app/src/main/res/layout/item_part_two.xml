@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="@dimen/_200sdp"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/_4sdp"
+    app:cardCornerRadius="@dimen/_8sdp"
+    app:cardElevation="0dp"
+    app:strokeColor="@color/grey_300"
+    app:strokeWidth="@dimen/_1sdp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_6sdp">
+
+        <ir.mamhesam.snamall.view.MyImageView
+            android:id="@+id/_img_search"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true" />
+
+        <TextView
+            android:id="@+id/txt_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/_4sdp"
+            android:layout_toLeftOf="@id/_img_search"
+            android:ellipsize="end"
+            android:lines="2"
+            android:textColor="@color/grey_300"
+            android:textSize="@dimen/_9sdp" />
+    </RelativeLayout>
+
+</com.google.android.material.card.MaterialCardView>

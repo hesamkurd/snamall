@@ -5,11 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.squareup.picasso.Picasso
 import ir.mamhesam.snamall.R
-import ir.mamhesam.snamall.data.ImagesItem
-import ir.mamhesam.snamall.services.ImageLoadService
-import ir.mamhesam.snamall.view.MyImageView
 
 class CatAdapter(val imagesProduct: List<String>):RecyclerView.Adapter<CatAdapter.GalleryViewHolder>() {
 

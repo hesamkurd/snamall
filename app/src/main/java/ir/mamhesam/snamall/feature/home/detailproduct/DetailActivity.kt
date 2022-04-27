@@ -1,21 +1,17 @@
 package ir.mamhesam.snamall.feature.home.detailproduct
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
 import android.graphics.Paint
 import android.os.Bundle
-import android.util.AttributeSet
 import android.view.View
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.badge.BadgeDrawable
 import com.google.android.material.badge.BadgeUtils
-import com.google.android.material.badge.ExperimentalBadgeUtils
 import com.google.android.material.color.MaterialColors
 import com.google.android.material.snackbar.Snackbar
 import ir.mamhesam.snamall.MainViewModel
@@ -114,7 +110,7 @@ class DetailActivity : BaseActivity(),
 
         detailProductViewModel.detailProductLiveData.observe(this) {
             idProduct = it.id
-            val galleryAdapter: GalleryAdapter by inject { parametersOf(it.images) }
+            val galleryAdapter: GalleryAdapter by inject { parametersOf(it.imagesOrder) }
 
             binding?.apply {
                 galleryViewpager.adapter = galleryAdapter

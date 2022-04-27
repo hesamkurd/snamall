@@ -14,6 +14,45 @@
         android:theme="@style/Theme.Snamall"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".feature.home.allamazing.AllAmazingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.search.SearchActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.profile.chargewallet.ChargeWalletActivity"
+            android:exported="true" />
+        <activity
+            android:name=".feature.profile.infouser.InfoUserActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="wallet" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".feature.profile.favorite.FavoriteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.profile.order.orderdetail.OrderDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.profile.order.OrderActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="snamall" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".feature.profile.address.AddAddressActivity"
             android:exported="false" />
         <activity

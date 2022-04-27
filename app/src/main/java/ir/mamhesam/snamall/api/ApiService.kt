@@ -33,6 +33,9 @@ interface ApiService {
     @GET("home/sub_categoy_1.php")
     fun subCatLevel1(@Query("general_cat")general_cat:Int):Single<List<ResponseSubCatLevel1>>
 
+    @GET("home/all_amazing_products.php")
+    fun allAmazing(@Query("sort")sort:Int):Single<List<ResponseAllAmazing>>
+
     ////////// Detail Product ////////
     @GET("product/products.php")
     fun getDetailProduct(@Query("id")product_id:Int):Single<ResponseDetailsProduct>
@@ -78,7 +81,7 @@ interface ApiService {
     /////// Cart //////////
 
     @FormUrlEncoded
-    @POST("cart/add_to_cart.php")
+    @POST("cart/add_to_cart_1.php")
     fun addToCart(@Field("product_id")product_id: Int,
                   @Field("color_id")color_id: Int,
                   @Field("size_id")size_id: Int):Single<ResponseInsertComment>
@@ -107,6 +110,18 @@ interface ApiService {
     @POST("cart/add_new_address.php")
     fun addAddress(@Body address:JsonObject): Single<ResponseAddAddress>
 
+    @GET("cart/wallet_chackout.php")
+    fun getTransaction(@Query("reciver_id")reciver_id:String,
+                       @Query("shipping_price")shipping_price:String,
+                       @Query("payable_price")payable_price:String):Single<ResponseTransaction>
+
+    @GET("profile/get_order_history.php")
+    fun getOrderHistory():Single<List<ResponseOrderHistory>>
+
+    @FormUrlEncoded
+    @POST("profile/get_order_detaile.php")
+    fun getOrderDetal(@Field("ref_id")ref_id:String): Single<ResponseOrderDetail>
+
     ////////// Category //////////
     @GET("category/categories.php")
     fun getCategories():Single<List<ResponseCategories>>
@@ -125,6 +140,19 @@ interface ApiService {
 
     @GET("product/brand_products.php")
     fun getBrandProduct(@Query("brand_name")brand_name:String):Single<List<ResponseBrandProduct>>
+
+    /////////// Profile ///////
+    @GET("profile/show_bookmarks.php")
+    fun getFavorite():Single<List<ResponseFavorite>>
+
+    @GET("profile/show_profile.php")
+    fun getInfoUser():Single<ResponseInfoUser>
+
+    /////// Search //////
+
+    @FormUrlEncoded
+    @POST("search/search_resualt.php")
+    fun search(@Field("search")search:String):Single<ResponseSearch>
 }
 
 fun retrofitApi():ApiService{
