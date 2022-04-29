@@ -14,6 +14,7 @@ import com.google.android.material.badge.BadgeDrawable
 import com.google.android.material.badge.BadgeUtils
 import com.google.android.material.color.MaterialColors
 import com.google.android.material.snackbar.Snackbar
+import ir.mamhesam.snamall.MainActivity
 import ir.mamhesam.snamall.MainViewModel
 import ir.mamhesam.snamall.R
 import ir.mamhesam.snamall.base.BaseActivity
@@ -22,7 +23,7 @@ import ir.mamhesam.snamall.databinding.ActivityDetailBinding
 import ir.mamhesam.snamall.feature.cart.CartFragment
 import ir.mamhesam.snamall.feature.home.detailproduct.adapter.*
 import ir.mamhesam.snamall.feature.home.detailproduct.comment.ShowCommentActivity
-import ir.mamhesam.snamall.feature.home.detailproduct.moredialog.ChartPriceActivity
+import ir.mamhesam.snamall.feature.home.detailproduct.moredialog.chart.ChartPriceActivity
 import ir.mamhesam.snamall.feature.home.detailproduct.moredialog.CompareProductActivity
 import ir.mamhesam.snamall.feature.home.detailproduct.moredialog.MoreDialogBottomSheet
 import ir.mamhesam.snamall.feature.home.detailproduct.property.DescriptionActivity
@@ -30,7 +31,10 @@ import ir.mamhesam.snamall.feature.home.detailproduct.property.TechnicalProperty
 import ir.mamhesam.snamall.feature.home.detailproduct.viewmodel.DetailProductViewModel
 import ir.mamhesam.snamall.feature.profile.auoth.AuthViewModel
 import ir.mamhesam.snamall.feature.profile.auoth.LoginActivity
-import ir.mamhesam.snamall.utils.*
+import ir.mamhesam.snamall.utils.CHART
+import ir.mamhesam.snamall.utils.COMPARE
+import ir.mamhesam.snamall.utils.FreePercent
+import ir.mamhesam.snamall.utils.PriceConverter
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -61,6 +65,7 @@ class DetailActivity : BaseActivity(),
     var idSize: Int = 0
     var checkColor: Boolean = true
     var checkSize: Boolean = true
+    lateinit var cartFragment: CartFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,7 +80,15 @@ class DetailActivity : BaseActivity(),
             moreDialog.setOnClicKDialog(this)
         }
         binding!!.imgBasket.setOnClickListener {
-            supportFragmentManager.findFragmentByTag(CartFragment::class.java.simpleName)
+//            val manager:FragmentManager = supportFragmentManager
+//            val transaction: FragmentTransaction = manager.beginTransaction()
+//           cartFragment = CartFragment()
+//            transaction.add(R.id.coordinator_detail,R.navigation.cart)
+//            transaction.addToBackStack(null)
+//            transaction.commit()
+//            finish()
+           startActivity(Intent(this,MainActivity::class.java))
+
         }
         binding!!.technicalProperty.setOnClickListener {
             startActivity(Intent(this, TechnicalPropertyActivity::class.java).apply {
@@ -100,10 +113,10 @@ class DetailActivity : BaseActivity(),
         authViewModel.addToFavoriteLiveData.observe(this) {
             if (it.status == "true") {
                 binding!!.imgFavorite.setImageResource(R.drawable.ic_baseline_favorite_24)
-                Snackbar.make(binding!!.coordinator, it.message, Snackbar.LENGTH_LONG).show()
+                Snackbar.make(binding!!.coordinatorDetail, it.message, Snackbar.LENGTH_LONG).show()
             } else {
                 binding!!.imgFavorite.setImageResource(R.drawable.ic_baseline_favorite_border_24)
-                Snackbar.make(binding!!.coordinator, it.message, Snackbar.LENGTH_LONG).show()
+                Snackbar.make(binding!!.coordinatorDetail, it.message, Snackbar.LENGTH_LONG).show()
 
             }
         }
@@ -232,7 +245,7 @@ class DetailActivity : BaseActivity(),
                     authViewModel.addToCart(idProduct!!, idColor, 0)
                 else
                     Snackbar.make(
-                        binding!!.coordinator,
+                        binding!!.coordinatorDetail,
                         "لطفا رنگ را انتخاب کنید",
                         Snackbar.LENGTH_SHORT
                     ).show()
@@ -241,7 +254,7 @@ class DetailActivity : BaseActivity(),
                     authViewModel.addToCart(idProduct!!, 0, idSize)
                 else
                     Snackbar.make(
-                        binding!!.coordinator,
+                        binding!!.coordinatorDetail,
                         "لطفا سایز را انتخاب کنید",
                         Snackbar.LENGTH_SHORT
                     ).show()
@@ -252,7 +265,7 @@ class DetailActivity : BaseActivity(),
             } else {
                 if (idColor == 0 || idSize == 0) {
                     Snackbar.make(
-                        binding!!.coordinator,
+                        binding!!.coordinatorDetail,
                         "لطفا سایز و رنگ را انتخاب کنید",
                         Snackbar.LENGTH_SHORT
                     ).show()
@@ -263,7 +276,7 @@ class DetailActivity : BaseActivity(),
             }
         }
         authViewModel.addToCartLiveData.observe(this) {
-            Snackbar.make(binding!!.coordinator, it.message, Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(binding!!.coordinatorDetail, it.message, Snackbar.LENGTH_SHORT).show()
 
             val countItem = EventBus.getDefault().getStickyEvent(ResponseCountCart::class.java)
             countItem?.let {it1->

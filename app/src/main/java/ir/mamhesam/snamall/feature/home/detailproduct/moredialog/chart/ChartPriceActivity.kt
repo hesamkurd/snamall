@@ -1,4 +1,4 @@
-package ir.mamhesam.snamall.feature.home.detailproduct.moredialog
+package ir.mamhesam.snamall.feature.home.detailproduct.moredialog.chart
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

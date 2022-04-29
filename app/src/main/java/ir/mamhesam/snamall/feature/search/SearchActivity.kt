@@ -29,6 +29,9 @@ class SearchActivity : BaseActivity() {
                 searchViewModel.getSearch(binding.edtSearch.text.toString().trim())
             }
         }
+        searchViewModel.progressBarLiveData.observe(this){
+            setProgressBar(it)
+        }
         searchViewModel.searchLiveData.observe(this){
             binding.edtSearch.text.clear()
             if (!it.part1.isNullOrEmpty()){
@@ -36,6 +39,11 @@ class SearchActivity : BaseActivity() {
             }
             if (!it.part2.isNullOrEmpty()){
                 binding.txtPart2.visibility = View.VISIBLE
+                binding.lnrSearch.visibility = View.VISIBLE
+                binding.lnrEmptySearch1.visibility = View.GONE
+            }else{
+                binding.lnrSearch.visibility = View.GONE
+                binding.lnrEmptySearch1.visibility = View.VISIBLE
             }
             val partOneAdapter: PartOneAdapter by inject { parametersOf(it.part1) }
             binding.rcPart1.layoutManager = LinearLayoutManager(this)

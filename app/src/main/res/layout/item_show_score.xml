@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layoutDirection="rtl"
+
+    android:padding="@dimen/_2sdp"
+    android:orientation="vertical"
+    android:gravity="center"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<TextView
+    android:id="@+id/txt_score"
+    android:textColor="@color/grey_900"
+    android:textSize="@dimen/_9sdp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"/>
+    <com.google.android.material.slider.Slider
+        app:labelBehavior="gone"
+        android:stepSize="1.0"
+        android:valueFrom="0.0"
+        android:valueTo="5.0"
+        app:trackColorActive="@color/green_600"
+        app:trackColorInactive="@color/grey_200"
+        android:layout_marginTop="@dimen/_2sdp"
+        android:id="@+id/slider_score"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</LinearLayout>

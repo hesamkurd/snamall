@@ -44,6 +44,7 @@ import ir.mamhesam.snamall.feature.home.allamazing.viewmodel.AllAmazingViewModel
 import ir.mamhesam.snamall.feature.home.detailproduct.adapter.*
 import ir.mamhesam.snamall.feature.home.detailproduct.comment.adapter.ShowCommentAdapter
 import ir.mamhesam.snamall.feature.home.detailproduct.comment.adapter.ShowRatingCommentAdapter
+import ir.mamhesam.snamall.feature.home.detailproduct.comment.insertcomment.adapter.ShowScoreAdapter
 import ir.mamhesam.snamall.feature.home.detailproduct.comment.insertcomment.repo.InsertCommentRepository
 import ir.mamhesam.snamall.feature.home.detailproduct.comment.insertcomment.repo.InsertCommentRepositoryImpl
 import ir.mamhesam.snamall.feature.home.detailproduct.comment.insertcomment.source.RemoteInsertCommentDataSource
@@ -176,6 +177,7 @@ class App: Application() {
             factory { (showComment: List<ResponseShowComment>)-> ShowCommentAdapter(showComment) }
             single<InsertCommentRepository> { InsertCommentRepositoryImpl(RemoteInsertCommentDataSource(get())) }
             viewModel { (productId:Int)->InsertCommentViewModel(productId,get()) }
+            factory { (score:List<ScoreItem>)-> ShowScoreAdapter(score)}
 
             //// Categories ///
             factory<CategoriesRepository> { CategoriesRepositoryImpl(RemoteCategoriesDataSource(get())) }
