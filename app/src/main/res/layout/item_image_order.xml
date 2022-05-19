@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ir.mamhesam.snamall.view.MyImageView
+<ir.zhiran2021.snamall.view.MyImageView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="@dimen/_70sdp"
     android:layout_margin="@dimen/_4sdp"
     android:id="@+id/img_order"
     android:layout_height="@dimen/_70sdp">
 
-</ir.mamhesam.snamall.view.MyImageView>
+</ir.zhiran2021.snamall.view.MyImageView>

@@ -14,21 +14,21 @@
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
         <!-- Customize your theme here. -->
 
-        <item name="fontFamily">@font/ir_sans_medium</item>
-        <item name="android:fontFamily">@font/ir_sans_medium</item>
+        <item name="fontFamily">@font/vazir_medium</item>
+        <item name="android:fontFamily">@font/vazir_medium</item>
         <item name="materialButtonStyle">@style/ButtonStyle</item>
     </style>
 
     <style name="BottomNavigationView.Active" parent="TextAppearance.MaterialComponents.Caption">
         <item name="android:textSize">12sp</item>
-        <item name="fontFamily">@font/ir_sans_medium</item>
-        <item name="android:fontFamily">@font/ir_sans_medium</item>
+        <item name="fontFamily">@font/vazir_medium</item>
+        <item name="android:fontFamily">@font/vazir_medium</item>
     </style>
 
     <style name="BottomNavigationView.DeActive" parent="TextAppearance.MaterialComponents.Caption">
         <item name="android:textSize">10sp</item>
-        <item name="fontFamily">@font/ir_sans_medium</item>
-        <item name="android:fontFamily">@font/ir_sans_medium</item>
+        <item name="fontFamily">@font/vazir_medium</item>
+        <item name="android:fontFamily">@font/vazir_medium</item>
     </style>
 
     <style name="CustomAmazingBarProgress" parent="android:Widget.ProgressBar.Horizontal">
@@ -65,8 +65,8 @@
 <!--        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>-->
         <!-- Customize your theme here. -->
 
-        <item name="fontFamily">@font/ir_sans_medium</item>
-        <item name="android:fontFamily">@font/ir_sans_medium</item>
+        <item name="fontFamily">@font/vazir_medium</item>
+        <item name="android:fontFamily">@font/vazir_medium</item>
         <item name="materialButtonStyle">@style/ButtonStyle</item>
     </style>
 </resources>

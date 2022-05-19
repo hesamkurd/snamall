@@ -4,30 +4,109 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/verify_coordinator"
     tools:context=".feature.profile.auoth.VerifyActivity">
 
     <LinearLayout
+        android:layout_marginBottom="@dimen/_250sdp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center">
-        <com.mukesh.OtpView
-            android:id="@+id/edt_code"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <EditText
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:enabled="false"
+            android:cursorVisible="false"
+            android:imeOptions="actionDone"
+            android:maxLength="1"
+            android:maxLines="1"
+            android:inputType="numberDecimal"
             android:gravity="center"
-            android:inputType="number"
-            android:itemBackground="@color/grey_100"
-            android:textColor="@color/black"
-            app:OtpCursorColor="@color/green_600"
-            app:OtpItemCount="4"
-            app:OtpItemHeight="@dimen/_32sdp"
-            app:OtpItemRadius="@dimen/_8sdp"
-            app:OtpItemSpacing="@dimen/_4sdp"
-            app:OtpItemWidth="@dimen/_32sdp"
-            app:OtpLineColor="@color/green_600"
-            app:OtpViewType="rectangle"
-            />
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textCursorDrawable="@null"
+            android:textColor="@color/green_600"
+            android:background="@drawable/shape_verify"
+            android:id="@+id/edt_one"/>
+        <EditText
+            android:layout_marginStart="@dimen/_10sdp"
+
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:enabled="false"
+            android:cursorVisible="false"
+            android:imeOptions="actionDone"
+            android:maxLength="1"
+            android:maxLines="1"
+            android:inputType="numberDecimal"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:textCursorDrawable="@null"
+            android:textColor="@color/green_600"
+            android:background="@drawable/shape_verify"
+            android:id="@+id/edt_two"/>
+        <EditText
+            android:layout_marginStart="@dimen/_10sdp"
+
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:enabled="false"
+            android:cursorVisible="false"
+            android:imeOptions="actionDone"
+            android:maxLength="1"
+            android:maxLines="1"
+            android:inputType="numberDecimal"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:textCursorDrawable="@null"
+            android:textColor="@color/green_600"
+            android:background="@drawable/shape_verify"
+            android:id="@+id/edt_three"/>
+        <EditText
+            android:layout_marginStart="@dimen/_10sdp"
+
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:enabled="false"
+            android:cursorVisible="false"
+            android:imeOptions="actionDone"
+            android:maxLength="1"
+            android:maxLines="1"
+            android:inputType="numberDecimal"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:textCursorDrawable="@null"
+            android:textColor="@color/green_600"
+            android:background="@drawable/shape_verify"
+            android:id="@+id/edt_four"/>
+
+
+
+
+        <!--        <com.mukesh.OtpView-->
+<!--            android:id="@+id/edt_code"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:ems="10"-->
+<!--            android:gravity="center"-->
+<!--            android:inputType="number"-->
+<!--            android:itemBackground="@color/grey_100"-->
+<!--            android:textColor="@color/black"-->
+<!--            app:OtpCursorColor="@color/green_600"-->
+<!--            app:OtpItemCount="4"-->
+<!--            app:OtpItemHeight="@dimen/_32sdp"-->
+<!--            app:OtpItemRadius="@dimen/_8sdp"-->
+<!--            app:OtpItemSpacing="@dimen/_4sdp"-->
+<!--            app:OtpItemWidth="@dimen/_32sdp"-->
+<!--            app:OtpLineColor="@color/green_600"-->
+<!--            app:OtpViewType="rectangle"-->
+<!--            />-->
     </LinearLayout>
 
 

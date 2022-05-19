@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:padding="@dimen/_8sdp">
 
-    <ir.mamhesam.snamall.view.MyImageView
+    <ir.zhiran2021.snamall.view.MyImageView
         android:id="@+id/img_similar"
         android:layout_width="@dimen/_110sdp"
         android:layout_height="wrap_content"

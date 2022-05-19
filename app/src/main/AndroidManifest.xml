@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="ir.mamhesam.snamall">
+    package="ir.zhiran2021.snamall">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -13,6 +13,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Snamall"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".feature.home.detailproduct.subcat2.SubCat2Activity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.home.detailproduct.subcat1.SubCat1Activity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.home.detailproduct.generalcat.GeneralCategoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.home.detailproduct.moredialog.compare.ProductCompareActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.home.detailproduct.moredialog.compare.CompareProductActivity"
+            android:exported="false" />
         <activity
             android:name=".feature.home.allamazing.AllAmazingActivity"
             android:exported="false" />
@@ -88,7 +103,7 @@
             android:name=".feature.home.detailproduct.property.TechnicalPropertyActivity"
             android:exported="false" />
         <activity
-            android:name=".feature.home.detailproduct.moredialog.CompareProductActivity"
+            android:name=".feature.home.detailproduct.moredialog.compare.CompareCategoryActivity"
             android:exported="false" />
         <activity
             android:name=".feature.home.detailproduct.moredialog.chart.ChartPriceActivity"
@@ -97,9 +112,9 @@
             android:name=".feature.home.detailproduct.DetailActivity"
             android:exported="false" />
         <activity
-            android:theme="@style/Theme.auth"
             android:name=".feature.SplashActivity"
-            android:exported="true" >
+            android:exported="true"
+            android:theme="@style/Theme.auth">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -108,9 +123,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true" />
     </application>
 
 </manifest>

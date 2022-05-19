@@ -4,49 +4,152 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".feature.home.detailproduct.moredialog.CompareProductActivity">
-    <LinearLayout
+    android:layoutDirection="rtl"
+    tools:context=".feature.home.detailproduct.moredialog.compare.CompareProductActivity">
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <com.google.android.material.appbar.AppBarLayout
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+        <com.google.android.material.appbar.MaterialToolbar
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_44sdp"
-            android:background="@color/white">
+            android:layout_height="wrap_content"
+            app:layout_scrollFlags="scroll|enterAlways|snap"
+            >
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="@dimen/_6sdp"
-                android:background="@drawable/bg_search_bar"
-                android:layout_margin="@dimen/_4sdp">
+                android:background="@color/white">
+
+                <ImageView
+                    android:id="@+id/img_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_4sdp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    app:srcCompat="@drawable/ic_baseline_arrow_forward_24" />
+
 
 
                 <TextView
-                    android:layout_alignParentRight="true"
                     android:id="@+id/txt_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/grey_600"
-                    android:layout_marginRight="@dimen/_18sdp"
+                    android:layout_toLeftOf="@id/img_back"
+                    android:layout_marginRight="@dimen/_16sdp"
                     android:layout_centerVertical="true"/>
 
             </RelativeLayout>
+        </com.google.android.material.appbar.MaterialToolbar>
 
+    </com.google.android.material.appbar.AppBarLayout>
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
-        </com.google.android.material.appbar.AppBarLayout>
-        <androidx.core.widget.NestedScrollView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
-
-
+            android:orientation="vertical">
 
             <LinearLayout
+                android:layout_marginTop="@dimen/_4sdp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
 
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="@dimen/_4sdp">
+
+                    <ir.zhiran2021.snamall.view.MyImageView
+                        android:id="@+id/img_pr_one"
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="@dimen/_100sdp" />
+
+                    <TextView
+                        android:ellipsize="end"
+                        android:lines="2"
+                        android:id="@+id/txt_name_peroduct_one"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:textColor="@color/grey_900"
+                        android:textSize="@dimen/_8sdp" />
+
+                    <TextView
+                        android:id="@+id/txt_price_product_one"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:textColor="@color/grey_900"
+                        android:textSize="@dimen/_8sdp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="@dimen/_1sdp"
+                    android:layout_height="@dimen/_120sdp"
+                    android:layout_gravity="center"
+                    android:background="@color/grey_300" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="@dimen/_4sdp">
+
+                    <ir.zhiran2021.snamall.view.MyImageView
+                        android:id="@+id/img_pr_two"
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="@dimen/_100sdp" />
+
+                    <TextView
+                        android:ellipsize="end"
+                        android:lines="2"
+                        android:gravity="center"
+                        android:id="@+id/txt_name_peroduct_two"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:textColor="@color/grey_900"
+                        android:textSize="@dimen/_8sdp" />
+
+                    <TextView
+                        android:id="@+id/txt_price_product_two"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:textColor="@color/grey_900"
+                        android:textSize="@dimen/_8sdp" />
+                </LinearLayout>
             </LinearLayout>
-        </androidx.core.widget.NestedScrollView>
-    </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:background="@color/grey_300" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rc_comapre_property"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

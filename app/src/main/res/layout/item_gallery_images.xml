@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ir.mamhesam.snamall.view.MyImageView
+<ir.zhiran2021.snamall.view.MyImageView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,4 +7,4 @@
     android:id="@+id/img_gallery"
     app:viewAspectRatio="1">
 
-</ir.mamhesam.snamall.view.MyImageView>
+</ir.zhiran2021.snamall.view.MyImageView>

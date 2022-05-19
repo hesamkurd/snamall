@@ -13,7 +13,7 @@
         android:orientation="vertical"
         android:padding="@dimen/_4sdp">
 
-        <ir.mamhesam.snamall.view.MyImageView
+        <ir.zhiran2021.snamall.view.MyImageView
             android:id="@+id/img_amazing_product"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_120sdp"/>

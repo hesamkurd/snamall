@@ -115,9 +115,24 @@
                     android:padding="@dimen/_4sdp"
                     android:layout_margin="@dimen/_4sdp"/>
                 <androidx.recyclerview.widget.RecyclerView
+                    android:padding="@dimen/_6sdp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/rc_popular_product" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="پرفروش ترین محصولات"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_10sdp"
+                    android:padding="@dimen/_4sdp"
+                    android:layout_margin="@dimen/_4sdp"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:padding="@dimen/_6sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rc_best_sell" />
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>

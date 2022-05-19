@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:padding="8dp">
 
-            <ir.mamhesam.snamall.view.MyImageView
+            <ir.zhiran2021.snamall.view.MyImageView
 
                 android:id="@+id/img_product_cart"
                 android:layout_width="@dimen/_70sdp"

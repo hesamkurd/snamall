@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/cartFragment"
-        android:name="ir.mamhesam.snamall.feature.cart.CartFragment"
+        android:name="ir.zhiran2021.snamall.feature.cart.CartFragment"
         android:label="fragment_cart"
         tools:layout="@layout/fragment_cart" />
 </navigation>
