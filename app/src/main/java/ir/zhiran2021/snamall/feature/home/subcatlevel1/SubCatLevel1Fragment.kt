@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import ir.zhiran2021.snamall.R
 import ir.zhiran2021.snamall.base.BaseFragment
 import ir.zhiran2021.snamall.databinding.FragmentSubCatLevel1Binding
 import ir.zhiran2021.snamall.feature.home.subcatlevel1.adapter.SubCatLevel1Adapter
@@ -14,7 +16,7 @@ import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
-class SubCatLevel1Fragment : BaseFragment() {
+class SubCatLevel1Fragment : BaseFragment(), SubCatLevel1Adapter.OnClickSubCatLevel {
 
     var binding : FragmentSubCatLevel1Binding?=null
     val subCatLevel1ViewModel: SubCatLevel1ViewModel by viewModel { parametersOf(arguments?.getInt(
@@ -34,13 +36,14 @@ class SubCatLevel1Fragment : BaseFragment() {
         binding ?: run{
             binding = FragmentSubCatLevel1Binding.inflate(inflater,container,false)
 
-            val title = arguments?.getString("title","")
+            val title = arguments?.getString("namecat","")
             binding!!.txtTitle.text = title.toString()
 
             subCatLevel1ViewModel.subCatLevelLiveData.observe(viewLifecycleOwner){
                 val subCatLevel1Adapter: SubCatLevel1Adapter by inject { parametersOf(it) }
                 binding!!.rcSubCatLevel.layoutManager = GridLayoutManager(context,3)
                 binding!!.rcSubCatLevel.adapter = subCatLevel1Adapter
+                subCatLevel1Adapter.setOnClickItemSubCatLevel(this)
 
             }
             subCatLevel1ViewModel.progressBarLiveData.observe(viewLifecycleOwner){
@@ -48,10 +51,6 @@ class SubCatLevel1Fragment : BaseFragment() {
             }
 
         }
-
-
-
-
         return binding!!.root
     }
 
@@ -61,5 +60,12 @@ class SubCatLevel1Fragment : BaseFragment() {
             SubCatLevel1Fragment().apply {
 
             }
+    }
+
+    override fun onClickGeneralItem(generalCatId: Int) {
+        val bundle= Bundle()
+        bundle.putInt(PRODUCT_ID, generalCatId)
+        findNavController().navigate(R.id.action_subCatLevel1Fragment_to_subCat1Fragment2,bundle)
+
     }
 }

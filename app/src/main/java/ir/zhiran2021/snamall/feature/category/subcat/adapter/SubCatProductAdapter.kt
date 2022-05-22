@@ -12,6 +12,7 @@ import ir.zhiran2021.snamall.view.MyImageView
 
 class SubCatProductAdapter(val product: List<ResponseSubCatProduct>, val imageLoadService: ImageLoadService):RecyclerView.Adapter<SubCatProductAdapter.SimilarViewHolder>() {
 
+    lateinit var onClickSubCatProduct: OnClickSubCatProduct
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SimilarViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_sub_cat_product,parent,false)
@@ -22,6 +23,14 @@ class SubCatProductAdapter(val product: List<ResponseSubCatProduct>, val imageLo
         val similarItem = product[position]
         imageLoadService.loadImage(holder.imgProduct,similarItem.image)
         holder.txtName.text = similarItem.name
+
+        holder.itemView.setOnClickListener {
+            onClickSubCatProduct.onClickSubCatItem(similarItem.id.toInt())
+        }
+    }
+
+    fun setOnClickProductItem(onClickSubCatProduct: OnClickSubCatProduct){
+        this.onClickSubCatProduct = onClickSubCatProduct
     }
 
     override fun getItemCount(): Int = product.size
@@ -29,6 +38,10 @@ class SubCatProductAdapter(val product: List<ResponseSubCatProduct>, val imageLo
     class SimilarViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val imgProduct = itemView.findViewById<MyImageView>(R.id.img_sub_cat_product)
         val txtName = itemView.findViewById<TextView>(R.id.txt_sub_cat_product)
+    }
+
+    interface OnClickSubCatProduct{
+        fun onClickSubCatItem(productId:Int)
     }
 
 }

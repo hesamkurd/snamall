@@ -7,10 +7,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ir.zhiran2021.snamall.R
 import ir.zhiran2021.snamall.data.ProductItemDeliveriesItem
+import ir.zhiran2021.snamall.feature.cart.adapter.CartListAdapter
 import ir.zhiran2021.snamall.services.ImageLoadService
 import ir.zhiran2021.snamall.view.MyImageView
 
 class CheckOutAdapter(val checkOut: List<ProductItemDeliveriesItem>, val imageLoadService: ImageLoadService):RecyclerView.Adapter<CheckOutAdapter.BannersViewHolder>() {
+    lateinit var onClickProduct: OnClickProduct
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BannersViewHolder {
@@ -23,6 +25,15 @@ class CheckOutAdapter(val checkOut: List<ProductItemDeliveriesItem>, val imageLo
         imageLoadService.loadImage(holder.imgProdcut, itemBanners.iamge)
         holder.txtNameProduct.text = itemBanners.name
         holder.txtCount.text = itemBanners.count
+
+        holder.itemView.setOnClickListener {
+            onClickProduct.onClickProductItem(itemBanners.product_id.toInt())
+        }
+
+    }
+
+    fun setOnClickItem(onClickProduct: OnClickProduct){
+        this.onClickProduct = onClickProduct
     }
 
     override fun getItemCount(): Int = checkOut.size
@@ -31,6 +42,10 @@ class CheckOutAdapter(val checkOut: List<ProductItemDeliveriesItem>, val imageLo
         val imgProdcut = itemView.findViewById<MyImageView>(R.id.img_product)
         val txtNameProduct = itemView.findViewById<TextView>(R.id.txt_name_product)
         val txtCount = itemView.findViewById<TextView>(R.id.txt_count_product)
+    }
+
+    interface OnClickProduct{
+        fun onClickProductItem(productId:Int)
     }
 
 }

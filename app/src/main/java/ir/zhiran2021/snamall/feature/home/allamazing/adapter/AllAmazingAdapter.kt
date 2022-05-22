@@ -29,18 +29,20 @@ class AllAmazingAdapter(val product: List<ResponseAllAmazing>, val imageLoadServ
         if (itemCategories.offPercent.toString() != "0"){
             holder.txtPrice.paintFlags = android.graphics.Paint.STRIKE_THRU_TEXT_FLAG
         }
-        holder.lnrFree.visibility = if (itemCategories.offPercent.toString() != "0") View.VISIBLE else View.GONE
+        holder.lnrFree.visibility = if (itemCategories.offPercent.toString() != "0") View.VISIBLE else View.INVISIBLE
         holder.txtFree.visibility = if (itemCategories.offPercent.toString() != "0") View.VISIBLE else View.GONE
         holder.txtFreePrice.visibility = if (itemCategories.offPercent.toString() != "0") View.VISIBLE else View.GONE
         holder.txtFree.text = FreePercent.offPercent(itemCategories.offPercent.toString())
         holder.txtFreePrice.text = PriceConverter.priceConvert(itemCategories.amazingPrice.toString())
         holder.txtPrice.text = PriceConverter.priceConvert(itemCategories.price.toString())
 
-
+        holder.itemView.setOnClickListener {
+            onClickCategory.onClickCatItem(itemCategories.id)
+        }
 
     }
 
-    fun setOnClickCat(onClickCategory: OnClickCategory){
+    fun setOnClickItemAmazing(onClickCategory: OnClickCategory){
         this.onClickCategory = onClickCategory
     }
 

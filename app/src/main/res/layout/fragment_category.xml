@@ -16,6 +16,7 @@
             android:layout_height="@dimen/_44sdp"
             android:background="@color/white">
             <RelativeLayout
+                android:id="@+id/rltv_search"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="@dimen/_6sdp"
@@ -54,13 +55,12 @@
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <LinearLayout
-                android:id="@+id/lnr_category_container"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+           <androidx.recyclerview.widget.RecyclerView
+               android:id="@+id/rc_category"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"/>
 
-            </LinearLayout>
+
         </androidx.core.widget.NestedScrollView>
 
     </LinearLayout>

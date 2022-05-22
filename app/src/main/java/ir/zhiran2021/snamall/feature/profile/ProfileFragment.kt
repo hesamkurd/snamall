@@ -14,6 +14,7 @@ import ir.zhiran2021.snamall.feature.profile.chargewallet.ChargeWalletActivity
 import ir.zhiran2021.snamall.feature.profile.favorite.FavoriteActivity
 import ir.zhiran2021.snamall.feature.profile.infouser.InfoUserActivity
 import ir.zhiran2021.snamall.feature.profile.order.OrderActivity
+import ir.zhiran2021.snamall.feature.profile.orderdelivery.OrderDeliveryActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -37,6 +38,10 @@ class ProfileFragment : Fragment() {
 
             binding!!.lnrCloud.setOnClickListener {
                 startActivity(Intent(context,OrderActivity::class.java))
+            }
+
+            binding!!.lnrOrderHistory.setOnClickListener {
+                startActivity(Intent(context,OrderDeliveryActivity::class.java))
             }
 
             binding!!.rltvFavourite.setOnClickListener {

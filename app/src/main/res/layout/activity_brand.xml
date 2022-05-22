@@ -59,17 +59,31 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <ir.zhiran2021.snamall.view.MyImageView
-                android:id="@+id/brand_banner"
+            <LinearLayout
+                android:id="@+id/lnr_banner"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_150sdp"/>
-            <ir.zhiran2021.snamall.view.MyImageView
-                android:id="@+id/icon_brand"
-                android:layout_width="@dimen/_70sdp"
-                android:layout_height="@dimen/_70sdp"
-                android:layout_gravity="center"
-                android:layout_marginTop="-50dp"
-                app:roundedCornerRadius="@dimen/_20sdp"/>
+                android:visibility="visible"
+                android:layout_height="wrap_content">
+                <ir.zhiran2021.snamall.view.MyImageView
+                    android:id="@+id/brand_banner"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_150sdp"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/lnr_icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="-50dp">
+                <ir.zhiran2021.snamall.view.MyImageView
+                    android:id="@+id/icon_brand"
+                    android:layout_gravity="center"
+                    android:layout_width="@dimen/_70sdp"
+                    android:layout_height="@dimen/_70sdp"
+                    app:roundedCornerRadius="@dimen/_20sdp"/>
+
+            </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rc_brand_product"

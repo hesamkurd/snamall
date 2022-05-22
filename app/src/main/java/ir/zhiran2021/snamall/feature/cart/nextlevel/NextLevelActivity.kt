@@ -12,6 +12,7 @@ import ir.zhiran2021.snamall.data.ResponseCountCart
 import ir.zhiran2021.snamall.databinding.ActivityNextLevelBinding
 import ir.zhiran2021.snamall.feature.cart.nextlevel.adapter.CheckOutAdapter
 import ir.zhiran2021.snamall.feature.cart.nextlevel.viewmodel.CheckOutListViewModel
+import ir.zhiran2021.snamall.feature.home.detailproduct.DetailActivity
 import ir.zhiran2021.snamall.feature.profile.address.AddressActivity
 import ir.zhiran2021.snamall.feature.profile.auoth.TokenContainer
 import ir.zhiran2021.snamall.feature.profile.order.OrderActivity
@@ -24,7 +25,7 @@ import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
-class NextLevelActivity : BaseActivity(),BuyDialog.OnDialogBuy {
+class NextLevelActivity : BaseActivity(),BuyDialog.OnDialogBuy,CheckOutAdapter.OnClickProduct {
     lateinit var binding: ActivityNextLevelBinding
     val checkOutListViewModel: CheckOutListViewModel by viewModel()
     lateinit var buyDialog: BuyDialog
@@ -32,6 +33,7 @@ class NextLevelActivity : BaseActivity(),BuyDialog.OnDialogBuy {
     var payable:Int?=null
     var shippingPrice:Int?=null
     var reciveId:Int?=null
+    lateinit var checkOutAdapter1: CheckOutAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_next_level)
@@ -43,11 +45,7 @@ class NextLevelActivity : BaseActivity(),BuyDialog.OnDialogBuy {
         binding.imgBack.setOnClickListener {
             finish()
         }
-        binding.btnBuyProduct.setOnClickListener {
-            buyDialog = BuyDialog.newInstance(wallet)
-            buyDialog.show(supportFragmentManager,null)
-            buyDialog.setOnBuyDialog(this)
-        }
+
         binding.txtTitle.text = "اطلاعات ارسال"
         checkOutListViewModel.checkOutListLiveData.observe(this){
             wallet = it.wallet
@@ -64,15 +62,32 @@ class NextLevelActivity : BaseActivity(),BuyDialog.OnDialogBuy {
                 txtPriceProduct.text = PriceConverter.priceConvert(it.payablePrice.toString())
                 txtAddress.text = it.address
                 txtName.text = it.nameFamily
+
+
             }
+
+
+                binding.btnBuyProduct.setOnClickListener {
+                    if (binding.txtAddress.length() != 0){
+                        buyDialog = BuyDialog.newInstance(wallet)
+                        buyDialog.show(supportFragmentManager,null)
+                        buyDialog.setOnBuyDialog(this)
+                    }else{
+                        Toast.makeText(this, "لطفا آدرس خود را مشخص نمایید", Toast.LENGTH_SHORT).show()
+                    }
+
+                }
+
             val checkOutAdapter: CheckOutAdapter by inject { parametersOf(it.productItemDeliveries) }
             binding.rcCheckoutProduct.layoutManager = LinearLayoutManager(this,RecyclerView.VERTICAL,false)
             binding.rcCheckoutProduct.adapter = checkOutAdapter
+            checkOutAdapter.setOnClickItem(this)
         }
         binding.txtIntentAddress.setOnClickListener {
             val intent =Intent(this,AddressActivity::class.java)
             resultLauncher.launch(intent)
         }
+
     }
 
     var resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
@@ -120,5 +135,11 @@ class NextLevelActivity : BaseActivity(),BuyDialog.OnDialogBuy {
                 }
             }
         }
+    }
+
+    override fun onClickProductItem(productId: Int) {
+        startActivity(Intent(this, DetailActivity::class.java).apply {
+            putExtra("id",productId)
+        })
     }
 }

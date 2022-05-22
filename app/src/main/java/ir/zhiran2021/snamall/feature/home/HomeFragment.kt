@@ -41,7 +41,10 @@ import org.koin.core.parameter.parametersOf
 
 
 class HomeFragment : BaseFragment(),BannersType2Adapter.OnClickBannerType,
-    AmazingAdapter.OnClickProduct, PopularAdapter.OnClickPopularItem,GeneralCategoryAdapter.OnClickGeneralCategory,AmazingAdapter.OnClickLast {
+    AmazingAdapter.OnClickProduct,
+    PopularAdapter.OnClickPopularItem,
+    GeneralCategoryAdapter.OnClickGeneralCategory,
+    AmazingAdapter.OnClickLast, BestSellAdapter.OnClickBestSellItem{
 
     val homeViewModel: HomeViewModel by viewModel()
     var binding: FragmentHomeBinding?=null
@@ -155,6 +158,7 @@ class HomeFragment : BaseFragment(),BannersType2Adapter.OnClickBannerType,
                val bestSellAdapter: BestSellAdapter by inject { parametersOf(it) }
                binding!!.rcBestSell.layoutManager = GridLayoutManager(requireContext(),3,GridLayoutManager.HORIZONTAL,false)
                binding!!.rcBestSell.adapter = bestSellAdapter
+               bestSellAdapter.setOnClickItem(this)
            }
 
 
@@ -162,18 +166,19 @@ class HomeFragment : BaseFragment(),BannersType2Adapter.OnClickBannerType,
         return binding!!.root
     }
 
-    private fun checkNetwork(){
-        val application = requireActivity().application
-        cld = ConnectionLiveData(application)
+    fun checkNetwork() {
+        cld = ConnectionLiveData(requireActivity().application)
         cld.observe(viewLifecycleOwner) { isConnected ->
-            val parent = view?.findViewById<LinearLayout>(R.id.lnr_check_internet)
             if (isConnected) {
-                val checkInternet = showCheckInternet(R.layout.layout_check_internet)
-
+                binding!!.homeLayout.visibility = View.VISIBLE
+                binding!!.lnrCheckNetHome.visibility = View.GONE
             } else {
-                parent?.let { it1 ->
-                    it1.visibility = View.GONE
+                binding!!.homeLayout.visibility = View.GONE
+                binding!!.lnrCheckNetHome.visibility = View.VISIBLE
+                binding!!.btnTryNet.setOnClickListener {
+                    checkNetwork()
                 }
+
             }
         }
     }
@@ -231,6 +236,12 @@ class HomeFragment : BaseFragment(),BannersType2Adapter.OnClickBannerType,
 
     override fun onClickLastItem() {
         startActivity(Intent(context,AllAmazingActivity::class.java))
+    }
+
+    override fun onClickItemBestSell(productId: Int) {
+        startActivity(Intent(context,DetailActivity::class.java).apply {
+            putExtra("id",productId)
+        })
     }
 
 

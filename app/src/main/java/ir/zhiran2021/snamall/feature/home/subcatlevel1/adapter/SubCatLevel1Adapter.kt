@@ -12,6 +12,7 @@ import ir.zhiran2021.snamall.view.MyImageView
 
 class SubCatLevel1Adapter(val categories: List<ResponseSubCatLevel1>, val imageLoadService: ImageLoadService):RecyclerView.Adapter<SubCatLevel1Adapter.GeneralCategoryViewHolder>() {
 
+    lateinit var onClickSubCatLevel: OnClickSubCatLevel
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GeneralCategoryViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_subcat_level,parent,false)
@@ -24,9 +25,15 @@ class SubCatLevel1Adapter(val categories: List<ResponseSubCatLevel1>, val imageL
         holder.txtTitleSubCatLevel.text = itemCategories.title
         holder.txtCountSubCatLevel.text = itemCategories.totalProduct
 
+        holder.itemView.setOnClickListener {
+            onClickSubCatLevel.onClickGeneralItem(itemCategories.id.toInt())
+        }
 
     }
 
+    fun setOnClickItemSubCatLevel(onClickSubCatLevel: OnClickSubCatLevel){
+        this.onClickSubCatLevel = onClickSubCatLevel
+    }
 
 
     override fun getItemCount(): Int = categories.size
@@ -37,7 +44,7 @@ class SubCatLevel1Adapter(val categories: List<ResponseSubCatLevel1>, val imageL
         val txtCountSubCatLevel = itemView.findViewById<TextView>(R.id.txt_count_subcat_level)
     }
 
-    interface OnClickGeneralCategory{
+    interface OnClickSubCatLevel{
         fun onClickGeneralItem(generalCatId:Int)
     }
 

@@ -15,6 +15,7 @@ import ir.zhiran2021.snamall.view.MyImageView
 
 class BestSellAdapter(val banners: List<ResponseBestSellProduct>, val imageLoadService: ImageLoadService):RecyclerView.Adapter<BestSellAdapter.BannersViewHolder>() {
 
+    lateinit var onClickBestSellItem: OnClickBestSellItem
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BannersViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_best_sell,parent,false)
@@ -26,6 +27,14 @@ class BestSellAdapter(val banners: List<ResponseBestSellProduct>, val imageLoadS
         imageLoadService.loadImage(holder.imgBestSell, itemBanners.image)
         Picasso.get().load(itemBanners.number).into(holder.imgNumBest)
         holder.txtTitle.text = itemBanners.name
+
+        holder.itemView.setOnClickListener {
+            onClickBestSellItem.onClickItemBestSell(itemBanners.id)
+        }
+    }
+
+    fun setOnClickItem(onClickBestSellItem: OnClickBestSellItem){
+        this.onClickBestSellItem = onClickBestSellItem
     }
 
     override fun getItemCount(): Int = banners.size
@@ -34,6 +43,10 @@ class BestSellAdapter(val banners: List<ResponseBestSellProduct>, val imageLoadS
         val imgBestSell = itemView.findViewById<MyImageView>(R.id.img_best_sell)
         val imgNumBest = itemView.findViewById<ImageView>(R.id.img_num_best)
         val txtTitle = itemView.findViewById<TextView>(R.id.txt_title_best_sell)
+    }
+
+    interface OnClickBestSellItem{
+        fun onClickItemBestSell(productId:Int)
     }
 
 }

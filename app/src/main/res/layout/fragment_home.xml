@@ -1,142 +1,197 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layoutDirection="rtl"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fillViewport="true"
     tools:context=".feature.home.HomeFragment">
 
-    <LinearLayout
+    <FrameLayout
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-        <com.google.android.material.appbar.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_44sdp"
-            android:background="@color/white">
-            <RelativeLayout
-                android:id="@+id/rltv_search"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="@dimen/_6sdp"
-                android:background="@drawable/bg_search_bar"
-                android:layout_margin="@dimen/_4sdp">
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/_8sdp"
+        android:visibility="visible">
 
-                <ImageView
-                    android:id="@+id/img_search"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    app:srcCompat="@drawable/ic_search_alt" />
-
-                <TextView
-                    android:id="@+id/txt_search"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/grey_600"
-                    android:text="@string/search_in"
-                    android:layout_toLeftOf="@id/img_search"
-                    android:layout_marginRight="@dimen/_18sdp"
-                    android:layout_centerVertical="true"/>
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="@dimen/_48sdp"
-                    app:srcCompat="@drawable/logo" />
-            </RelativeLayout>
-
-
-        </com.google.android.material.appbar.AppBarLayout>
-        <androidx.core.widget.NestedScrollView
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+            android:layoutDirection="rtl"
+            android:id="@+id/home_layout"
+            tools:context=".feature.home.HomeFragment"
+            android:visibility="visible">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-
-                <androidx.viewpager2.widget.ViewPager2
-                    android:id="@+id/viewPager_banners"
+                <com.google.android.material.appbar.AppBarLayout
                     android:layout_width="match_parent"
-                    android:layout_marginTop="@dimen/_4sdp"
-                    android:paddingLeft="@dimen/_16sdp"
-                    android:paddingRight="@dimen/_16sdp"
-                    android:layout_height="@dimen/_140sdp"/>
+                    android:layout_height="@dimen/_44sdp"
+                    android:background="@color/white">
+                    <RelativeLayout
+                        android:id="@+id/rltv_search"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="@dimen/_6sdp"
+                        android:background="@drawable/bg_search_bar"
+                        android:layout_margin="@dimen/_4sdp">
 
-                <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
-                    android:layout_gravity="left"
-                    android:layout_marginLeft="@dimen/_18sdp"
-                    android:layout_marginTop="-16dp"
-                    android:id="@+id/dots_indicator"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:dotsColor="@color/grey_200"
-                    app:dotsCornerRadius="8dp"
-                    app:dotsSize="@dimen/_6sdp"
-                    app:dotsSpacing="@dimen/_2sdp"
-                    app:dotsWidthFactor="2.5"
-                    app:selectedDotColor="@color/green_600"
-                    app:progressMode="true"
-                    />
+                        <ImageView
+                            android:id="@+id/img_search"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            app:srcCompat="@drawable/ic_search_alt" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rc_general_category"
+                        <TextView
+                            android:id="@+id/txt_search"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/grey_600"
+                            android:text="@string/search_in"
+                            android:layout_toLeftOf="@id/img_search"
+                            android:layout_marginRight="@dimen/_18sdp"
+                            android:layout_centerVertical="true"/>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="@dimen/_48sdp"
+                            app:srcCompat="@drawable/logo" />
+                    </RelativeLayout>
+
+
+                </com.google.android.material.appbar.AppBarLayout>
+                <androidx.core.widget.NestedScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_6sdp"
-                    android:layout_marginBottom="@dimen/_6sdp"/>
+                    android:layout_height="match_parent"
+                    app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/green_600"
-                    android:id="@+id/rc_amazing_product"
-                    android:padding="@dimen/_4sdp"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/rc_banner_type_2"
-                    android:padding="@dimen/_8sdp"
-                    android:layout_marginTop="@dimen/_8sdp"/>
+                        <androidx.viewpager2.widget.ViewPager2
+                            android:id="@+id/viewPager_banners"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/_4sdp"
+                            android:paddingLeft="@dimen/_16sdp"
+                            android:paddingRight="@dimen/_16sdp"
+                            android:layout_height="@dimen/_140sdp"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/txt_favorite_home"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_10sdp"
-                    android:padding="@dimen/_4sdp"
-                    android:layout_margin="@dimen/_4sdp"/>
-                <androidx.recyclerview.widget.RecyclerView
-                    android:padding="@dimen/_6sdp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/rc_popular_product" />
+                        <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+                            android:layout_gravity="left"
+                            android:layout_marginLeft="@dimen/_18sdp"
+                            android:layout_marginTop="-16dp"
+                            android:id="@+id/dots_indicator"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:dotsColor="@color/grey_200"
+                            app:dotsCornerRadius="8dp"
+                            app:dotsSize="@dimen/_6sdp"
+                            app:dotsSpacing="@dimen/_2sdp"
+                            app:dotsWidthFactor="2.5"
+                            app:selectedDotColor="@color/green_600"
+                            app:progressMode="true"
+                            />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="پرفروش ترین محصولات"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_10sdp"
-                    android:padding="@dimen/_4sdp"
-                    android:layout_margin="@dimen/_4sdp"/>
-                <androidx.recyclerview.widget.RecyclerView
-                    android:padding="@dimen/_6sdp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/rc_best_sell" />
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rc_general_category"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_6sdp"
+                            android:layout_marginBottom="@dimen/_6sdp"/>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/green_600"
+                            android:id="@+id/rc_amazing_product"
+                            android:padding="@dimen/_4sdp"/>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/rc_banner_type_2"
+                            android:padding="@dimen/_8sdp"
+                            android:layout_marginTop="@dimen/_8sdp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/txt_favorite_home"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_10sdp"
+                            android:padding="@dimen/_4sdp"
+                            android:layout_margin="@dimen/_4sdp"/>
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:padding="@dimen/_6sdp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/rc_popular_product" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="پرفروش ترین محصولات"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_10sdp"
+                            android:padding="@dimen/_4sdp"
+                            android:layout_margin="@dimen/_4sdp"/>
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:padding="@dimen/_6sdp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/rc_best_sell" />
+
+                    </LinearLayout>
+                </androidx.core.widget.NestedScrollView>
 
             </LinearLayout>
-        </androidx.core.widget.NestedScrollView>
 
-    </LinearLayout>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+        <LinearLayout
+
+            android:id="@+id/lnr_check_net_home"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_100sdp"
+                app:srcCompat="@drawable/ic_baseline_wifi_off_24"/>
+
+            <TextView
+                android:id="@+id/txt_check_internet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="اتصال خود را چک کنید"
+                android:textSize="24sp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:textColor="@color/grey_900"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_try_net"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_12sdp"
+                android:text="اتصال دوباره" />
+
+        </LinearLayout>
+
+    </FrameLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
+

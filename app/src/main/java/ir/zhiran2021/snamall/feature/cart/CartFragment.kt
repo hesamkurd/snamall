@@ -22,6 +22,7 @@ import ir.zhiran2021.snamall.databinding.FragmentCartBinding
 import ir.zhiran2021.snamall.feature.cart.adapter.CartListAdapter
 import ir.zhiran2021.snamall.feature.cart.nextlevel.NextLevelActivity
 import ir.zhiran2021.snamall.feature.cart.viewmodel.CartListViewModel
+import ir.zhiran2021.snamall.feature.home.detailproduct.DetailActivity
 import ir.zhiran2021.snamall.feature.profile.auoth.AuthViewModel
 import ir.zhiran2021.snamall.feature.profile.auoth.LoginActivity
 import ir.zhiran2021.snamall.utils.NO
@@ -31,7 +32,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
 class CartFragment : BaseFragment(), CartListAdapter.OnClickRemoveItem,
-    RemoveItemDialog.OnDialogRemove {
+    RemoveItemDialog.OnDialogRemove, CartListAdapter.OnClickProduct {
 
     val cartListViewModel: CartListViewModel by viewModel()
     val authViewModel: AuthViewModel by viewModel()
@@ -62,6 +63,7 @@ class CartFragment : BaseFragment(), CartListAdapter.OnClickRemoveItem,
                 LinearLayoutManager(context, RecyclerView.VERTICAL, false)
             binding.rcCart.adapter = cartListAdapter
             cartListAdapter.setOnClickItemRemove(this)
+            cartListAdapter.setOnClickItem(this)
         }
 
         cartListViewModel.progressBarLiveData.observe(viewLifecycleOwner) {
@@ -189,6 +191,12 @@ class CartFragment : BaseFragment(), CartListAdapter.OnClickRemoveItem,
                 removeItemDialog.dismiss()
             }
         }
+    }
+
+    override fun onClickProductItem(productId: Int) {
+        startActivity(Intent(context,DetailActivity::class.java).apply {
+            putExtra("id",productId)
+        })
     }
 
 

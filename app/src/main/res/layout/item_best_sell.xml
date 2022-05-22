@@ -19,14 +19,16 @@
         android:layout_height="@dimen/_60sdp"/>
     <ImageView
         android:id="@+id/img_num_best"
-        android:layout_width="@dimen/_40sdp"
-        android:layout_height="@dimen/_40sdp"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
         android:layout_gravity="center" />
     <TextView
         android:layout_gravity="center"
         android:textSize="@dimen/_8sdp"
         android:textColor="@color/grey_900"
-        android:maxLines="2"
+        android:lines="2"
+        android:ellipsize="end"
+        android:lineSpacingExtra="@dimen/_3sdp"
         android:id="@+id/txt_title_best_sell"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>

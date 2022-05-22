@@ -10,6 +10,7 @@ import ir.zhiran2021.snamall.data.Part1Item
 
 class PartOneAdapter(val partOne: List<Part1Item>):RecyclerView.Adapter<PartOneAdapter.PartOneViewHolder>() {
 
+    lateinit var onClickItemOne: OnClickItemOne
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PartOneViewHolder {
@@ -20,6 +21,14 @@ class PartOneAdapter(val partOne: List<Part1Item>):RecyclerView.Adapter<PartOneA
     override fun onBindViewHolder(holder: PartOneViewHolder, position: Int) {
         val searchItem = partOne[position]
         holder.txtCategory.text = searchItem.title
+
+        holder.itemView.setOnClickListener {
+            onClickItemOne.onClickItemOne(searchItem.catId.toInt())
+        }
+    }
+
+    fun setOnClickPartOne(onClickItemOne: OnClickItemOne){
+        this.onClickItemOne = onClickItemOne
     }
 
     override fun getItemCount(): Int = partOne.size
@@ -27,5 +36,9 @@ class PartOneAdapter(val partOne: List<Part1Item>):RecyclerView.Adapter<PartOneA
     class PartOneViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
 
         val txtCategory = itemView.findViewById<TextView>(R.id.txt_part_one)
+    }
+
+    interface OnClickItemOne{
+        fun onClickItemOne(subcat2Id:Int)
     }
 }

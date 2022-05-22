@@ -24,7 +24,9 @@ class SubCategoryAdapter(val categories: List<ResponseSubCat1>, val imageLoadSer
         imageLoadService.loadImage(holder.imgGeneralCategory, itemCategories.image)
         holder.txtTitleSubCatLevel.text = itemCategories.title
 
-
+        holder.itemView.setOnClickListener {
+            onClickCategory.onClickCatItem(itemCategories.id)
+        }
     }
 
     fun setOnClickCat(onClickCategory: OnClickCategory){

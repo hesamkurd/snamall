@@ -59,5 +59,8 @@ data class ProductItemDeliveriesItem(
 	val count: String,
 
 	@field:SerializedName("id")
-	val id: String
+	val id: String,
+
+	@field:SerializedName("product_id")
+	val product_id: String
 )

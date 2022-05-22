@@ -6,12 +6,9 @@ import android.graphics.Paint
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
-import androidx.activity.ComponentActivity
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -27,18 +24,19 @@ import ir.zhiran2021.snamall.data.ResponsCategory
 import ir.zhiran2021.snamall.data.ResponseCountCart
 import ir.zhiran2021.snamall.databinding.ActivityDetailBinding
 import ir.zhiran2021.snamall.feature.cart.CartFragment
-import ir.zhiran2021.snamall.feature.category.adapter.CategoryAdapter
+import ir.zhiran2021.snamall.feature.category.brandproduct.BrandActivity
+import ir.zhiran2021.snamall.feature.category.subcat2.SubCat2Activity
 import ir.zhiran2021.snamall.feature.home.detailproduct.adapter.*
 import ir.zhiran2021.snamall.feature.home.detailproduct.comment.ShowCommentActivity
-import ir.zhiran2021.snamall.feature.home.detailproduct.generalcat.GeneralCategoryActivity
+import ir.zhiran2021.snamall.feature.home.detailproduct.comment.insertcomment.InsertCommentActivity
 import ir.zhiran2021.snamall.feature.home.detailproduct.moredialog.MoreDialogBottomSheet
 import ir.zhiran2021.snamall.feature.home.detailproduct.moredialog.chart.ChartPriceActivity
 import ir.zhiran2021.snamall.feature.home.detailproduct.moredialog.compare.CompareCategoryActivity
 import ir.zhiran2021.snamall.feature.home.detailproduct.property.DescriptionActivity
 import ir.zhiran2021.snamall.feature.home.detailproduct.property.TechnicalPropertyActivity
 import ir.zhiran2021.snamall.feature.home.detailproduct.subcat1.SubCat1Activity
-import ir.zhiran2021.snamall.feature.home.detailproduct.subcat2.SubCat2Activity
 import ir.zhiran2021.snamall.feature.home.detailproduct.viewmodel.DetailProductViewModel
+import ir.zhiran2021.snamall.feature.home.subcatlevel1.SubCatLevel1Fragment
 import ir.zhiran2021.snamall.feature.profile.auoth.AuthViewModel
 import ir.zhiran2021.snamall.feature.profile.auoth.LoginActivity
 import ir.zhiran2021.snamall.utils.*
@@ -55,7 +53,10 @@ const val subcat_id2 = "subcat_id2"
 
 class DetailActivity : BaseActivity(),
     MoreDialogBottomSheet.OnClickMoreDialog,
-    ColorAdapter.OnClickColorItem, SizeAdapter.OnClickSizeItem, CatAdapter.OnClickCategory {
+    ColorAdapter.OnClickColorItem,
+    SizeAdapter.OnClickSizeItem,
+    CatAdapter.OnClickCategory,
+    SimilarAdapter.OnClickSimilarItem, CommentAdapter.OnClickCommentItem {
 
     var binding: ActivityDetailBinding? = null
 
@@ -73,6 +74,7 @@ class DetailActivity : BaseActivity(),
     val mainViewModel: MainViewModel by viewModel()
 
     var idProduct: Int? = null
+    var nameProduct:String? = null
     var idcat: Int? = null
     var idsubcat1: Int? = null
     var idsubcat2: Int? = null
@@ -101,12 +103,12 @@ class DetailActivity : BaseActivity(),
             moreDialog.setOnClicKDialog(this)
         }
 //        val navController = DetailActivity.findNavController(this,R.id.nav_host_fragment)
-        val cartFragment = CartFragment()
-//
+
         binding!!.imgBasket.setOnClickListener {
-
-
-
+            val mFragment: Fragment
+            mFragment = CartFragment()
+            val fragmentManager: FragmentManager = supportFragmentManager
+            fragmentManager.beginTransaction().replace(R.id.detail_framelayout, mFragment).commit()
 
         }
         binding!!.imgDismis.setOnClickListener {
@@ -120,6 +122,24 @@ class DetailActivity : BaseActivity(),
         binding!!.lnrDescription.setOnClickListener {
             startActivity(Intent(this, DescriptionActivity::class.java).apply {
                 putExtra("id", idProduct)
+            })
+        }
+
+        binding!!.lnrInsertComment.setOnClickListener {
+            if (authViewModel.checkLoginLiveData.value == true){
+                startActivity(Intent(this, InsertCommentActivity::class.java).apply {
+                    putExtra(PRODUCT_ID,idProduct)
+                })
+            }else{
+                startActivity(Intent(this, LoginActivity::class.java))
+
+            }
+
+        }
+
+        binding!!.txtBrandName.setOnClickListener {
+            startActivity(Intent(this,BrandActivity::class.java).apply {
+                putExtra(PRODUCT_ID,nameProduct)
             })
         }
         binding!!.imgFavorite.setOnClickListener {
@@ -145,6 +165,7 @@ class DetailActivity : BaseActivity(),
 
         detailProductViewModel.detailProductLiveData.observe(this) {
             idProduct = it.id
+            nameProduct = it.brandName
             val galleryAdapter: GalleryAdapter by inject { parametersOf(it.imagesOrder) }
 
             binding?.apply {
@@ -239,6 +260,7 @@ class DetailActivity : BaseActivity(),
                 binding!!.rcSimilar.layoutManager =
                     LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
                 binding!!.rcSimilar.adapter = similarAdapter
+                similarAdapter.setOnClickSimilarProduct(this)
                 val itemDecoration: RecyclerView.ItemDecoration =
                     DividerItemDecoration(this, DividerItemDecoration.HORIZONTAL)
                 binding!!.rcSimilar.addItemDecoration(itemDecoration)
@@ -263,6 +285,7 @@ class DetailActivity : BaseActivity(),
                 binding!!.rcComments.layoutManager =
                     LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
                 binding!!.rcComments.adapter = commentAdapter
+                commentAdapter.setOnItemClickComment(this)
             }
             binding!!.txtCountComment.setOnClickListener {
                 startActivity(Intent(this, ShowCommentActivity::class.java).apply {
@@ -329,25 +352,17 @@ class DetailActivity : BaseActivity(),
     fun checkNetwork() {
         cld = ConnectionLiveData(application)
         cld.observe(this) { isConnected ->
-            val parent = findViewById<LinearLayout>(R.id.lnr_check_internet)
-            if (!isConnected) {
-                val checkInternet = showCheckInternet(R.layout.layout_check_internet)
-                checkInternet?.let {
-                    val txtMessage = it.findViewById<TextView>(R.id.txt_check_internet)
-                    txtMessage.text = "اینترنت نیست"
-
-                }
-                parent?.let {
-                    it.visibility = View.VISIBLE
-                }
-                binding!!.coordinatorDetail.visibility = View.GONE
+            if (isConnected) {
+                binding!!.coordinatorDetail.visibility = View.VISIBLE
+                binding!!.lnrCheckNet.visibility = View.GONE
 
             } else {
-
-                parent?.let {
-                    it.visibility = View.GONE
+                binding!!.coordinatorDetail.visibility = View.GONE
+                binding!!.lnrCheckNet.visibility = View.VISIBLE
+                binding!!.btnTryNet.setOnClickListener {
+                    checkNetwork()
                 }
-                binding!!.coordinatorDetail.visibility = View.VISIBLE
+
             }
         }
     }
@@ -412,24 +427,53 @@ class DetailActivity : BaseActivity(),
     override fun onClickItem(typeCat: String) {
         when (typeCat) {
             namecat -> {
-                startActivity(Intent(this, GeneralCategoryActivity::class.java).apply {
-                    putExtra("id", idcat)
-                    putExtra("namecat", namecat)
-                })
+                val mFragment: Fragment
+                mFragment = SubCatLevel1Fragment()
+                val bundle =Bundle()
+                bundle.putString("namecat", namecat)
+                bundle.putInt(PRODUCT_ID, idcat!!)
+                mFragment.arguments = bundle
+                val fragmentManager: FragmentManager = supportFragmentManager
+                fragmentManager.beginTransaction().replace(R.id.detail_framelayout, mFragment).commit()
+
+//                startActivity(Intent(this, GeneralCategoryActivity::class.java).apply {
+//                    putExtra("id", idcat)
+//                    putExtra("namecat", namecat)
+//                })
             }
             namesubcat1 -> {
-                startActivity(Intent(this, SubCat1Activity::class.java).apply {
-                    putExtra("id", idsubcat1)
-                    putExtra("namesubcat1", namesubcat1)
-                })
+//                startActivity(Intent(this, SubCat1Activity::class.java).apply {
+//                    putExtra("id", idsubcat1)
+//                    putExtra("namesubcat1", namesubcat1)
+//                })
+
+
             }
             namesubcat2 -> {
-                startActivity(Intent(this, SubCat2Activity::class.java).apply {
-                    putExtra("id", idsubcat2)
-                    putExtra("namesubcat2", namesubcat2)
+//                startActivity(Intent(this, SubCat2Activity::class.java).apply {
+//                    putExtra("id", idsubcat2)
+//                    putExtra("namesubcat2", namesubcat2)
+//
+//                })
 
+                startActivity(Intent(this,SubCat2Activity::class.java).apply {
+                    putExtra(PRODUCT_ID,idsubcat2)
+                    putExtra("namesubcat2", namesubcat2)
                 })
+
             }
         }
+    }
+
+    override fun onClickItemSimilar(productId: Int) {
+        startActivity(Intent(this,DetailActivity::class.java).apply {
+            putExtra("id",productId)
+        })
+    }
+
+    override fun onClickCommentProduct(commentId: Int) {
+        startActivity(Intent(this, ShowCommentActivity::class.java).apply {
+            putExtra("id", idProduct)
+        })
     }
 }

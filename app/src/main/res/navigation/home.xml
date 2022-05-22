@@ -18,5 +18,14 @@
         android:id="@+id/subCatLevel1Fragment"
         android:name="ir.zhiran2021.snamall.feature.home.subcatlevel1.SubCatLevel1Fragment"
         android:label="fragment_sub_cat_level1"
-        tools:layout="@layout/fragment_sub_cat_level1" />
+        tools:layout="@layout/fragment_sub_cat_level1" >
+        <action
+            android:id="@+id/action_subCatLevel1Fragment_to_subCat1Fragment2"
+            app:destination="@id/subCat1Fragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/subCat1Fragment2"
+        android:name="ir.zhiran2021.snamall.feature.category.subcat.SubCat1Fragment"
+        android:label="fragment_sub_cat1"
+        tools:layout="@layout/fragment_sub_cat1" />
 </navigation>

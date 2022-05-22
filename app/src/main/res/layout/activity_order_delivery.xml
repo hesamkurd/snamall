@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".feature.home.detailproduct.subcat2.SubCat2Activity">
+    android:layoutDirection="rtl"
+    tools:context=".feature.profile.orderdelivery.OrderDeliveryActivity">
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -46,12 +47,10 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="2"
-        android:textSize="@dimen/_60sdp"/>
-
-
+        android:id="@+id/rc_order_delivery"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+        android:layout_marginTop="@dimen/_8sdp"/>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

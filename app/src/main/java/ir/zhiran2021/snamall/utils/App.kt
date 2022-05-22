@@ -20,6 +20,7 @@ import ir.zhiran2021.snamall.feature.cart.repo.CartListRepositoryImpl
 import ir.zhiran2021.snamall.feature.cart.source.RemoteCartListDataSource
 import ir.zhiran2021.snamall.feature.cart.viewmodel.CartListViewModel
 import ir.zhiran2021.snamall.feature.category.adapter.CategoryAdapter
+import ir.zhiran2021.snamall.feature.category.adapter.CategoryChildAdapter
 import ir.zhiran2021.snamall.feature.category.brandproduct.adapter.BrandProductAdapter
 import ir.zhiran2021.snamall.feature.category.brandproduct.repo.BrandBannerRepository
 import ir.zhiran2021.snamall.feature.category.brandproduct.repo.BrandBannerRepositoryImpl
@@ -35,6 +36,11 @@ import ir.zhiran2021.snamall.feature.category.subcat.repo.SubCatRepository
 import ir.zhiran2021.snamall.feature.category.subcat.repo.SubCatRepositoryImpl
 import ir.zhiran2021.snamall.feature.category.subcat.source.RemoteSubCatDataSource
 import ir.zhiran2021.snamall.feature.category.subcat.viewmodel.SubCatViewModel
+import ir.zhiran2021.snamall.feature.category.subcat2.adapter.SubCat2Adapter
+import ir.zhiran2021.snamall.feature.category.subcat2.repo.SubCat2Repository
+import ir.zhiran2021.snamall.feature.category.subcat2.repo.SubCat2RepositoryImpl
+import ir.zhiran2021.snamall.feature.category.subcat2.source.RemoteSubCat2DataSource
+import ir.zhiran2021.snamall.feature.category.subcat2.viewmodel.SubCat2ViewModel
 import ir.zhiran2021.snamall.feature.category.viewmodel.CategoriesViewModel
 import ir.zhiran2021.snamall.feature.home.adapter.*
 import ir.zhiran2021.snamall.feature.home.allamazing.adapter.AllAmazingAdapter
@@ -114,6 +120,16 @@ import ir.zhiran2021.snamall.feature.profile.order.repo.OrderHistoryRepository
 import ir.zhiran2021.snamall.feature.profile.order.repo.OrderHistoryRepositoryImpl
 import ir.zhiran2021.snamall.feature.profile.order.source.RemoteOrderHistoryDataSource
 import ir.zhiran2021.snamall.feature.profile.order.viewmodel.OrderHistoryViewModel
+import ir.zhiran2021.snamall.feature.profile.orderdelivery.adapter.OrderDeliveryAdapter
+import ir.zhiran2021.snamall.feature.profile.orderdelivery.orderdeliverydetail.adapter.OrderDetailDeliveryAdapter
+import ir.zhiran2021.snamall.feature.profile.orderdelivery.orderdeliverydetail.repo.OrderDetailDeliveryRepository
+import ir.zhiran2021.snamall.feature.profile.orderdelivery.orderdeliverydetail.repo.OrderDetailDeliveryRepositoryImpl
+import ir.zhiran2021.snamall.feature.profile.orderdelivery.orderdeliverydetail.source.RemoteOrderDetailDeliveryDataSource
+import ir.zhiran2021.snamall.feature.profile.orderdelivery.orderdeliverydetail.viewmodel.OrderDetailDeliveryViewModel
+import ir.zhiran2021.snamall.feature.profile.orderdelivery.repo.OrderDeliveryRepository
+import ir.zhiran2021.snamall.feature.profile.orderdelivery.repo.OrderDeliveryRepositoryImpl
+import ir.zhiran2021.snamall.feature.profile.orderdelivery.source.RemoteOrderDeliveryDataSource
+import ir.zhiran2021.snamall.feature.profile.orderdelivery.viewmodel.OrderDeliveryViewModel
 import ir.zhiran2021.snamall.feature.search.adapter.PartOneAdapter
 import ir.zhiran2021.snamall.feature.search.adapter.PartTwoAdapter
 import ir.zhiran2021.snamall.feature.search.repo.SearchRepository
@@ -210,7 +226,12 @@ class App: Application() {
             //// Categories ///
             factory<CategoriesRepository> { CategoriesRepositoryImpl(RemoteCategoriesDataSource(get())) }
             viewModel { CategoriesViewModel(get()) }
-            factory { (categories: List<SubcatItem>)->CategoryAdapter(categories,get()) }
+            factory { (categories: List<ResponseCategories>)->CategoryAdapter(categories,get()) }
+            factory { (categoryChile:List<SubcatItem>)-> CategoryChildAdapter(categoryChile,get())}
+
+            factory<SubCat2Repository> { SubCat2RepositoryImpl(RemoteSubCat2DataSource(get())) }
+            viewModel { (subCatId:Int)->SubCat2ViewModel(subCatId,get()) }
+            factory { (subCats:List<ResponseSubCat2>)-> SubCat2Adapter(subCats,get())}
 
             factory<SubCatRepository> { SubCatRepositoryImpl(RemoteSubCatDataSource(get())) }
             viewModel { (catId:Int)-> SubCatViewModel(catId,get())}
@@ -251,6 +272,14 @@ class App: Application() {
 
             factory<InfoUserRepository> {InfoUserRepositoryImpl(RemoteInfoUserDataSource(get()))  }
             viewModel { InfoUserViewModel(get()) }
+
+            factory<OrderDeliveryRepository> { OrderDeliveryRepositoryImpl(RemoteOrderDeliveryDataSource(get())) }
+            viewModel { OrderDeliveryViewModel(get()) }
+            factory { (deliveries:List<ResponseOrderDelivery>)-> OrderDeliveryAdapter(deliveries,get()) }
+
+            factory<OrderDetailDeliveryRepository> { OrderDetailDeliveryRepositoryImpl(RemoteOrderDetailDeliveryDataSource(get())) }
+            viewModel { (refId:String)-> OrderDetailDeliveryViewModel(refId,get())}
+            factory { (orders:List<OrderDeliveryDetailItem>)-> OrderDetailDeliveryAdapter(orders,get()) }
 
             /// Search ///////
             factory<SearchRepository> { SearchRepositoryImpl(RemoteSearchDataSource(get())) }

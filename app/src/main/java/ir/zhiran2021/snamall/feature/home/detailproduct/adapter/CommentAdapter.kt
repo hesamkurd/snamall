@@ -10,6 +10,8 @@ import ir.zhiran2021.snamall.data.CommentsItem
 
 class CommentAdapter(val comments: List<CommentsItem>): RecyclerView.Adapter<CommentAdapter.CommentViewHolder>() {
 
+    lateinit var onClickCommentItem: OnClickCommentItem
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommentViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_comment,parent,false)
         return CommentViewHolder(view)
@@ -21,6 +23,14 @@ class CommentAdapter(val comments: List<CommentsItem>): RecyclerView.Adapter<Com
         holder.txt_content.text = commentItem.content
         holder.txt_date.text = commentItem.commentData
         holder.txt_user.text = commentItem.nameFamily
+
+        holder.itemView.setOnClickListener {
+            onClickCommentItem.onClickCommentProduct(commentItem.id.toInt())
+        }
+    }
+
+    fun setOnItemClickComment(onClickCommentItem: OnClickCommentItem){
+        this.onClickCommentItem = onClickCommentItem
     }
 
     override fun getItemCount(): Int = comments.size
@@ -32,4 +42,9 @@ class CommentAdapter(val comments: List<CommentsItem>): RecyclerView.Adapter<Com
         val txt_user = itemView.findViewById<TextView>(R.id.txt_user_comment)
 
     }
+
+    interface OnClickCommentItem{
+        fun onClickCommentProduct(commentId:Int)
+    }
+
 }

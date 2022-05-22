@@ -24,6 +24,7 @@ class CartListAdapter(val cartproduct: ResponseCartList, val imageLoadService: I
     var publicAllOffPrIce: Int? = null
     var publicAllPayablePrice: Int? = null
     lateinit var onClickRemoveItem: OnClickRemoveItem
+    lateinit var onClickProduct: OnClickProduct
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -57,6 +58,11 @@ class CartListAdapter(val cartproduct: ResponseCartList, val imageLoadService: I
             }
             holder.imgMinus.setOnClickListener {
                 onClickRemoveItem.onClickMinusItem(cartProduct,cartProduct.count.toInt())
+
+            }
+
+            holder.itemView.setOnClickListener {
+                onClickProduct.onClickProductItem(cartProduct.product_id.toInt())
             }
         } else {
             (holder as PayableViewHolder).txtAllOffPrice.text =
@@ -66,6 +72,10 @@ class CartListAdapter(val cartproduct: ResponseCartList, val imageLoadService: I
             holder.txtTotalAllPrice.text =
                 PriceConverter.priceConvert(publicTotalAllPrice.toString())
         }
+    }
+
+    fun setOnClickItem(onClickProduct: OnClickProduct){
+        this.onClickProduct = onClickProduct
     }
     fun setOnClickItemRemove(onClickRemoveItem: OnClickRemoveItem){
         this.onClickRemoveItem = onClickRemoveItem
@@ -128,6 +138,10 @@ class CartListAdapter(val cartproduct: ResponseCartList, val imageLoadService: I
         fun onClickSumItem(cartItem: ProductItemItem, newCount: Int)
         fun onClickMinusItem(cartItem: ProductItemItem, newCount: Int)
 
+    }
+
+    interface OnClickProduct{
+        fun onClickProductItem(productId:Int)
     }
 
 }

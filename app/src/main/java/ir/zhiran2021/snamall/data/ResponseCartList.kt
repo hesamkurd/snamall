@@ -46,6 +46,9 @@ data class ProductItemItem(
 	@field:SerializedName("id")
 	val id: String,
 
+	@field:SerializedName("product_id")
+	val product_id: String,
+
 	@field:SerializedName("off_percent")
 	val offPercent: Int,
 

@@ -159,6 +159,12 @@ interface ApiService {
     @POST("profile/get_order_detaile.php")
     fun getOrderDetal(@Field("ref_id") ref_id: String): Single<ResponseOrderDetail>
 
+    @GET("profile/get_order_history_delivery.php")
+    fun getOrderDelivery(): Single<List<ResponseOrderDelivery>>
+
+    @GET("profile/get_order_detaile_plus.php")
+    fun getOrderDetailDelivery(@Query("ref_id")ref_id:String):Single<ResponseOrderDetailDelivery>
+
     ////////// Category //////////
     @GET("category/categories.php")
     fun getCategories(): Single<List<ResponseCategories>>
@@ -177,6 +183,9 @@ interface ApiService {
 
     @GET("product/brand_products.php")
     fun getBrandProduct(@Query("brand_name") brand_name: String): Single<List<ResponseBrandProduct>>
+
+    @GET("category/product_sub_cat_2.php")
+    fun getSubCat2(@Query("subcat2_id")subcat2_id:Int): Single<List<ResponseSubCat2>>
 
     /////////// Profile ///////
     @GET("profile/show_bookmarks.php")
