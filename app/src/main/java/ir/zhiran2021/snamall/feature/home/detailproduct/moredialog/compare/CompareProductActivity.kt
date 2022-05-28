@@ -7,6 +7,7 @@ import ir.zhiran2021.snamall.databinding.ActivityCompareProductBinding
 import ir.zhiran2021.snamall.feature.home.detailproduct.moredialog.compare.adapter.CompareParentAdapter
 import ir.zhiran2021.snamall.feature.home.detailproduct.moredialog.compare.viewmodel.CompareProductViewModel
 import ir.zhiran2021.snamall.services.ImageLoadService
+import ir.zhiran2021.snamall.utils.PriceConverter
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
@@ -25,8 +26,8 @@ class CompareProductActivity : BaseActivity() {
 
         compareProductViewModel.compareProductLiveData.observe(this){
             binding.apply {
-                txtPriceProductOne.text = it.price1
-                txtPriceProductTwo.text = it.price2
+                txtPriceProductOne.text = PriceConverter.priceConvert(it.price1)
+                txtPriceProductTwo.text = PriceConverter.priceConvert(it.price2)
                 txtNamePeroductOne.text = it.name1
                 txtNamePeroductTwo.text = it.name2
                 imageLoadService.loadImage(binding.imgPrOne,it.imageurl1)

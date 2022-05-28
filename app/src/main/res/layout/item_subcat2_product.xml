@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:padding="@dimen/_8sdp">
 <LinearLayout
-    android:id="@+id/lnr_free"
+    android:id="@+id/lnr_free_subcat2"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -32,7 +32,7 @@
         android:layout_height="wrap_content">
 
         <ir.zhiran2021.snamall.view.MyImageView
-            android:id="@+id/img_brand_product"
+            android:id="@+id/img_subcat2_product"
             android:layout_width="@dimen/_70sdp"
             android:layout_height="@dimen/_70sdp"
             android:layout_alignParentRight="true" />
@@ -41,12 +41,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/_4sdp"
-            android:layout_toLeftOf="@id/img_brand_product"
+            android:layout_toLeftOf="@id/img_subcat2_product"
             android:orientation="vertical">
 
             <TextView
                 android:layout_marginTop="@dimen/_4sdp"
-                android:id="@+id/txt_name_product"
+                android:id="@+id/txt_name_product_subcat2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
@@ -59,7 +59,7 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/txt_free"
+                    android:id="@+id/txt_free_subcat2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -76,14 +76,18 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/txt_free_price"
+                        android:layout_gravity="left"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:layout_marginBottom="@dimen/_4sdp"
+                        android:id="@+id/txt_free_price_subcat2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/grey_700"
                         android:textSize="@dimen/_9sdp" />
 
                     <TextView
-                        android:id="@+id/txt_price"
+                        android:layout_gravity="left"
+                        android:id="@+id/txt_price_subcat2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/grey_500"

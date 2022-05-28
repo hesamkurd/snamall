@@ -18,7 +18,8 @@ class HomeViewModel(val bannersRepository: BannersRepository,
                     val amazingProductsRepository: AmazingProductsRepository,
                     val popularProductRepository: PopularProductRepository,
                     val bannerType2Repository: BannerType2Repository,
-                    val bestSellRepository: BestSellRepository): BaseViewModel() {
+                    val bestSellRepository: BestSellRepository,
+                    val amazingMarketRepository: AmazingMarketRepository): BaseViewModel() {
 
     val bannersLiveData = MutableLiveData<List<ResponseBanners>>()
     val generalCategoryLiveData = MutableLiveData<List<ResponseGeneralCategory>>()
@@ -26,6 +27,7 @@ class HomeViewModel(val bannersRepository: BannersRepository,
     val popularProductLiveData = MutableLiveData<List<ResponsePopularProduct>>()
     val bannerType2LiveData = MutableLiveData<List<ResponseBannerType2>>()
     val bestSellLiveData = MutableLiveData<List<ResponseBestSellProduct>>()
+    val amazingMarketLiveData = MutableLiveData<List<ResponseAmazingMarket>>()
 
     init {
 
@@ -95,6 +97,13 @@ class HomeViewModel(val bannersRepository: BannersRepository,
             .subscribe(object : ShopSingleObserver<List<ResponseBestSellProduct>>(compositeDisposable){
                 override fun onSuccess(t: List<ResponseBestSellProduct>) {
                     bestSellLiveData.value = t
+                }
+            })
+
+        amazingMarketRepository.getAmazingMarket().customObserver()
+            .subscribe(object : ShopSingleObserver<List<ResponseAmazingMarket>>(compositeDisposable){
+                override fun onSuccess(t: List<ResponseAmazingMarket>) {
+                    amazingMarketLiveData.value = t
                 }
             })
     }

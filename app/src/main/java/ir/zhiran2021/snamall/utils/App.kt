@@ -26,6 +26,11 @@ import ir.zhiran2021.snamall.feature.category.brandproduct.repo.BrandBannerRepos
 import ir.zhiran2021.snamall.feature.category.brandproduct.repo.BrandBannerRepositoryImpl
 import ir.zhiran2021.snamall.feature.category.brandproduct.source.RemoteBrandBannerDataSource
 import ir.zhiran2021.snamall.feature.category.brandproduct.viewmodel.BrandBannerViewmodel
+import ir.zhiran2021.snamall.feature.category.generalcat.adapter.ProductGeneralCatAdapter
+import ir.zhiran2021.snamall.feature.category.generalcat.repo.ProductGeneralCatRepository
+import ir.zhiran2021.snamall.feature.category.generalcat.repo.ProductGeneralCatRepositoryImpl
+import ir.zhiran2021.snamall.feature.category.generalcat.source.RemoteProductGeneralCatDataSource
+import ir.zhiran2021.snamall.feature.category.generalcat.viewmodel.ProductGeneralCatViewModel
 import ir.zhiran2021.snamall.feature.category.repo.CategoriesRepository
 import ir.zhiran2021.snamall.feature.category.repo.CategoriesRepositoryImpl
 import ir.zhiran2021.snamall.feature.category.source.RemoteCategoriesDataSource
@@ -36,6 +41,11 @@ import ir.zhiran2021.snamall.feature.category.subcat.repo.SubCatRepository
 import ir.zhiran2021.snamall.feature.category.subcat.repo.SubCatRepositoryImpl
 import ir.zhiran2021.snamall.feature.category.subcat.source.RemoteSubCatDataSource
 import ir.zhiran2021.snamall.feature.category.subcat.viewmodel.SubCatViewModel
+import ir.zhiran2021.snamall.feature.category.subcat1.adapter.ProductSubCat1Adapter
+import ir.zhiran2021.snamall.feature.category.subcat1.repo.ProductSubCat1Repository
+import ir.zhiran2021.snamall.feature.category.subcat1.repo.ProductSubCat1RepositoryImpl
+import ir.zhiran2021.snamall.feature.category.subcat1.source.RemoteProductSubCat1DataSource
+import ir.zhiran2021.snamall.feature.category.subcat1.viewmodel.ProductSubCat1ViewModel
 import ir.zhiran2021.snamall.feature.category.subcat2.adapter.SubCat2Adapter
 import ir.zhiran2021.snamall.feature.category.subcat2.repo.SubCat2Repository
 import ir.zhiran2021.snamall.feature.category.subcat2.repo.SubCat2RepositoryImpl
@@ -48,6 +58,11 @@ import ir.zhiran2021.snamall.feature.home.allamazing.repo.AllAmazingRepository
 import ir.zhiran2021.snamall.feature.home.allamazing.repo.AllAmazingRepositoryImpl
 import ir.zhiran2021.snamall.feature.home.allamazing.source.RemoteAllAmazingDataSource
 import ir.zhiran2021.snamall.feature.home.allamazing.viewmodel.AllAmazingViewModel
+import ir.zhiran2021.snamall.feature.home.allamazingmarket.adapter.AllAmazingMarketAdapter
+import ir.zhiran2021.snamall.feature.home.allamazingmarket.repo.AllAmazingMarketRepository
+import ir.zhiran2021.snamall.feature.home.allamazingmarket.repo.AllAmazingMarketRepositoryImpl
+import ir.zhiran2021.snamall.feature.home.allamazingmarket.source.RemoteAllAmazingMarketDataSource
+import ir.zhiran2021.snamall.feature.home.allamazingmarket.viewmodel.AllAmazingMarketViewModel
 import ir.zhiran2021.snamall.feature.home.detailproduct.adapter.*
 import ir.zhiran2021.snamall.feature.home.detailproduct.comment.adapter.ShowCommentAdapter
 import ir.zhiran2021.snamall.feature.home.detailproduct.comment.adapter.ShowRatingCommentAdapter
@@ -168,18 +183,24 @@ class App: Application() {
             factory<PopularProductRepository> { PopularProductRepositoryImpl(RemotePopularProductDataSource(get())) }
             factory<BannerType2Repository> { BannerType2RepositoryImpl(RemoteBannerType2DataSource(get())) }
             factory<BestSellRepository> { BestSellRepositoryImpl(RemoteBestSellDataSource(get())) }
+            factory<AmazingMarketRepository> { AmazingMarketRepositoryImpl(RemoteAmazingMarketDataSource(get())) }
 
-            viewModel { HomeViewModel(get(),get(),get(),get(),get(),get()) }
+            viewModel { HomeViewModel(get(),get(),get(),get(),get(),get(),get()) }
             factory { (banners: List<ResponseBanners>)-> BannersAdapter(banners,get())}
             factory { (categories: List<ResponseGeneralCategory>)-> GeneralCategoryAdapter(categories,get())}
             factory { (amazingProduct:List<ResponseAmazingProducts>)-> AmazingAdapter(amazingProduct,get())}
             factory { (populars:List<ResponsePopularProduct>)-> PopularAdapter(populars,get())}
             factory { (banners: List<ResponseBannerType2>)-> BannersType2Adapter(banners,get())}
             factory { (bestSell:List<ResponseBestSellProduct>)->BestSellAdapter(bestSell,get()) }
+            factory { (amazingMarket:List<ResponseAmazingMarket>)-> AmazingMarketAdapter(amazingMarket,get())}
 
             factory<AllAmazingRepository> { AllAmazingRepositoryImpl(RemoteAllAmazingDataSource(get())) }
             viewModel { (sort:Int)-> AllAmazingViewModel(sort,get()) }
             factory { (allAmazing:List<ResponseAllAmazing>)->AllAmazingAdapter(allAmazing,get()) }
+
+            factory<AllAmazingMarketRepository> { AllAmazingMarketRepositoryImpl(RemoteAllAmazingMarketDataSource(get())) }
+            viewModel { (sort:Int)->AllAmazingMarketViewModel(sort,get()) }
+            factory { (allAmazingMarket:List<ResponseAllAmazingMarket>)-> AllAmazingMarketAdapter(allAmazingMarket,get())}
             ////// Sub Category Level 1 /////////
             factory<SubCatLevel1Repository> { SubCatLevel1RepositoryImpl(RemoteSubCatLevel1DataSource(get())) }
             viewModel { (generalCatId:Int)->SubCatLevel1ViewModel(generalCatId,get()) }
@@ -232,6 +253,14 @@ class App: Application() {
             factory<SubCat2Repository> { SubCat2RepositoryImpl(RemoteSubCat2DataSource(get())) }
             viewModel { (subCatId:Int)->SubCat2ViewModel(subCatId,get()) }
             factory { (subCats:List<ResponseSubCat2>)-> SubCat2Adapter(subCats,get())}
+
+            factory<ProductSubCat1Repository> { ProductSubCat1RepositoryImpl(RemoteProductSubCat1DataSource(get())) }
+            viewModel { (subCat1:Int)-> ProductSubCat1ViewModel(subCat1,get()) }
+            factory { (subCats1:List<ResponseProductSubCat1>)-> ProductSubCat1Adapter(subCats1,get())}
+
+            factory<ProductGeneralCatRepository> { ProductGeneralCatRepositoryImpl(RemoteProductGeneralCatDataSource(get())) }
+            viewModel { (generalCat:Int)-> ProductGeneralCatViewModel(generalCat,get()) }
+            factory { (generalCatList:List<ResponseProductGeneralCat>)-> ProductGeneralCatAdapter(generalCatList,get()) }
 
             factory<SubCatRepository> { SubCatRepositoryImpl(RemoteSubCatDataSource(get())) }
             viewModel { (catId:Int)-> SubCatViewModel(catId,get())}

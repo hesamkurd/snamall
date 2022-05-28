@@ -25,6 +25,8 @@ import ir.zhiran2021.snamall.data.ResponseCountCart
 import ir.zhiran2021.snamall.databinding.ActivityDetailBinding
 import ir.zhiran2021.snamall.feature.cart.CartFragment
 import ir.zhiran2021.snamall.feature.category.brandproduct.BrandActivity
+import ir.zhiran2021.snamall.feature.category.generalcat.ProductGeneralActivity
+import ir.zhiran2021.snamall.feature.category.subcat1.SubCat1Activity
 import ir.zhiran2021.snamall.feature.category.subcat2.SubCat2Activity
 import ir.zhiran2021.snamall.feature.home.detailproduct.adapter.*
 import ir.zhiran2021.snamall.feature.home.detailproduct.comment.ShowCommentActivity
@@ -34,7 +36,6 @@ import ir.zhiran2021.snamall.feature.home.detailproduct.moredialog.chart.ChartPr
 import ir.zhiran2021.snamall.feature.home.detailproduct.moredialog.compare.CompareCategoryActivity
 import ir.zhiran2021.snamall.feature.home.detailproduct.property.DescriptionActivity
 import ir.zhiran2021.snamall.feature.home.detailproduct.property.TechnicalPropertyActivity
-import ir.zhiran2021.snamall.feature.home.detailproduct.subcat1.SubCat1Activity
 import ir.zhiran2021.snamall.feature.home.detailproduct.viewmodel.DetailProductViewModel
 import ir.zhiran2021.snamall.feature.home.subcatlevel1.SubCatLevel1Fragment
 import ir.zhiran2021.snamall.feature.profile.auoth.AuthViewModel
@@ -427,34 +428,18 @@ class DetailActivity : BaseActivity(),
     override fun onClickItem(typeCat: String) {
         when (typeCat) {
             namecat -> {
-                val mFragment: Fragment
-                mFragment = SubCatLevel1Fragment()
-                val bundle =Bundle()
-                bundle.putString("namecat", namecat)
-                bundle.putInt(PRODUCT_ID, idcat!!)
-                mFragment.arguments = bundle
-                val fragmentManager: FragmentManager = supportFragmentManager
-                fragmentManager.beginTransaction().replace(R.id.detail_framelayout, mFragment).commit()
-
-//                startActivity(Intent(this, GeneralCategoryActivity::class.java).apply {
-//                    putExtra("id", idcat)
-//                    putExtra("namecat", namecat)
-//                })
+               startActivity(Intent(this,ProductGeneralActivity::class.java).apply {
+                   putExtra(PRODUCT_ID,idcat)
+                   putExtra("namecat",namecat)
+               })
             }
             namesubcat1 -> {
-//                startActivity(Intent(this, SubCat1Activity::class.java).apply {
-//                    putExtra("id", idsubcat1)
-//                    putExtra("namesubcat1", namesubcat1)
-//                })
-
-
+                startActivity(Intent(this,SubCat1Activity::class.java).apply {
+                    putExtra(PRODUCT_ID,idsubcat1)
+                    putExtra("namesubcat1",namesubcat1)
+                })
             }
             namesubcat2 -> {
-//                startActivity(Intent(this, SubCat2Activity::class.java).apply {
-//                    putExtra("id", idsubcat2)
-//                    putExtra("namesubcat2", namesubcat2)
-//
-//                })
 
                 startActivity(Intent(this,SubCat2Activity::class.java).apply {
                     putExtra(PRODUCT_ID,idsubcat2)

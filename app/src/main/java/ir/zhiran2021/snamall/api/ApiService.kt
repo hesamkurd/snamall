@@ -38,6 +38,12 @@ interface ApiService {
     @GET("home/all_amazing_products.php")
     fun allAmazing(@Query("sort") sort: Int): Single<List<ResponseAllAmazing>>
 
+    @GET("home/all_amazing_market.php")
+    fun getAllAmazingMarket(@Query("sort")sort:Int):Single<List<ResponseAllAmazingMarket>>
+
+    @GET("home/amazing_market.php")
+    fun getAmazingMarket():Single<List<ResponseAmazingMarket>>
+
     ////////// Detail Product ////////
     @GET("product/products.php")
     fun getDetailProduct(@Query("id") product_id: Int): Single<ResponseDetailsProduct>
@@ -186,6 +192,13 @@ interface ApiService {
 
     @GET("category/product_sub_cat_2.php")
     fun getSubCat2(@Query("subcat2_id")subcat2_id:Int): Single<List<ResponseSubCat2>>
+
+    @GET("category/product_sub_cat_1.php")
+    fun getProductSubCat1(@Query("subcat1_id")subcat1_id:Int):Single<List<ResponseProductSubCat1>>
+
+
+    @GET("category/product_general_cat.php")
+    fun getProductGeneralCat(@Query("general_cat_id")general_cat_id:Int):Single<List<ResponseProductGeneralCat>>
 
     /////////// Profile ///////
     @GET("profile/show_bookmarks.php")

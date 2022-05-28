@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layoutDirection="rtl"
-    tools:context=".feature.category.subcat1.SubCat1Activity">
+    tools:context=".feature.category.generalcat.ProductGeneralActivity">
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -101,7 +101,7 @@
             android:background="@color/grey_200" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rc_subcat1"
+            android:id="@+id/rc_general_product"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/_4sdp" />

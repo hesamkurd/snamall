@@ -31,6 +31,7 @@ import ir.zhiran2021.snamall.data.ResponseGeneralCategory
 import ir.zhiran2021.snamall.databinding.FragmentHomeBinding
 import ir.zhiran2021.snamall.feature.home.adapter.*
 import ir.zhiran2021.snamall.feature.home.allamazing.AllAmazingActivity
+import ir.zhiran2021.snamall.feature.home.allamazingmarket.AllAmazingMarketActivity
 import ir.zhiran2021.snamall.feature.home.detailproduct.DetailActivity
 import ir.zhiran2021.snamall.feature.home.viewmodel.HomeViewModel
 import ir.zhiran2021.snamall.feature.search.SearchActivity
@@ -44,7 +45,9 @@ class HomeFragment : BaseFragment(),BannersType2Adapter.OnClickBannerType,
     AmazingAdapter.OnClickProduct,
     PopularAdapter.OnClickPopularItem,
     GeneralCategoryAdapter.OnClickGeneralCategory,
-    AmazingAdapter.OnClickLast, BestSellAdapter.OnClickBestSellItem{
+    AmazingAdapter.OnClickLast,
+    BestSellAdapter.OnClickBestSellItem,
+    AmazingMarketAdapter.OnClickAmazingProductMarket ,AmazingMarketAdapter.OnClickLastMarket{
 
     val homeViewModel: HomeViewModel by viewModel()
     var binding: FragmentHomeBinding?=null
@@ -125,6 +128,13 @@ class HomeFragment : BaseFragment(),BannersType2Adapter.OnClickBannerType,
                binding!!.rcAmazingProduct.adapter = amazingAdapter
                amazingAdapter.setOnClickProductItem(this)
                amazingAdapter.setOnClickItemLast(this)
+           }
+           homeViewModel.amazingMarketLiveData.observe(viewLifecycleOwner){
+               val amazingMarketAdapter: AmazingMarketAdapter by inject { parametersOf(it) }
+               binding!!.rcAmazingMarket.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+               binding!!.rcAmazingMarket.adapter = amazingMarketAdapter
+               amazingMarketAdapter.setOnClickProductAmazing(this)
+               amazingMarketAdapter.setOnClickItemLastMarket(this)
            }
            homeViewModel.popularProductLiveData.observe(viewLifecycleOwner){
                val popularAdapter: PopularAdapter by inject { parametersOf(it) }
@@ -242,6 +252,16 @@ class HomeFragment : BaseFragment(),BannersType2Adapter.OnClickBannerType,
         startActivity(Intent(context,DetailActivity::class.java).apply {
             putExtra("id",productId)
         })
+    }
+
+    override fun onClickMarketAmazing(productId: Int) {
+        startActivity(Intent(context,DetailActivity::class.java).apply {
+            putExtra("id",productId)
+        })
+    }
+
+    override fun onClickLastItemMarket() {
+        startActivity(Intent(context,AllAmazingMarketActivity::class.java))
     }
 
 

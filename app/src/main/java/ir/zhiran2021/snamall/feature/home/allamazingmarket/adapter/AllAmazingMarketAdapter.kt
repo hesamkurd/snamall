@@ -1,4 +1,4 @@
-package ir.zhiran2021.snamall.feature.category.brandproduct.adapter
+package ir.zhiran2021.snamall.feature.home.allamazingmarket.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,23 +7,23 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ir.zhiran2021.snamall.R
-import ir.zhiran2021.snamall.data.ResponseBrandProduct
+import ir.zhiran2021.snamall.data.ResponseAllAmazing
+import ir.zhiran2021.snamall.data.ResponseAllAmazingMarket
 import ir.zhiran2021.snamall.services.ImageLoadService
 import ir.zhiran2021.snamall.utils.FreePercent
 import ir.zhiran2021.snamall.utils.PriceConverter
 import ir.zhiran2021.snamall.view.MyImageView
 
-class BrandProductAdapter(val product: List<ResponseBrandProduct>, val imageLoadService: ImageLoadService):
-    RecyclerView.Adapter<BrandProductAdapter.BrandProductViewHolder>() {
+class AllAmazingMarketAdapter(val product: List<ResponseAllAmazingMarket>, val imageLoadService: ImageLoadService):RecyclerView.Adapter<AllAmazingMarketAdapter.AllAmazingViewHolder>() {
 
     lateinit var onClickCategory: OnClickCategory
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BrandProductViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AllAmazingViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_brand_product,parent,false)
-        return BrandProductViewHolder(view)
+        return AllAmazingViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: BrandProductViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: AllAmazingViewHolder, position: Int) {
         val itemCategories = product[position]
         imageLoadService.loadImage(holder.imgGeneralCategory, itemCategories.image)
         holder.txtNameProduct.text = itemCategories.name
@@ -34,8 +34,8 @@ class BrandProductAdapter(val product: List<ResponseBrandProduct>, val imageLoad
         holder.txtFree.visibility = if (itemCategories.offPercent.toString() != "0") View.VISIBLE else View.GONE
         holder.txtFreePrice.visibility = if (itemCategories.offPercent.toString() != "0") View.VISIBLE else View.GONE
         holder.txtFree.text = FreePercent.offPercent(itemCategories.offPercent.toString())
-        holder.txtFreePrice.text = PriceConverter.priceConvert(itemCategories.offPrice.toString())
-        holder.txtPrice.text = PriceConverter.priceConvert(itemCategories.price)
+        holder.txtFreePrice.text = PriceConverter.priceConvert(itemCategories.amazingPrice.toString())
+        holder.txtPrice.text = PriceConverter.priceConvert(itemCategories.price.toString())
 
         holder.itemView.setOnClickListener {
             onClickCategory.onClickCatItem(itemCategories.id)
@@ -43,14 +43,14 @@ class BrandProductAdapter(val product: List<ResponseBrandProduct>, val imageLoad
 
     }
 
-    fun setOnClickCat(onClickCategory: OnClickCategory){
+    fun setOnClickItemAmazing(onClickCategory: OnClickCategory){
         this.onClickCategory = onClickCategory
     }
 
 
     override fun getItemCount(): Int = product.size
 
-    class BrandProductViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+    class AllAmazingViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val imgGeneralCategory = itemView.findViewById<MyImageView>(R.id.img_brand_product)
         val txtNameProduct = itemView.findViewById<TextView>(R.id.txt_name_product)
         val txtFree = itemView.findViewById<TextView>(R.id.txt_free)
