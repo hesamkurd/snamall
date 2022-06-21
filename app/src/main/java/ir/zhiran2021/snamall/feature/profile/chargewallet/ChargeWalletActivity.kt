@@ -15,18 +15,26 @@ class ChargeWalletActivity : BaseActivity() {
         binding = ActivityChargeWalletBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.imgBack.setOnClickListener {
+            finish()
+        }
 
-
-            binding.btnWalletCharge.setOnClickListener {
-                if(binding.edtWalletCharge.length()>0){
-                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("http://snamall1.mamhesam.ir/v1/api/profile/wallet_chage.php?token="+TokenContainer.token+"&wallet_charge="+binding.edtWalletCharge.text.toString().trim()))
-                    startActivity(intent)
-                    finish()
-                }else{
-                    binding.edtWalletCharge.error = "لطفا مبلغ را وارد نمایید"
-                }
-
+        binding.btnWalletCharge.setOnClickListener {
+            if (binding.edtWalletCharge.length() > 0) {
+                val intent = Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse(
+                        "http://snamall1.mamhesam.ir/v1/api/profile/wallet_chage.php?token=" + TokenContainer.token + "&wallet_charge=" + binding.edtWalletCharge.text.toString()
+                            .trim()
+                    )
+                )
+                startActivity(intent)
+                finish()
+            } else {
+                binding.edtWalletCharge.error = "لطفا مبلغ را وارد نمایید"
             }
+
+        }
 
     }
 }

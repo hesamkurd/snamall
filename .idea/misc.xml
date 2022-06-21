@@ -85,16 +85,18 @@
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/activity_general_category.xml" value="0.16458333333333333" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/activity_info_user.xml" value="0.17864583333333334" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/activity_insert_comment.xml" value="0.25" />
-        <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/activity_login.xml" value="0.25" />
+        <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/activity_main.xml" value="0.17864583333333334" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/activity_next_level.xml" value="0.33" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/activity_order.xml" value="0.17864583333333334" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/activity_order_delivery.xml" value="0.18541666666666667" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/activity_order_delivery_detail.xml" value="0.18541666666666667" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/activity_order_detail.xml" value="0.25" />
+        <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/activity_privacy.xml" value="0.33" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/activity_product_compare.xml" value="0.16458333333333333" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/activity_product_general.xml" value="0.17135416666666667" />
-        <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/activity_register.xml" value="0.2" />
+        <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/activity_register.xml" value="0.37083333333333335" />
+        <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/activity_rules.xml" value="0.18541666666666667" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/activity_search.xml" value="0.18" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/activity_show_comment.xml" value="0.2" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/activity_splash.xml" value="0.17864583333333334" />
@@ -103,6 +105,7 @@
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/activity_sub_cat3.xml" value="0.2" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/activity_technical_property.xml" value="0.22" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/activity_verify.xml" value="0.22" />
+        <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/activity_verify_login.xml" value="0.18541666666666667" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/dialog_buy.xml" value="0.17864583333333334" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/dialog_more.xml" value="0.33" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/dialog_remove.xml" value="0.17864583333333334" />
@@ -146,10 +149,12 @@
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/item_part_two.xml" value="0.17864583333333334" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/item_paybale_price.xml" value="0.33" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/item_popular_product.xml" value="0.17864583333333334" />
+        <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/item_privacy.xml" value="0.25" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/item_properties.xml" value="0.33" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/item_property_child.xml" value="0.33" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/item_property_parent.xml" value="0.22" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/item_rating.xml" value="0.33" />
+        <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/item_rules.xml" value="0.18541666666666667" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/item_show_comment.xml" value="0.33" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/item_show_score.xml" value="0.17864583333333334" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/item_similar.xml" value="0.17864583333333334" />
@@ -167,6 +172,7 @@
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/progress_view.xml" value="0.17864583333333334" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/layout/toolbar.xml" value="0.33" />
         <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/menu/bottom_nav.xml" value="0.17864583333333334" />
+        <entry key="..\:/Users/FUJITSU/AndroidStudioProjects/snamall/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1935" />
       </map>
     </option>
   </component>

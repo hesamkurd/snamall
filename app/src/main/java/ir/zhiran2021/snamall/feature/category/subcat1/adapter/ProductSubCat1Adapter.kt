@@ -16,7 +16,7 @@ import ir.zhiran2021.snamall.view.MyImageView
 
 class ProductSubCat1Adapter(val products:List<ResponseProductSubCat1>,val imageLoadService: ImageLoadService):RecyclerView.Adapter<ProductSubCat1Adapter.ProductSubCat1ViewHolder>() {
 
-
+    lateinit var onClickProductSubCat1: OnClickProductSubCat1
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductSubCat1ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_subcat1_product,parent,false)
@@ -36,6 +36,14 @@ class ProductSubCat1Adapter(val products:List<ResponseProductSubCat1>,val imageL
         holder.txtPrice.text = PriceConverter.priceConvert(productItem.price)
         holder.txtFree.text = FreePercent.offPercent(productItem.offPercent)
         holder.txtFreePrice.text = PriceConverter.priceConvert(productItem.offPrice.toString())
+
+        holder.itemView.setOnClickListener {
+            onClickProductSubCat1.onClickSubCat1(productItem.id)
+        }
+    }
+
+    fun setOnClickSubCat1Product(onClickProductSubCat1: OnClickProductSubCat1){
+        this.onClickProductSubCat1 = onClickProductSubCat1
     }
 
     override fun getItemCount(): Int = products.size
@@ -47,5 +55,9 @@ class ProductSubCat1Adapter(val products:List<ResponseProductSubCat1>,val imageL
         val txtFreePrice = itemView.findViewById<TextView>(R.id.txt_free_price_subcat1)
         val txtPrice = itemView.findViewById<TextView>(R.id.txt_price_subcat1)
         val lnrFree = itemView.findViewById<LinearLayout>(R.id.lnr_free_subcat1)
+    }
+
+    interface OnClickProductSubCat1{
+        fun onClickSubCat1(productId:Int)
     }
 }

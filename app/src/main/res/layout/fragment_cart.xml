@@ -2,335 +2,384 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinator_cart"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/coordinator_cart"
     android:layoutDirection="rtl"
     tools:context=".feature.cart.CartFragment">
 
+    <FrameLayout
 
-    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:visibility="visible">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="54dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:text="سبد خرید"
-                android:textColor="@color/grey_900"
-                android:textSize="16sp" />
-        </RelativeLayout>
-
-        <androidx.core.widget.NestedScrollView
-            android:id="@+id/nested_basket"
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/coordinator_cart_"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="8dp"
-            android:background="@color/grey_100"
-            android:fillViewport="true"
-            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+            android:layoutDirection="rtl"
+            android:visibility="visible">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <LinearLayout
-
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layoutDirection="rtl"
-                    android:orientation="horizontal"
-                    android:padding="12dp"
-                    android:weightSum="5">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="64dp"
-                            android:layout_height="64dp"
-                            android:background="@drawable/shape_image_basket"
-                            android:padding="14dp"
-                            app:srcCompat="@drawable/ic_bag_deselected" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:text="سبد خرید"
-                            android:textColor="@color/grey_900"
-                            android:textSize="@dimen/_7sdp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginBottom="20dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="horizontal"
-                        android:weightSum="2">
-
-                        <View
-                            android:layout_width="wrap_content"
-                            android:layout_height="1dp"
-
-                            android:layout_marginLeft="4dp"
-                            android:layout_marginRight="4dp"
-                            android:layout_weight="1"
-                            android:background="@color/grey_500" />
-
-                        <View
-                            android:layout_width="wrap_content"
-                            android:layout_height="1dp"
-                            android:layout_marginLeft="4dp"
-                            android:layout_marginRight="4dp"
-                            android:layout_weight="1"
-                            android:background="@color/grey_500" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="64dp"
-                            android:layout_height="64dp"
-                            android:background="@drawable/shape_image_basket_unselected"
-                            android:padding="14dp"
-                            app:srcCompat="@drawable/ic_delivery_man"
-                            app:tint="@color/grey_500" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:text="اطلاعات ارسال"
-                            android:textColor="@color/grey_500"
-                            android:textSize="@dimen/_7sdp"
-                            app:tint="@color/grey_500" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginBottom="20dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="horizontal"
-                        android:weightSum="2">
-
-                        <View
-                            android:layout_width="wrap_content"
-                            android:layout_height="1dp"
-
-                            android:layout_marginLeft="4dp"
-                            android:layout_marginRight="4dp"
-                            android:layout_weight="1"
-                            android:background="@color/grey_500" />
-
-                        <View
-                            android:layout_width="wrap_content"
-                            android:layout_height="1dp"
-                            android:layout_marginLeft="4dp"
-                            android:layout_marginRight="4dp"
-                            android:layout_weight="1"
-                            android:background="@color/grey_500" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="64dp"
-                            android:layout_height="64dp"
-                            android:background="@drawable/shape_image_basket_unselected"
-                            android:padding="14dp"
-                            app:srcCompat="@drawable/ic_wall_clock"
-                            app:tint="@color/grey_500" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:text="اطلاعات پرداخت"
-                            android:textColor="@color/grey_500"
-                            android:textSize="@dimen/_7sdp"
-                            app:tint="@color/grey_500" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rc_cart"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_above="@id/lnr_container" />
-
-                <LinearLayout
-                    android:id="@+id/lnr_container"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:orientation="vertical">
+                    android:layout_height="54dp">
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@color/grey_300"
-                        android:gravity="center"
-                        android:lineSpacingExtra="4dp"
-                        android:padding="@dimen/_8sdp"
-                        android:text="افزودن کالا به سبد خرید به معنی رزرو آن نیست با توجه به محدودیت موجودی سبد خود را ثبت و خرید را تکمیل کنید"
-                        android:textColor="#FF9100"
-                        android:textSize="@dimen/_8sdp" />
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:text="سبد خرید"
+                        android:textColor="@color/grey_900"
+                        android:textSize="16sp" />
+                </RelativeLayout>
+
+                <androidx.core.widget.NestedScrollView
+                    android:id="@+id/nested_basket"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/grey_100"
+                    android:fillViewport="true"
+                    app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
                     <LinearLayout
-
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        android:padding="@dimen/_8sdp"
-                        android:weightSum="4">
+                        android:orientation="vertical">
 
                         <LinearLayout
-                            android:layout_width="0dp"
+
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="vertical"
-                            android:padding="@dimen/_2sdp">
+                            android:layoutDirection="rtl"
+                            android:orientation="horizontal"
+                            android:padding="12dp"
+                            android:weightSum="5">
 
-                            <ImageView
-                                android:layout_width="@dimen/_30sdp"
-                                android:layout_height="@dimen/_30sdp"
-                                android:layout_gravity="center"
-                                app:srcCompat="@drawable/ic_cash" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
+                            <LinearLayout
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp"
+                                android:layout_weight="1"
                                 android:gravity="center"
-                                android:text="ضمانت بازگشت وجه"
-                                android:textColor="@color/grey_900"
-                                android:textSize="@dimen/_6sdp" />
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="64dp"
+                                    android:layout_height="64dp"
+                                    android:background="@drawable/shape_image_basket"
+                                    android:padding="14dp"
+                                    app:srcCompat="@drawable/ic_bag_deselected" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:text="سبد خرید"
+                                    android:textColor="@color/grey_900"
+                                    android:textSize="@dimen/_7sdp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginBottom="20dp"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                android:weightSum="2">
+
+                                <View
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="1dp"
+
+                                    android:layout_marginLeft="4dp"
+                                    android:layout_marginRight="4dp"
+                                    android:layout_weight="1"
+                                    android:background="@color/grey_500" />
+
+                                <View
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="1dp"
+                                    android:layout_marginLeft="4dp"
+                                    android:layout_marginRight="4dp"
+                                    android:layout_weight="1"
+                                    android:background="@color/grey_500" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="64dp"
+                                    android:layout_height="64dp"
+                                    android:background="@drawable/shape_image_basket_unselected"
+                                    android:padding="14dp"
+                                    app:srcCompat="@drawable/ic_delivery_man"
+                                    app:tint="@color/grey_500" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:text="اطلاعات ارسال"
+                                    android:textColor="@color/grey_500"
+                                    android:textSize="@dimen/_7sdp"
+                                    app:tint="@color/grey_500" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginBottom="20dp"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                android:weightSum="2">
+
+                                <View
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="1dp"
+
+                                    android:layout_marginLeft="4dp"
+                                    android:layout_marginRight="4dp"
+                                    android:layout_weight="1"
+                                    android:background="@color/grey_500" />
+
+                                <View
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="1dp"
+                                    android:layout_marginLeft="4dp"
+                                    android:layout_marginRight="4dp"
+                                    android:layout_weight="1"
+                                    android:background="@color/grey_500" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="64dp"
+                                    android:layout_height="64dp"
+                                    android:background="@drawable/shape_image_basket_unselected"
+                                    android:padding="14dp"
+                                    app:srcCompat="@drawable/ic_wall_clock"
+                                    app:tint="@color/grey_500" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:text="اطلاعات پرداخت"
+                                    android:textColor="@color/grey_500"
+                                    android:textSize="@dimen/_7sdp"
+                                    app:tint="@color/grey_500" />
+                            </LinearLayout>
                         </LinearLayout>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rc_cart"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_above="@id/lnr_container" />
 
                         <LinearLayout
-                            android:layout_width="0dp"
-
+                            android:id="@+id/lnr_container"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="vertical"
-                            android:padding="@dimen/_2sdp">
-
-                            <ImageView
-                                android:layout_width="@dimen/_30sdp"
-                                android:layout_height="@dimen/_30sdp"
-                                android:layout_gravity="center"
-                                app:srcCompat="@drawable/ic_loan" />
+                            android:layout_alignParentBottom="true"
+                            android:orientation="vertical">
 
                             <TextView
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp"
+                                android:background="@color/grey_300"
                                 android:gravity="center"
-                                android:text="خدمات پس از فروش"
-                                android:textColor="@color/grey_900"
-                                android:textSize="@dimen/_6sdp" />
+                                android:lineSpacingExtra="4dp"
+                                android:padding="@dimen/_8sdp"
+                                android:text="افزودن کالا به سبد خرید به معنی رزرو آن نیست با توجه به محدودیت موجودی سبد خود را ثبت و خرید را تکمیل کنید"
+                                android:textColor="#FF9100"
+                                android:textSize="@dimen/_8sdp" />
+
+                            <LinearLayout
+
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal"
+                                android:padding="@dimen/_8sdp"
+                                android:weightSum="4">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:orientation="vertical"
+                                    android:padding="@dimen/_2sdp">
+
+                                    <ImageView
+                                        android:layout_width="@dimen/_30sdp"
+                                        android:layout_height="@dimen/_30sdp"
+                                        android:layout_gravity="center"
+                                        app:srcCompat="@drawable/ic_cash" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="4dp"
+                                        android:gravity="center"
+                                        android:text="ضمانت بازگشت وجه"
+                                        android:textColor="@color/grey_900"
+                                        android:textSize="@dimen/_6sdp" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:orientation="vertical"
+                                    android:padding="@dimen/_2sdp">
+
+                                    <ImageView
+                                        android:layout_width="@dimen/_30sdp"
+                                        android:layout_height="@dimen/_30sdp"
+                                        android:layout_gravity="center"
+                                        app:srcCompat="@drawable/ic_loan" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="4dp"
+                                        android:gravity="center"
+                                        android:text="خدمات پس از فروش"
+                                        android:textColor="@color/grey_900"
+                                        android:textSize="@dimen/_6sdp" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:orientation="vertical"
+                                    android:padding="@dimen/_2sdp">
+
+                                    <ImageView
+                                        android:layout_width="@dimen/_30sdp"
+                                        android:layout_height="@dimen/_30sdp"
+                                        android:layout_gravity="center"
+                                        app:srcCompat="@drawable/ic_car_loan" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="4dp"
+                                        android:gravity="center"
+                                        android:text="تحویل سریع و آسان"
+                                        android:textColor="@color/grey_900"
+                                        android:textSize="@dimen/_6sdp" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:orientation="vertical"
+                                    android:padding="@dimen/_2sdp">
+
+                                    <ImageView
+                                        android:layout_width="@dimen/_30sdp"
+                                        android:layout_height="@dimen/_30sdp"
+                                        android:layout_gravity="center"
+                                        app:srcCompat="@drawable/ic_protection" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="4dp"
+                                        android:gravity="center"
+                                        android:text="ضمانت اصالت کالا"
+                                        android:textColor="@color/grey_900"
+                                        android:textSize="@dimen/_6sdp" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/grey_300" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btn_next_cart"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="16dp"
+
+                                android:text="ادامه فرایند خرید" />
                         </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="0dp"
-
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="vertical"
-                            android:padding="@dimen/_2sdp">
-
-                            <ImageView
-                                android:layout_width="@dimen/_30sdp"
-                                android:layout_height="@dimen/_30sdp"
-                                android:layout_gravity="center"
-                                app:srcCompat="@drawable/ic_car_loan" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp"
-                                android:gravity="center"
-                                android:text="تحویل سریع و آسان"
-                                android:textColor="@color/grey_900"
-                                android:textSize="@dimen/_6sdp" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="vertical"
-                            android:padding="@dimen/_2sdp">
-
-                            <ImageView
-                                android:layout_width="@dimen/_30sdp"
-                                android:layout_height="@dimen/_30sdp"
-                                android:layout_gravity="center"
-                                app:srcCompat="@drawable/ic_protection" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp"
-                                android:gravity="center"
-                                android:text="ضمانت اصالت کالا"
-                                android:textColor="@color/grey_900"
-                                android:textSize="@dimen/_6sdp" />
-                        </LinearLayout>
+                        <!--            <include layout="@layout/empty_state" />-->
                     </LinearLayout>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/grey_300" />
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btn_next_cart"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="16dp"
-
-                        android:text="ادامه فرایند خرید" />
-                </LinearLayout>
-
-                <!--            <include layout="@layout/empty_state" />-->
+                </androidx.core.widget.NestedScrollView>
             </LinearLayout>
-        </androidx.core.widget.NestedScrollView>
-    </LinearLayout>
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+        <LinearLayout
+
+            android:id="@+id/lnr_check_net_cart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_100sdp"
+                app:srcCompat="@drawable/ic_baseline_wifi_off_24" />
+
+            <TextView
+                android:id="@+id/txt_check_internet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:text="اتصال خود را چک کنید"
+                android:textColor="@color/grey_900"
+                android:textSize="24sp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_try_net"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_12sdp"
+                android:text="اتصال دوباره" />
+
+        </LinearLayout>
+
+    </FrameLayout>
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -77,6 +77,12 @@ interface ApiService {
         @Field("name_family") name: String
     ): Single<ResponseRegister>
 
+    @GET("auoth/privacy.php")
+    fun getPrivacy():Single<List<ResponsePrivacy>>
+
+    @GET("auoth/rules.php")
+    fun getRules():Single<List<ResponseRules>>
+
     @FormUrlEncoded
     @POST("auoth/login.php")
     fun login(@Field("mobile_phone") phone: String): Single<ResponseLogin>

@@ -123,7 +123,7 @@ class NextLevelActivity : BaseActivity(),BuyDialog.OnDialogBuy,CheckOutAdapter.O
                 }
             }
             DIRECT->{
-                val url = "http://snamall1.mamhesam.ir/v1/api/cart/checkout.php?reciver_id="+reciveId+"&shipping_price="+shippingPrice.toString()+"&payable_price=1000"+"&HTTP_AUTHORIZATION="+TokenContainer.token
+                val url = "http://snamall1.mamhesam.ir/v1/api/cart/checkout.php?reciver_id="+reciveId+"&shipping_price="+shippingPrice.toString()+"&payable_price="+payable.toString()+"&HTTP_AUTHORIZATION="+TokenContainer.token
 
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
                 startActivity(intent)

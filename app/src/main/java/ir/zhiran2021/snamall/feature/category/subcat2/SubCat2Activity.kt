@@ -27,6 +27,9 @@ class SubCat2Activity : BaseActivity(), SubCat2Adapter.OnClickSubCatProduct {
         setContentView(binding.root)
         val title = intent.getStringExtra("namesubcat2")
         binding.txtTitle.text = title
+        binding.imgBack.setOnClickListener {
+            finish()
+        }
 
         subCat2ViewModel.subCat2LiveData.observe(this){
             val subCat2Adapter: SubCat2Adapter by inject { parametersOf(it) }

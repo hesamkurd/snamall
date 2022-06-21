@@ -112,8 +112,18 @@ import ir.zhiran2021.snamall.feature.profile.address.repo.AddressRepositoryImpl
 import ir.zhiran2021.snamall.feature.profile.address.source.RemoteAddressDataSource
 import ir.zhiran2021.snamall.feature.profile.address.viewmodel.AddressViewModel
 import ir.zhiran2021.snamall.feature.profile.auoth.AuthViewModel
+import ir.zhiran2021.snamall.feature.profile.auoth.privacy.adapter.PrivacyAdapter
+import ir.zhiran2021.snamall.feature.profile.auoth.privacy.repo.PrivacyRepository
+import ir.zhiran2021.snamall.feature.profile.auoth.privacy.repo.PrivacyRepositoryImpl
+import ir.zhiran2021.snamall.feature.profile.auoth.privacy.source.RemotePrivacyDataSource
+import ir.zhiran2021.snamall.feature.profile.auoth.privacy.viewmodel.PrivacyViewModel
 import ir.zhiran2021.snamall.feature.profile.auoth.repo.AuthRepository
 import ir.zhiran2021.snamall.feature.profile.auoth.repo.AuthRepositoryImpl
+import ir.zhiran2021.snamall.feature.profile.auoth.rules.adapter.RulesAdapter
+import ir.zhiran2021.snamall.feature.profile.auoth.rules.repo.RulesRepository
+import ir.zhiran2021.snamall.feature.profile.auoth.rules.repo.RulesRepositoryImpl
+import ir.zhiran2021.snamall.feature.profile.auoth.rules.source.RemoteRulesDataSource
+import ir.zhiran2021.snamall.feature.profile.auoth.rules.viewmodel.RulesViewModel
 import ir.zhiran2021.snamall.feature.profile.auoth.source.AuthLocalDataSource
 import ir.zhiran2021.snamall.feature.profile.auoth.source.RemoteAuthDataSource
 import ir.zhiran2021.snamall.feature.profile.favorite.adapter.FavoriteAdapter
@@ -235,6 +245,13 @@ class App: Application() {
             factory<AuthRepository> {AuthRepositoryImpl(RemoteAuthDataSource(get()), AuthLocalDataSource(get()))  }
             viewModel { AuthViewModel(get()) }
 
+            factory<PrivacyRepository> { PrivacyRepositoryImpl(RemotePrivacyDataSource(get())) }
+            viewModel { PrivacyViewModel(get()) }
+            factory { (lists:List<ResponsePrivacy>)-> PrivacyAdapter(lists)}
+
+            factory<RulesRepository> { RulesRepositoryImpl(RemoteRulesDataSource(get())) }
+            viewModel { RulesViewModel(get()) }
+            factory { (lists:List<ResponseRules>)-> RulesAdapter(lists)}
             //// Comment ////
             factory<CommentRepository> { CommentRepositoryImpl(RemoteCommentDataSource(get())) }
             viewModel { (productId:Int)-> CommentViewModel(productId,get()) }

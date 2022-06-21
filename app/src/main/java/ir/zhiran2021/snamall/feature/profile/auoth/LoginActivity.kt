@@ -1,12 +1,15 @@
 package ir.zhiran2021.snamall.feature.profile.auoth
 
 import android.content.Intent
+import android.graphics.Paint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
 import ir.zhiran2021.snamall.data.ResponseLogin
 import ir.zhiran2021.snamall.databinding.ActivityLoginBinding
+import ir.zhiran2021.snamall.feature.profile.auoth.privacy.PrivacyActivity
+import ir.zhiran2021.snamall.feature.profile.auoth.rules.RulesActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginActivity : AppCompatActivity() {
@@ -19,28 +22,38 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding!!.root)
 
+        binding!!.textPrivacy.setOnClickListener {
+            startActivity(Intent(this,PrivacyActivity::class.java))
+        }
+        binding!!.textRules.setOnClickListener {
+            startActivity(Intent(this,RulesActivity::class.java))
+        }
+        binding!!.textPrivacy.paintFlags = Paint.UNDERLINE_TEXT_FLAG
+        binding!!.textRules.paintFlags = Paint.UNDERLINE_TEXT_FLAG
         binding!!.btnLogin.setOnClickListener {
-            val phone = binding!!.edtLogin.text.toString().trim()
-            authViewModel.login(phone)
+
+            when{
+                binding!!.edtLogin.length() == 0 ->{
+                    binding!!.edtLogin.error = "شماره تلفن را وارد نمایید"
+                }
+
+                else->{
+                    val phone = binding!!.edtLogin.text.toString()
+                    authViewModel.checkUser(phone)
+                }
+            }
 
         }
-        authViewModel.loginLiveData.observe(this){
-            if (it.message == "1"){
-                Snackbar.make(binding!!.coordinator,it.message,Snackbar.LENGTH_LONG).show()
-                Toast.makeText(this, "با موفقیت وارد شدید", Toast.LENGTH_LONG).show()
+
+        authViewModel.checkUserLiveData.observe(this){
+            if (it.message == "2"){
+                startActivity(Intent(this,VerifyLoginActivity::class.java).apply {
+                    putExtra("phone", binding!!.edtLogin.text.toString())
+                })
                 finish()
             }else{
                 Snackbar.make(binding!!.coordinator,it.message,Snackbar.LENGTH_LONG).show()
-                startActivity(Intent(this,RegisterActivity::class.java))
-                Toast.makeText(this, "لطفا ابتدا وارد شوید", Toast.LENGTH_LONG).show()
-
-                finish()
-
-
-
             }
-
-
         }
 
         binding!!.txtIntentRegister.setOnClickListener {

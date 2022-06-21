@@ -30,6 +30,9 @@ class BrandActivity : BaseActivity(),BrandProductAdapter.OnClickCategory {
         binding = ActivityBrandBinding.inflate(layoutInflater)
         setContentView(binding!!.root)
 
+        binding!!.imgBack.setOnClickListener {
+            finish()
+        }
         brandBannerViewmodel.brandBannerLiveData.observe(this){
             imageLoadService.loadImage(binding!!.brandBanner,it.banner)
             imageLoadService.loadImage(binding!!.iconBrand,it.icon)

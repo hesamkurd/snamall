@@ -17,6 +17,7 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import ir.zhiran2021.snamall.R
 import ir.zhiran2021.snamall.base.BaseFragment
+import ir.zhiran2021.snamall.data.ConnectionLiveData
 import ir.zhiran2021.snamall.data.ProductItemItem
 import ir.zhiran2021.snamall.databinding.FragmentCartBinding
 import ir.zhiran2021.snamall.feature.cart.adapter.CartListAdapter
@@ -41,6 +42,8 @@ class CartFragment : BaseFragment(), CartListAdapter.OnClickRemoveItem,
     val compositeDisposable = CompositeDisposable()
     lateinit var removeItemDialog: RemoveItemDialog
     lateinit var cartItemRemove: ProductItemItem
+    private lateinit var cld:ConnectionLiveData
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,6 +54,7 @@ class CartFragment : BaseFragment(), CartListAdapter.OnClickRemoveItem,
 
         binding = FragmentCartBinding.inflate(inflater, container, false)
 
+        checkNetwork()
         binding.btnNextCart.setOnClickListener {
             startActivity(Intent(context, NextLevelActivity::class.java))
         }
@@ -117,6 +121,23 @@ class CartFragment : BaseFragment(), CartListAdapter.OnClickRemoveItem,
 
 
         return binding.root
+    }
+
+    fun checkNetwork() {
+        cld = ConnectionLiveData(requireActivity().application)
+        cld.observe(viewLifecycleOwner) { isConnected ->
+            if (isConnected) {
+                binding!!.coordinatorCart.visibility = View.VISIBLE
+                binding!!.lnrCheckNetCart.visibility = View.GONE
+            } else {
+                binding!!.coordinatorCart.visibility = View.GONE
+                binding!!.lnrCheckNetCart.visibility = View.VISIBLE
+                binding!!.btnTryNet.setOnClickListener {
+                    checkNetwork()
+                }
+
+            }
+        }
     }
 
     override fun onStart() {

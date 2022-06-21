@@ -23,12 +23,12 @@
                 android:background="@color/white">
 
                 <ImageView
-                    android:id="@+id/img_back"
+                    android:id="@+id/img_back_"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/_4sdp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
+                    android:padding="@dimen/_4sdp"
                     app:srcCompat="@drawable/ic_baseline_arrow_forward_24" />
 
 
@@ -38,7 +38,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/grey_600"
-                    android:layout_toLeftOf="@id/img_back"
+                    android:layout_toLeftOf="@id/img_back_"
                     android:layout_marginRight="@dimen/_16sdp"
                     android:layout_centerVertical="true"/>
 

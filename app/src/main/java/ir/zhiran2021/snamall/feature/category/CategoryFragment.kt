@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ir.zhiran2021.snamall.R
 import ir.zhiran2021.snamall.base.BaseFragment
+import ir.zhiran2021.snamall.data.ConnectionLiveData
 import ir.zhiran2021.snamall.data.ResponseCategories
 import ir.zhiran2021.snamall.data.SubcatItem
 import ir.zhiran2021.snamall.databinding.FragmentCategoryBinding
@@ -33,6 +34,8 @@ class CategoryFragment : BaseFragment() {
     lateinit var categoryChildAdapter: CategoryChildAdapter
     var subCat: List<SubcatItem>? = null
     val imageLoadService: ImageLoadService? = null
+    private lateinit var cld:ConnectionLiveData
+
     //lateinit var categoryChildAdapter:CategoryChildAdapter
 
     override fun onCreateView(
@@ -45,6 +48,7 @@ class CategoryFragment : BaseFragment() {
         binding ?: run{
             binding = FragmentCategoryBinding.inflate(inflater,container,false)
 
+            checkNetwork()
             categoriesViewModel.categoriesLiveData.observe(viewLifecycleOwner){
 
                val categoryAdapter: CategoryAdapter by inject { parametersOf(it)}
@@ -66,6 +70,21 @@ class CategoryFragment : BaseFragment() {
         return binding!!.root
     }
 
+    fun checkNetwork() {
+        cld = ConnectionLiveData(requireActivity().application)
+        cld.observe(viewLifecycleOwner) { isConnected ->
+            if (isConnected) {
+                binding!!.coordinatorCategory.visibility = View.VISIBLE
+                binding!!.lnrCheckNetCategory.visibility = View.GONE
+            } else {
+                binding!!.coordinatorCategory.visibility = View.GONE
+                binding!!.lnrCheckNetCategory.visibility = View.VISIBLE
+                binding!!.btnTryNet.setOnClickListener {
+                    checkNetwork()
+                }
 
+            }
+        }
+    }
 
 }

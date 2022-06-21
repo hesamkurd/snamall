@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import ir.zhiran2021.snamall.base.BaseFragment
 import ir.zhiran2021.snamall.databinding.FragmentProfileBinding
 import ir.zhiran2021.snamall.feature.profile.address.AddressActivity
 import ir.zhiran2021.snamall.feature.profile.auoth.AuthViewModel
@@ -15,10 +16,11 @@ import ir.zhiran2021.snamall.feature.profile.favorite.FavoriteActivity
 import ir.zhiran2021.snamall.feature.profile.infouser.InfoUserActivity
 import ir.zhiran2021.snamall.feature.profile.order.OrderActivity
 import ir.zhiran2021.snamall.feature.profile.orderdelivery.OrderDeliveryActivity
+import ir.zhiran2021.snamall.utils.UtilSocial
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class ProfileFragment : Fragment() {
+class ProfileFragment : BaseFragment() {
      var binding: FragmentProfileBinding?=null
 
     val authViewModel: AuthViewModel by viewModel()
@@ -57,6 +59,12 @@ class ProfileFragment : Fragment() {
 
             binding!!.rltvWallet.setOnClickListener {
                 startActivity(Intent(context,ChargeWalletActivity::class.java))
+            }
+
+            binding!!.imgInstagram.setOnClickListener {
+                context?.let {
+                    UtilSocial.instagram(it,"sna.mall")
+                }
             }
 
             authViewModel.checkLoginLiveData.observe(viewLifecycleOwner){

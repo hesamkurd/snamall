@@ -1,68 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".feature.category.CategoryFragment">
 
-    <LinearLayout
+    <FrameLayout
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:visibility="visible">
 
-        <com.google.android.material.appbar.AppBarLayout
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/coordinator_category"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_44sdp"
-            android:background="@color/white">
-            <RelativeLayout
-                android:id="@+id/rltv_search"
+            android:layout_height="match_parent"
+            android:layoutDirection="rtl"
+            android:visibility="visible">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="@dimen/_6sdp"
-                android:background="@drawable/bg_search_bar"
-                android:layout_margin="@dimen/_4sdp">
+                android:orientation="vertical">
 
-                <ImageView
-                    android:id="@+id/img_search"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    app:srcCompat="@drawable/ic_search_alt" />
+                <com.google.android.material.appbar.AppBarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_44sdp"
+                    android:background="@color/white">
 
-                <TextView
-                    android:id="@+id/txt_search"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/grey_600"
-                    android:text="@string/search_in"
-                    android:layout_toLeftOf="@id/img_search"
-                    android:layout_marginRight="@dimen/_18sdp"
-                    android:layout_centerVertical="true"/>
+                    <RelativeLayout
+                        android:id="@+id/rltv_search"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/_4sdp"
+                        android:background="@drawable/bg_search_bar"
+                        android:padding="@dimen/_6sdp">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="@dimen/_48sdp"
-                    app:srcCompat="@drawable/logo" />
-            </RelativeLayout>
+                        <ImageView
+                            android:id="@+id/img_search"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            app:srcCompat="@drawable/ic_search_alt" />
+
+                        <TextView
+                            android:id="@+id/txt_search"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="@dimen/_18sdp"
+                            android:layout_toLeftOf="@id/img_search"
+                            android:text="@string/search_in"
+                            android:textColor="@color/grey_600" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="@dimen/_48sdp"
+                            app:srcCompat="@drawable/logo" />
+                    </RelativeLayout>
 
 
-        </com.google.android.material.appbar.AppBarLayout>
+                </com.google.android.material.appbar.AppBarLayout>
 
-        <androidx.core.widget.NestedScrollView
+                <androidx.core.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rc_category"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+
+                </androidx.core.widget.NestedScrollView>
+
+            </LinearLayout>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+        <LinearLayout
+
+            android:id="@+id/lnr_check_net_category"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-           <androidx.recyclerview.widget.RecyclerView
-               android:id="@+id/rc_category"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"/>
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
 
+            <ImageView
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_100sdp"
+                app:srcCompat="@drawable/ic_baseline_wifi_off_24" />
 
-        </androidx.core.widget.NestedScrollView>
+            <TextView
+                android:id="@+id/txt_check_internet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:text="اتصال خود را چک کنید"
+                android:textColor="@color/grey_900"
+                android:textSize="24sp" />
 
-    </LinearLayout>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_try_net"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_12sdp"
+                android:text="اتصال دوباره" />
 
+        </LinearLayout>
+
+    </FrameLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

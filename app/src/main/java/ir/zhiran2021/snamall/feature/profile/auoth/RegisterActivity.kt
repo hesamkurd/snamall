@@ -1,10 +1,13 @@
 package ir.zhiran2021.snamall.feature.profile.auoth
 
 import android.content.Intent
+import android.graphics.Paint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import ir.zhiran2021.snamall.databinding.ActivityRegisterBinding
+import ir.zhiran2021.snamall.feature.profile.auoth.privacy.PrivacyActivity
+import ir.zhiran2021.snamall.feature.profile.auoth.rules.RulesActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RegisterActivity : AppCompatActivity() {
@@ -21,6 +24,14 @@ class RegisterActivity : AppCompatActivity() {
             finish()
         }
 
+        binding.textPrivacy.setOnClickListener {
+            startActivity(Intent(this,PrivacyActivity::class.java))
+        }
+        binding.textRules.setOnClickListener {
+            startActivity(Intent(this,RulesActivity::class.java))
+        }
+        binding.textPrivacy.paintFlags = Paint.UNDERLINE_TEXT_FLAG
+        binding.textRules.paintFlags = Paint.UNDERLINE_TEXT_FLAG
         binding.btnCheckUser.setOnClickListener {
             when{
                 binding.edtPhoneCheckUser.length() == 0 ->{

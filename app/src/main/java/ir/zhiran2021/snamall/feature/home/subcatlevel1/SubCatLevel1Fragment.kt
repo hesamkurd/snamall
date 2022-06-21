@@ -39,6 +39,10 @@ class SubCatLevel1Fragment : BaseFragment(), SubCatLevel1Adapter.OnClickSubCatLe
             val title = arguments?.getString("namecat","")
             binding!!.txtTitle.text = title.toString()
 
+            binding!!.imgBack.setOnClickListener {
+                findNavController().navigate(R.id.action_subCatLevel1Fragment_to_homeFragment)
+            }
+
             subCatLevel1ViewModel.subCatLevelLiveData.observe(viewLifecycleOwner){
                 val subCatLevel1Adapter: SubCatLevel1Adapter by inject { parametersOf(it) }
                 binding!!.rcSubCatLevel.layoutManager = GridLayoutManager(context,3)

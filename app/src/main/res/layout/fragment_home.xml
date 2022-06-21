@@ -11,9 +11,6 @@
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
-        android:orientation="vertical"
-        android:paddingTop="@dimen/_8sdp"
         android:visibility="visible">
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -21,7 +18,6 @@
             android:layout_height="match_parent"
             android:layoutDirection="rtl"
             android:id="@+id/home_layout"
-            tools:context=".feature.home.HomeFragment"
             android:visibility="visible">
 
             <LinearLayout

@@ -58,6 +58,8 @@ class VerifyActivity : AppCompatActivity() , SMSReceiver.OTPReceiveListener{
             verifyCode = it.code
         }
 
+
+
        // startSMSListener()
 
         setListener()
@@ -164,38 +166,38 @@ class VerifyActivity : AppCompatActivity() , SMSReceiver.OTPReceiveListener{
             val inPutManger = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
             inPutManger.hideSoftInputFromWindow(coordinatorLayout.windowToken,0)
             return
+        }else{
+            Toast.makeText(applicationContext, "ثبت نام انجام نشد", Toast.LENGTH_SHORT).show()
+            reset()
         }
-
-        Toast.makeText(applicationContext, "ثبت نام با انجام نشد", Toast.LENGTH_SHORT).show()
-        reset()
 
     }
 
-    private fun startSMSListener() {
-        try {
-            smsReceiver = SMSReceiver()
-            smsReceiver!!.setOTPListener(this)
-            val intentFilter = IntentFilter()
-            intentFilter.addAction(SmsRetriever.SMS_RETRIEVED_ACTION)
-            this.registerReceiver(smsReceiver, intentFilter)
-            val client = SmsRetriever.getClient(this)
-            val task = client.startSmsRetriever()
-            task.addOnSuccessListener {
-                // API successfully started
-                //  showToast("successfully")
-
-
-            }
-            task.addOnFailureListener {
-                // Fail to start API
-                //   showToast("Fail to start")
-
-            }
-        } catch (e: Exception) {
-
-            e.printStackTrace()
-        }
-    }
+//    private fun startSMSListener() {
+//        try {
+//            smsReceiver = SMSReceiver()
+//            smsReceiver!!.setOTPListener(this)
+//            val intentFilter = IntentFilter()
+//            intentFilter.addAction(SmsRetriever.SMS_RETRIEVED_ACTION)
+//            this.registerReceiver(smsReceiver, intentFilter)
+//            val client = SmsRetriever.getClient(this)
+//            val task = client.startSmsRetriever()
+//            task.addOnSuccessListener {
+//                // API successfully started
+//                //  showToast("successfully")
+//
+//
+//            }
+//            task.addOnFailureListener {
+//                // Fail to start API
+//                //   showToast("Fail to start")
+//
+//            }
+//        } catch (e: Exception) {
+//
+//            e.printStackTrace()
+//        }
+//    }
 
     override fun onOTPReceived(otp: String?) {
         //  showToast("OTP Received: $otp")

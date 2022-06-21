@@ -54,7 +54,7 @@
                 <ImageView
                     android:id="@+id/imageView"
                     android:layout_width="wrap_content"
-                    android:layout_height="@dimen/_70sdp"
+                    android:layout_height="@dimen/_40sdp"
                     app:srcCompat="@drawable/logo" />
 
                 <TextView
@@ -65,18 +65,26 @@
                     android:text="@string/auth"
                     android:textColor="@color/grey_900"
                     android:textSize="@dimen/_8sdp" />
-
-                <EditText
-                    android:id="@+id/edt_login"
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_8sdp"
-                    android:background="@drawable/shape_edittext_phone"
-                    android:hint="شماره موبایل:"
-                    android:textColorHint="@color/grey_400"
-                    android:textSize="@dimen/_10sdp"
-                    android:inputType="textPersonName"
-                    android:padding="@dimen/_4sdp" />
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeColor="@color/green_600"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:hint="شماره موبایل"
+                    app:hintTextColor="@color/green_600"
+                    android:textColorHint="@color/grey_500"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edt_login"
+                        android:layout_margin="@dimen/_4sdp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:textSize="@dimen/_10sdp"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_login"
@@ -90,20 +98,84 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_8sdp"
-                    android:text="ثبت در سنه ماڵ"
+                    android:text="ثبت در سنه مال"
                     android:textColor="@color/blue"
                     android:textSize="@dimen/_12sdp" />
 
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_8sdp"
-                    android:text="@string/privacy"
-                    android:gravity="center"
-                    android:textColor="@color/grey_700"
-                    android:textSize="@dimen/_7sdp" />
+                    android:orientation="horizontal"
+                    android:layoutDirection="rtl"
+                    android:gravity="center_horizontal">
+                    <TextView
+                        android:id="@+id/textView6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:text="@string/privacy1"
+                        android:textColor="@color/grey_700"
+                        android:textSize="@dimen/_7sdp" />
 
+                    <TextView
+                        android:id="@+id/text_rules"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:text="@string/privacy2"
+                        android:textColor="#5F88FB"
+                        android:textSize="@dimen/_7sdp" />
+                    <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:text="@string/privacy3"
+                        android:textColor="@color/grey_700"
+                        android:textSize="@dimen/_7sdp" />
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layoutDirection="rtl"
+                    android:gravity="center_horizontal">
+                    <TextView
+                        android:id="@+id/textView7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:text="@string/privacy4"
+                        android:textColor="@color/grey_700"
+                        android:textSize="@dimen/_7sdp" />
+
+                    <TextView
+                        android:id="@+id/text_privacy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:text="@string/privacy5"
+                        android:textColor="#5F88FB"
+                        android:textSize="@dimen/_7sdp" />
+                    <TextView
+                        android:id="@+id/textView9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:text="@string/privacy6"
+                        android:textColor="@color/grey_700"
+                        android:textSize="@dimen/_7sdp" />
+
+
+                </LinearLayout>
 
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>

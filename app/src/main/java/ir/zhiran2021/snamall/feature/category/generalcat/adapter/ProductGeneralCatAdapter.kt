@@ -17,7 +17,7 @@ import ir.zhiran2021.snamall.view.MyImageView
 
 class ProductGeneralCatAdapter(val products:List<ResponseProductGeneralCat>, val imageLoadService: ImageLoadService):RecyclerView.Adapter<ProductGeneralCatAdapter.ProductSubCat1ViewHolder>() {
 
-
+    lateinit var onClickGeneralProduct: OnClickGeneralProduct
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductSubCat1ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_subcat1_product,parent,false)
@@ -37,6 +37,14 @@ class ProductGeneralCatAdapter(val products:List<ResponseProductGeneralCat>, val
         holder.txtPrice.text = PriceConverter.priceConvert(productItem.price)
         holder.txtFree.text = FreePercent.offPercent(productItem.offPercent)
         holder.txtFreePrice.text = PriceConverter.priceConvert(productItem.offPrice.toString())
+
+        holder.itemView.setOnClickListener {
+            onClickGeneralProduct.onClickGeneralProductItem(productItem.id)
+        }
+    }
+
+    fun setOnClickProductGeneral(onClickGeneralProduct: OnClickGeneralProduct){
+        this.onClickGeneralProduct = onClickGeneralProduct
     }
 
     override fun getItemCount(): Int = products.size
@@ -48,5 +56,9 @@ class ProductGeneralCatAdapter(val products:List<ResponseProductGeneralCat>, val
         val txtFreePrice = itemView.findViewById<TextView>(R.id.txt_free_price_subcat1)
         val txtPrice = itemView.findViewById<TextView>(R.id.txt_price_subcat1)
         val lnrFree = itemView.findViewById<LinearLayout>(R.id.lnr_free_subcat1)
+    }
+
+    interface OnClickGeneralProduct{
+        fun onClickGeneralProductItem(productId:Int)
     }
 }

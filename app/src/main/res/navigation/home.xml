@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_subCatLevel1Fragment_to_subCat1Fragment2"
             app:destination="@id/subCat1Fragment2" />
+        <action
+            android:id="@+id/action_subCatLevel1Fragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/subCat1Fragment2"
